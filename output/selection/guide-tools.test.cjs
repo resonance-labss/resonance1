@@ -22,7 +22,7 @@ await p.click('#new-rule');assert(await p.locator('#result-sentence').isHidden()
 await open(vault+'protection.html');await reveal();await p.click('#example-next');await p.click('#review-protection');await p.click('#confirm-protection');
 for(let i=0;i<6&&!(await p.locator('#advance-protection').isDisabled());i++)await p.click('#advance-protection');
 assert.match(await p.locator('#result-sentence').textContent(),/^Ece’s rules stopped \d+ of \d+ proposed orders and left [\d.]+ Demo RLO, including the 40\.00 reserve\.$/);
-await p.selectOption('#resonance-language','tr');assert.match(await p.locator('#result-sentence').textContent(),/^Ece’nin kuralları \d+ önerilen emirden \d+ tanesini durdurdu/);
+await p.selectOption('#resonance-language','tr');await p.waitForFunction(()=>document.documentElement.lang==='tr');assert.match(await p.locator('#result-sentence').textContent(),/^Ece’nin kuralları \d+ önerilen emirden \d+ tanesini durdurdu/);
 assert.equal(await p.locator('.result-headline-eyebrow').textContent(),'Tek cümlede sonuç');await p.selectOption('#resonance-language','en');
 assert.equal(await png(),'resonance-ece-result.png');await p.click('#revise-protection');assert(await p.locator('#result-sentence').isHidden());
 // Denis and Ade starters.
@@ -38,7 +38,7 @@ await p.locator('label:has(#floor) .term-chip').click();assert.match(await p.loc
 await p.keyboard.press('Escape');assert(await p.locator('#term-popover').isHidden());
 await p.click('#site-terms');assert(await p.locator('#terms-panel').isVisible());assert(await p.locator('#terms-panel dt').count()>=20);assert.equal(await p.locator('#site-terms').getAttribute('aria-expanded'),'true');
 await p.keyboard.press('Escape');assert(await p.locator('#terms-panel').isHidden());assert.equal(await p.evaluate(()=>document.activeElement.id),'site-terms');
-await p.selectOption('#resonance-language','tr');await p.click('#site-terms');assert.equal(await p.locator('#terms-panel dt').first().textContent(),'Demo RLO');assert.match(await p.locator('#terms-panel dd').first().textContent(),/Uydurma bir alıştırma birimi/);await p.selectOption('#resonance-language','en');
+await p.selectOption('#resonance-language','tr');await p.waitForFunction(()=>document.documentElement.lang==='tr');await p.click('#site-terms');assert.equal(await p.locator('#terms-panel dt').first().textContent(),'Demo RLO');assert.match(await p.locator('#terms-panel dd').first().textContent(),/Uydurma bir alıştırma birimi/);await p.selectOption('#resonance-language','en');
 // Tour on every page: visible steps only, keyboard controls, no layout overflow on phones.
 const expect={[site+'/']:['Your controls','Start here','Learn, earn, apply','Four tools','What changed'],['file://'+__dirname+'/resonance-playable-v1.html']:['Choose a guide','Your name','Begin','Learn more','Learning passes','Your controls'],
  ['file://'+__dirname+'/mint/index.html']:['Pick your pass','Connect and check','Mint','Your controls'],['file://'+__dirname+'/my/index.html']:['Check your passes','Your progress','Your next step','Saved plans','Your controls'],

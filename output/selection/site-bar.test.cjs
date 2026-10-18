@@ -15,6 +15,6 @@ await p.waitForFunction(()=>{const i=document.getElementById('preview');return i
 await p.click('#demo-unit-info > summary');assert(await p.locator('#demo-unit-info > p').isVisible());assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
 await p.keyboard.press('Escape');assert(await p.locator('#demo-unit-info > p').isHidden());assert.equal(await p.evaluate(()=>document.activeElement.parentElement.id),'demo-unit-info');
 await p.click('#demo-unit-info > summary');await p.click('h1');assert(await p.locator('#demo-unit-info > p').isHidden());
-await p.selectOption('#resonance-language','tr');assert.equal(await p.locator('#site-bar').getAttribute('aria-label'),'Site tercihleri');assert.match(await p.locator('#demo-unit-info > p').textContent(),/kurgusal birimler/);
+await p.selectOption('#resonance-language','tr');await p.waitForFunction(()=>document.documentElement.lang==='tr');assert.equal(await p.locator('#site-bar').getAttribute('aria-label'),'Site tercihleri');assert.match(await p.locator('#demo-unit-info > p').textContent(),/kurgusal birimler/);
 await p.selectOption('#resonance-language','en');assert.deepEqual(errors,[]);
 console.log('PASS site bar on seven pages, home link, release, favicon, unit info toggle, TR labels, 320px width, WebP pass preview and academy size guard.');}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1);});

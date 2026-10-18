@@ -15,7 +15,7 @@ assert.equal(await p.evaluate(()=>document.body.firstElementChild.id),'site-bar'
 await p.click('#retry');await p.selectOption('#condition','low');await p.selectOption('#amount','20');await p.click('#register');await p.click('#next');await p.waitForTimeout(300);await p.click('#retry');await p.waitForTimeout(250);
 assert.equal(await p.locator('#chapter').getAttribute('data-visual-busy'),null);await p.waitForTimeout(1700);assert.equal(await p.locator('.node[data-fx-delta]').count(),0,'Retry makes no fake pops');
 // Turkish: a transfer-only block plays the transfer, not a fake 15-energy wave (about 1.25 s, not 3.25 s).
-await p.selectOption('#resonance-language','tr');await p.selectOption('#condition','low');await p.selectOption('#amount','20');await p.click('#register');await p.click('#next');await idle(p);
+await p.selectOption('#resonance-language','tr');await p.waitForFunction(()=>document.documentElement.lang==='tr');await p.selectOption('#condition','low');await p.selectOption('#amount','20');await p.click('#register');await p.click('#next');await idle(p);
 const t0=Date.now();await p.click('#next');await idle(p);assert(Date.now()-t0<2300,'TR transfer block took '+(Date.now()-t0)+' ms');await p.selectOption('#resonance-language','en');
 // Replay after reload: state restores with no celebrations, toasts or pops.
 await p.reload();await p.click('#save-continue');await p.waitForSelector('#next');await p.waitForTimeout(400);

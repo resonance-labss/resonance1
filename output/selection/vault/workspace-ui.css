@@ -68,6 +68,7 @@
 /* One-sentence result and downloadable card. */
 .result-headline{--card-accent:var(--rose,#e5a9ab);margin:14px 0 18px;padding:16px 18px;border:1px solid #ffffff1f;border-left:3px solid var(--card-accent);border-radius:12px;background:linear-gradient(135deg,#ffffff0d,#ffffff05)}
 .result-headline[data-character=diren]{--card-accent:#b6dfcc}
+.result-headline:focus:not(:focus-visible){outline:none}
 .result-headline-eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--card-accent)}
 #result-sentence{margin:6px 0 12px;font:clamp(18px,1.6vw,21px)/1.45 Georgia,serif;color:#f4efe4}
 .result-headline-actions{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
