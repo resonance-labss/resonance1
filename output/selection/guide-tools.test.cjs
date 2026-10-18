@@ -27,7 +27,7 @@ assert.equal(await p.locator('.result-headline-eyebrow').textContent(),'Tek cüm
 assert.equal(await png(),'resonance-ece-result.png');await p.click('#revise-protection');assert(await p.locator('#result-sentence').isHidden());
 // Denis and Ade starters.
 await open(vault+'eric.html');await reveal();await p.click('#example-next');await p.click('#budget-form button[type=submit]');
-assert.match(await p.locator('#result-sentence').textContent(),/^\d+ of \d+ expenses are covered, [\d.]+ Demo RLO goes to goals and [\d.]+ Demo RLO stays as operating cash\.$/);assert.equal(await png(),'resonance-eric-result.png');
+assert.match(await p.locator('#result-sentence').textContent(),/^\d+ of \d+ expenses are covered, [\d.]+ Demo RLO goes to goals and [\d.]+ Demo RLO stays as operating cash\.$/);assert.equal(await png(),'resonance-denis-result.png');
 await open(vault+'ade.html');await reveal();await p.click('#example-next');await p.click('#ade-form button[type=submit]');
 assert.match(await p.locator('#result-sentence').textContent(),/^On the .+ path, (Plan [AB] ends [\d.]+ Demo RLO higher in modeled total value than Plan [AB] \(A: [\d.]+, B: [\d.]+\)|Plans A and B end with the same modeled total value: [\d.]+ Demo RLO)\.$/);
 const first=await p.locator('#result-sentence').textContent();await p.selectOption('#ade-path-view','0');assert(first.length>0);assert.equal(await png(),'resonance-ade-result.png');
