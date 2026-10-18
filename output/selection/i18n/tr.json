@@ -1884,7 +1884,7 @@
   "Scroll to the introduction": "Tanıtıma geç",
   "A new cinematic entrance: Diren, Ece, Ade and Denis under one neon sky, with the motto and Begin the adventure in your language.": "Yeni sinematik giriş: Diren, Ece, Ade ve Denis aynı neon gökyüzünün altında; slogan ve Maceraya başla düğmesi seçtiğin dilde.",
   "Eric is now Denis, with a new portrait and pass preview. Lessons, saved plans and the Web3 Budget Studio work as before.": "Eric artık Denis: yeni portre ve geçiş önizlemesiyle. Dersler, kayıtlı planlar ve Web3 Bütçe Atölyesi eskisi gibi çalışır.",
-  "Passes already minted on Sepolia keep their original artwork and name in your wallet; access to the studio is unchanged.": "Sepolia’da daha önce alınmış geçişler cüzdanında özgün görsel ve adıyla kalır; atölyeye erişim değişmez.",
   "The entrance image is about 90% lighter than a plain PNG and loads a smaller copy on phones.": "Giriş görseli düz bir PNG’ye göre yaklaşık %90 daha hafif ve telefonlarda daha küçük bir kopyası yüklenir.",
-  "Release notes / 18 October 2026": "Sürüm notları / 18 Ekim 2026"
+  "Release notes / 18 October 2026": "Sürüm notları / 18 Ekim 2026",
+  "The Sepolia pass contract’s artwork is fixed, so this character’s passes still show the original Eric artwork and name in wallets; access to the studio is unchanged.": "Sepolia geçiş kontratındaki görsel sabit olduğu için bu karakterin geçişleri cüzdanlarda hâlâ özgün Eric görseli ve adıyla görünür; atölyeye erişim değişmez."
 }
