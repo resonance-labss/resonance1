@@ -31,7 +31,7 @@ const LABELS={
  'Starting demo balance':'demo-rlo','Keep untouched':'reserve','Maximum per demo week':'weekly-cap','Cost of each proposed order':'fee','Buy only at or below':'price-limit','Reject quotes older than':'quote-age',
  'Starting balance · Demo RLO':'demo-rlo','Untouched reserve · Demo RLO':'reserve','Weekly cap · Demo RLO':'weekly-cap','Cost per order, including fee · Demo RLO':'fee','Unit price limit · Demo RLO':'price-limit','Maximum quote age · minutes':'quote-age','Scenario set':'price-path','Assumed annual rate · % (−99 to 100)':'assumed-rate','Same market. Different boundaries.':'plans-ab',
  'Current operating cash · RLO':'operating-cash','Protected cash floor · RLO':'reserve','Separate flexible savings · RLO':'flexible-savings','Allow this demo proposal to use flexible savings for checked expenses':'flexible-savings','Priority · 1–20':'priority','Your proposed allocation · not adopted or paid':'allocation',
- 'Your learning pass opens the door.':'pass','Bring your Ece pass.':'pass','Your Ade pass opens the lab.':'pass','Your Eric pass opens the studio.':'pass','Your learning passes':'pass',
+ 'Your learning pass opens the door.':'pass','Bring your Ece pass.':'pass','Your Ade pass opens the lab.':'pass','Your Denis pass opens the studio.':'pass','Your learning passes':'pass',
  '1. Choose your learning pass':'pass','2. Check your wallet':'rabby','3. Mint your pass':'mint','I reviewed the character, wallet and Sepolia fee.':'sepolia','Sepolia transaction hash':'tx-hash'};
 const source=node=>(window.ResonanceI18n?window.ResonanceI18n.source(node):node.data).trim();
 let popover=null,pinned=null;

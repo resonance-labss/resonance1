@@ -1,6 +1,6 @@
 (()=>{'use strict';const $=id=>document.getElementById(id),workspace=$('workspace'),index=Number(document.body.dataset.vaultCharacter||0);if(!workspace)return;
 const home=document.createElement('a');home.href='../my/index.html';home.textContent='← My Resonance';workspace.before(home);
-const routes=[['Diren','index.html'],['Ece','protection.html'],['Eric','eric.html'],['Ade','ade.html']];
+const routes=[['Diren','index.html'],['Ece','protection.html'],['Denis','eric.html'],['Ade','ade.html']];
 const nav=document.createElement('nav');nav.className='tool-navigation';nav.setAttribute('aria-label','Character tools');for(const [i,[name,url]] of routes.entries()){const a=document.createElement('a');a.href=url;a.textContent=name;if(i===index)a.setAttribute('aria-current','page');nav.append(a);}document.querySelector('header').after(nav);
 const style=document.createElement('style');style.textContent='.tool-navigation{display:flex;gap:10px 22px;flex-wrap:wrap;margin:16px 0}.tool-navigation a{padding:8px 4px;color:#b8dfcb}.tool-navigation [aria-current=page]{font-weight:700;text-decoration:underline;text-underline-offset:6px}.first-practice{border-left:3px solid #b8dfcb;padding:12px 20px;margin:20px 0}.first-practice button{min-height:44px}.first-practice ol{padding-left:24px}.first-practice li{margin:8px 0}.first-practice .practice-links{display:flex;gap:8px;flex-wrap:wrap}';document.head.append(style);
 if(index<2)return;

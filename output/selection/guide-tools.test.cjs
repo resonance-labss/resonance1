@@ -25,7 +25,7 @@ assert.match(await p.locator('#result-sentence').textContent(),/^Ece’s rules s
 await p.selectOption('#resonance-language','tr');assert.match(await p.locator('#result-sentence').textContent(),/^Ece’nin kuralları \d+ önerilen emirden \d+ tanesini durdurdu/);
 assert.equal(await p.locator('.result-headline-eyebrow').textContent(),'Tek cümlede sonuç');await p.selectOption('#resonance-language','en');
 assert.equal(await png(),'resonance-ece-result.png');await p.click('#revise-protection');assert(await p.locator('#result-sentence').isHidden());
-// Eric and Ade starters.
+// Denis and Ade starters.
 await open(vault+'eric.html');await reveal();await p.click('#example-next');await p.click('#budget-form button[type=submit]');
 assert.match(await p.locator('#result-sentence').textContent(),/^\d+ of \d+ expenses are covered, [\d.]+ Demo RLO goes to goals and [\d.]+ Demo RLO stays as operating cash\.$/);assert.equal(await png(),'resonance-eric-result.png');
 await open(vault+'ade.html');await reveal();await p.click('#example-next');await p.click('#ade-form button[type=submit]');

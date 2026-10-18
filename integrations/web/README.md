@@ -105,6 +105,14 @@ The mint page shows the selected pass beside numbered steps. All four tools and 
 - **Result in one sentence** (`vault/result-card.js`): Diren, Ece, Eric and Ade show a plain summary under the result heading once a result is complete, built from the same calculated values the tool already displays. "Download result card" draws a 1200×630 PNG in the browser (portrait, sentence, up to four numbers, a no-real-funds line and the date). Pages opened from `file://` produce a card without the portrait. The sentence hides when a result is revised, reset or access changes. Nothing is uploaded.
 - **Fine print**: first-screen safety notes are folded into one-line `details.fine-print` summaries. Every original sentence is kept under Details.
 
+### Denis and the cinematic entrance (0.9.9)
+- **Eric is now Denis** in everything a visitor sees: academy cards and lessons, the mint page, My Resonance, the vault gate and the studio header, result cards, the Terms panel and Turkish translations. New portrait `denis.jpg` (500×600) and pass preview `nft/denis.webp` in the same card layout as the other three.
+- Internal identifiers stay the same so nothing breaks: character index 2, `vault/eric.html`, `eric-engine.js`/`eric.js`, storage keys and the contract. Passes already minted on Sepolia keep their original Eric artwork and metadata on IPFS; the release notes say so.
+- **Cinematic entrance** on the home page: a four-character image (`hero/entry-1672.webp` 253 KB and `hero/entry-960.webp` 101 KB, from a 2.6 MB PNG) with the baked Turkish tagline, button and arrow removed, so the tagline, "Begin the adventure" and the scroll arrow are real, translatable and keyboard-reachable HTML. On desktop they sit where the art expects them (container-query sizing); under 760 px they move below the image.
+- The old hero keeps its explanation (`#intro`) without the portrait, since the whole cast is in the entrance.
+- Not taken from the Resonance 2 package on purpose: the "Try without wallet" mode (it bypassed the NFT gate), invisible hotspots over an image with no menu, edits applied to the built output with BeautifulSoup (the Vercel build has no such dependency), and the 2.6 MB PNG.
+- Theme fix: the active tool tab is readable again (the link colour rule now uses `:where()`).
+
 ### Anime theme (0.9.8)
 - **One shared theme** (`output/selection/anime-theme.css` + `anime-theme.js`), linked in the head of every page that loads the site bar (home, academy, mint, my/, the four vault tools). The script keeps the stylesheet last in `<head>` so it wins over the styles the academy scripts add later.
 - **Look**: a dusk sky with stars and the coastal castle skyline behind every page; dialogue boxes with name plates; SHIELD/RESERVE as game gauges; vault numbers in framed HUD tiles; command-style buttons; small katakana names on the character cards.

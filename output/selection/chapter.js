@@ -1,6 +1,6 @@
 (()=>{
 const shell=document.getElementById('resonance-select');
-const names=['Diren','Ece','Eric','Ade'];
+const names=['Diren','Ece','Denis','Ade'];
 const portraits=[...shell.querySelectorAll('.rs-person img')].map(x=>x.src);
 let player='Diren',avatar=0,stage=0,shield=40,reserve=40,block=0,registered=false,executed=false,queue=false,choice='',energy=0;
 const style=document.createElement('style');style.textContent=`

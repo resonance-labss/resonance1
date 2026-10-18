@@ -1,6 +1,6 @@
 /* One-sentence result headline and a downloadable PNG card. Reads finished results only; never changes balances, approvals or saved plans. */
 (()=>{'use strict';
-const themes=[{name:'Diren',tool:'Reactive Vault',accent:'#b6dfcc',image:'diren.jpg'},{name:'Ece',tool:'Reserve Studio',accent:'#e5a9ab',image:'ece.jpg'},{name:'Eric',tool:'Web3 Budget Studio',accent:'#9fd4c6',image:'eric.jpg'},{name:'Ade',tool:'Plan Lab',accent:'#dbb579',image:'ade.jpg'}];
+const themes=[{name:'Diren',tool:'Reactive Vault',accent:'#b6dfcc',image:'diren.jpg'},{name:'Ece',tool:'Reserve Studio',accent:'#e5a9ab',image:'ece.jpg'},{name:'Denis',tool:'Web3 Budget Studio',accent:'#9fd4c6',image:'denis.jpg'},{name:'Ade',tool:'Plan Lab',accent:'#dbb579',image:'ade.jpg'}];
 const theme=themes[Number(document.body.dataset.vaultCharacter)]||themes[0];
 // Card text follows the visible language and demo unit, exactly like the page.
 const say=text=>{const translated=window.ResonanceI18n?window.ResonanceI18n.t(text):text;return window.ResonanceUnit?window.ResonanceUnit.text(translated):translated;};

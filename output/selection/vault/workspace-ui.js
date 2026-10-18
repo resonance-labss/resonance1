@@ -13,7 +13,7 @@ const status=document.createElement('p');status.id='workspace-status';status.cla
 const guide=$('practice-guide');if(guide){const steps=guide.querySelector('ol');if(steps){const detail=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Read the three steps';steps.before(detail);detail.append(summary,steps);}guide.querySelector('h2').textContent='Quick guide';}
 if(who===3){const detail=$('ade-calculation-details');$('ade-weekly').before(detail);}
 if(who===1){const explanation=$('decision-summary');if(explanation)right.append(explanation);}
-// Put Eric's examples next to the editable budget, and the reference next to its result.
+// Put Denis's examples next to the editable budget, and the reference next to its result.
 if(who===2){const examples=$('example-note')?.closest('section'),reference=$('reference-status')?.closest('section');if(examples)left.insertBefore(examples,$('budget-form'));if(reference)right.append(reference);}
 // A newly opened review/result must not inherit the scroll position of a long old result.
 for(const target of [$(who===0?'review-box':who===1?'policy-review':who===2?'results':'ade-results')].filter(Boolean)){

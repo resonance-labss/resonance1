@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const $=id=>document.getElementById(id),chars=[['Diren','Value conditions','Reactive Vault','index.html',2],['Ece','Budget protection','Reserve Studio','protection.html',3],['Eric','Priority budgets','Web3 Budget Studio','eric.html',1],['Ade','Combined conditions','Plan Lab','ade.html',1]];
+const $=id=>document.getElementById(id),chars=[['Diren','Value conditions','Reactive Vault','index.html',2],['Ece','Budget protection','Reserve Studio','protection.html',3],['Denis','Priority budgets','Web3 Budget Studio','eric.html',1],['Ade','Combined conditions','Plan Lab','ade.html',1]];
 let ownership=null,provider=null,busy=false,revision=0,connected=false;
 const link=(label,href,className)=>{const a=document.createElement('a');a.textContent=label;a.href=href;if(className)a.className=className;return a;};
 function local(){let passes={},issues=[],plans=[];try{passes=JSON.parse(localStorage.getItem('resonance.learning-passes.v1')||'{}');if(!passes||Array.isArray(passes)||typeof passes!=='object')throw Error();}catch{passes={};issues.push('Learning progress could not be read.');}

@@ -123,7 +123,7 @@
 ::selection { background: var(--vn-gold); color: #1a1424; }
 
 :root body :is(.eyebrow, .rs-step, .result-headline-eyebrow, #chapter header .small) { color: var(--vn-char) !important; }
-:root body :is(main, #chapter, #resonance-select) a:not([class]) { color: color-mix(in srgb, var(--vn-char) 70%, #fff6e6); }
+:root body :where(main, #chapter, #resonance-select) a:not([class]) { color: color-mix(in srgb, var(--vn-char) 70%, #fff6e6); }
 
 /* ------------------------------------------------------------------ 2. Top bar = system menu */
 :root #site-bar {
@@ -491,7 +491,7 @@
 }
 :root #resonance-select .rs-person:nth-child(1) .rs-caption::before { content: "ディレン" / ""; }
 :root #resonance-select .rs-person:nth-child(2) .rs-caption::before { content: "エジェ" / ""; }
-:root #resonance-select .rs-person:nth-child(3) .rs-caption::before { content: "エリック" / ""; }
+:root #resonance-select .rs-person:nth-child(3) .rs-caption::before { content: "デニス" / ""; }
 :root #resonance-select .rs-person:nth-child(4) .rs-caption::before { content: "アデ" / ""; }
 :root #resonance-select .rs-caption {
   position: relative;

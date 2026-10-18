@@ -31,7 +31,7 @@
     const who = activeGuide();
     if (root.getAttribute('data-vn-char') === who) return;
     root.setAttribute('data-vn-char', who);
-    root.style.setProperty('--vn-face', `url("${new URL(who + '.jpg', base).href}")`);
+    root.style.setProperty('--vn-face', `url("${new URL((who === 'eric' ? 'denis' : who) + '.jpg', base).href}")`);
   }
 
   const layer = document.createElement('div');

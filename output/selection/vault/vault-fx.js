@@ -30,6 +30,6 @@ new MutationObserver(()=>{if($('workspace')?.hidden)clear();}).observe(document.
 // Ade: draw the comparison and growth lines in once per rebuild, keeping polyline B's dash pattern.
 function drawIn(svg){if(!svg)return;let queued=false;new MutationObserver(()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;if(off())return;svg.querySelectorAll('polyline').forEach((line,i)=>line.animate?.([{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0 0 0)'}],{duration:900,delay:i*140,easing:'cubic-bezier(.3,.1,.2,1)',fill:'backwards'}));});}).observe(svg,{childList:true});}
 drawIn($('ade-chart'));drawIn($('growth-chart'));
-// Eric: tone the proposal overview once per review so a reserve problem stands out.
+// Denis: tone the proposal overview once per review so a reserve problem stands out.
 const summary=$('proposal-summary');if(summary)new MutationObserver(()=>{const title=source(summary.querySelector('h3'));const tone=/needs attention|remain unfunded/.test(title)?'warn':title?'ok':'';if(summary.dataset.fxTone!==tone){if(tone)summary.dataset.fxTone=tone;else delete summary.dataset.fxTone;}}).observe(summary,{childList:true});
 })();

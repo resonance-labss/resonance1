@@ -40,7 +40,7 @@
     "Yalnızca bu varsayımlarla: yatırım değeri $1 RLO; katkılar $2 RLO; hesaplanan kazanç/kayıp $3 RLO; düşülen ücretler $4 RLO. Korunan rezerv $5 RLO; birleşik toplam $6 RLO. Alım senaryosundan ayrıdır; tahmin değildir."
   ],
   [
-    "^No (Diren|Ece|Eric|Ade) NFT currently held\\. This tool requires its matching character pass\\.$",
+    "^No (Diren|Ece|Denis|Ade) NFT currently held\\. This tool requires its matching character pass\\.$",
     "Cüzdanda şu anda $1 NFT’si yok. Araç, ilgili karakter NFT’sini gerektirir."
   ],
   [
@@ -60,7 +60,7 @@
     "1 ile $1 arasında tam sayı kullan."
   ],
   [
-    "^Start (Diren|Ece|Eric|Ade)’s short lesson →$",
+    "^Start (Diren|Ece|Denis|Ade)’s short lesson →$",
     "$1 ile kısa derse başla →"
   ],
   [
@@ -68,11 +68,11 @@
     "$1 olarak devam et →"
   ],
   [
-    "^Review (Diren|Ece|Eric|Ade) mint →$",
+    "^Review (Diren|Ece|Denis|Ade) mint →$",
     "$1 mint işlemini incele →"
   ],
   [
-    "^(Diren|Ece|Eric|Ade)’s saved library could not be read\\.$",
+    "^(Diren|Ece|Denis|Ade)’s saved library could not be read\\.$",
     "$1 karakterinin kayıtlı kütüphanesi okunamadı."
   ],
   [
