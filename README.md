@@ -28,6 +28,8 @@ python3 -m http.server 8767 --bind 127.0.0.1 --directory output/vercel-site/publ
 
 Open http://127.0.0.1:8767. This build includes the landing page, game, mint screen, Diren vault, Ece Reserve Studio and Ade Plan Lab. It deliberately excludes secrets, backend services and development screenshots.
 
+On Windows without Python, extract a package that already contains `output/vercel-site/public` and double-click `Resonance-Baslat.bat`. It serves the built site with the PowerShell that ships with Windows (`integrations/web/serve-windows.ps1`), opens the browser and stops when its window is closed. From a git checkout, build once with Python first.
+
 Browser progress is stored per origin. Existing localhost progress will not automatically appear on the live domain; NFTs remain in the wallet.
 
 ## Project layout
