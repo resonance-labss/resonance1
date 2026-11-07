@@ -2064,5 +2064,6 @@
   "The home page has a 3D neon core that turns and leans toward your pointer, and character cards tilt in 3D with a neon glare.": "Ana sayfada dönen ve imlecine doğru eğilen 3D bir neon çekirdek var; karakter kartları da neon bir parıltıyla 3D eğiliyor.",
   "The cover and the intro switch in one scroll step, and pages open without sliding.": "Kapak ile tanıtım tek kaydırmada değişiyor; sayfalar kaymadan açılıyor.",
   "Pass previews on the mint page and in the academy use the neon portraits; wallets still show each pass’s original artwork.": "Mint sayfasındaki ve akademideki geçiş önizlemeleri neon portreleri kullanıyor; cüzdanlar her geçişi yine orijinal görseliyle gösteriyor.",
-  "The wallet picker lists each wallet once and suggests OKX Wallet, Coinbase Wallet, Trust Wallet and others when they are not installed.": "Cüzdan seçici her cüzdanı bir kez listeliyor; kurulu değillerse OKX Wallet, Coinbase Wallet, Trust Wallet ve diğerlerini öneriyor."
+  "The wallet picker lists each wallet once and suggests OKX Wallet, Coinbase Wallet, Trust Wallet and others when they are not installed.": "Cüzdan seçici her cüzdanı bir kez listeliyor; kurulu değillerse OKX Wallet, Coinbase Wallet, Trust Wallet ve diğerlerini öneriyor.",
+  "Public preview · v0.10.1": "Herkese açık önizleme · v0.10.1"
 }
