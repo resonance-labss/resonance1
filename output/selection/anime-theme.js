@@ -2,7 +2,8 @@
    - Marks <html data-vn-char> with the active guide so name plates, face windows and accents follow the cast.
    - Adds one aria-hidden, pointer-events:none layer (lantern motes) and a scene-wipe element.
    - Plays the wipe when the academy moves to a new scene (new h1 / step label).
-   It never edits existing nodes' text, classes or attributes. */
+   - Tilts character cards toward the pointer by setting four CSS variables on them (decorative only).
+   It never edits existing nodes' text or classes. */
 (() => {
   if (window.__vnTheme) return;
   window.__vnTheme = true;
@@ -96,6 +97,25 @@
     const keepLast = () => { if (document.head.lastElementChild !== sheet) document.head.append(sheet); };
     keepLast();
     new MutationObserver(keepLast).observe(document.head, { childList: true });
+  }
+
+  // Character cards lean toward the pointer, with a glare where it points. Mouse and pen only; reduced motion skips it.
+  const tiltable = '#resonance-select .rs-person, #characters .card';
+  if (matchMedia('(hover: hover)').matches) {
+    const vars = ['--vn-tilt-x', '--vn-tilt-y', '--vn-glare-x', '--vn-glare-y'];
+    document.addEventListener('pointermove', e => {
+      const card = e.target.closest && e.target.closest(tiltable);
+      if (!card || reduce.matches) return;
+      const b = card.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
+      card.style.setProperty('--vn-tilt-y', ((x - .5) * 14).toFixed(2) + 'deg');
+      card.style.setProperty('--vn-tilt-x', ((.5 - y) * 10).toFixed(2) + 'deg');
+      card.style.setProperty('--vn-glare-x', (x * 100).toFixed(1) + '%');
+      card.style.setProperty('--vn-glare-y', (y * 100).toFixed(1) + '%');
+    }, { passive: true });
+    document.addEventListener('pointerout', e => {
+      const card = e.target.closest && e.target.closest(tiltable);
+      if (card && !card.contains(e.relatedTarget)) vars.forEach(v => card.style.removeProperty(v));
+    });
   }
 
   applyGuide();

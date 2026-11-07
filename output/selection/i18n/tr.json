@@ -2052,5 +2052,17 @@
   "My Resonance has three read-only tools: check a transaction, verify a pass and preview a transfer. Nothing is signed or sent.": "My Resonance’ta üç salt okunur araç var: bir işlemi kontrol et, bir geçişi doğrula ve bir transferi önizle. Hiçbir şey imzalanmaz ya da gönderilmez.",
   "The demo wallet in the academy (the simulated claim flow) is gone; minting happens only on the real mint page.": "Akademideki demo cüzdan (taklit mint akışı) kaldırıldı; mint yalnızca gerçek mint sayfasında yapılıyor.",
   "Release notes / 7 November 2026": "Sürüm notları / 7 Kasım 2026",
-  "Public preview · v0.10.0": "Herkese açık önizleme · v0.10.0"
+  "Public preview · v0.10.0": "Herkese açık önizleme · v0.10.0",
+  "Wallets show this pass with its original artwork; this preview uses the new neon portrait. Studio access is the same.": "Cüzdanlar bu geçişi orijinal görseliyle gösterir; bu önizleme yeni neon portreyi kullanır. Atölyeye erişim aynıdır.",
+  "Minting needs a browser wallet such as MetaMask, OKX Wallet or Coinbase Wallet (on a phone, open this site in the wallet app’s browser) and free Sepolia test ETH for the network fee.": "Mint için MetaMask, OKX Wallet ya da Coinbase Wallet gibi bir tarayıcı cüzdanı (telefonda siteyi cüzdan uygulamasının tarayıcısında aç) ve ağ ücreti için ücretsiz Sepolia test ETH’si gerekir.",
+  "Get OKX Wallet ↗": "OKX Wallet’ı edin ↗",
+  "Get Trust Wallet ↗": "Trust Wallet’ı edin ↗",
+  "Other popular wallets": "Diğer bilinen cüzdanlar",
+  "No browser wallet was found. Install MetaMask, OKX Wallet or another wallet, or open this page in your wallet app’s browser. You can still play every lesson.": "Tarayıcı cüzdanı bulunamadı. MetaMask, OKX Wallet ya da başka bir cüzdan kur veya bu sayfayı cüzdan uygulamanın tarayıcısında aç. Tüm dersleri yine de oynayabilirsin.",
+  "A browser wallet such as MetaMask, OKX Wallet, Coinbase Wallet or Rabby. Resonance uses it to read which pass NFTs you hold and to ask for your mint approval; nothing is sent without your confirmation.": "MetaMask, OKX Wallet, Coinbase Wallet ya da Rabby gibi bir tarayıcı cüzdanı. Resonance onu hangi geçiş NFT’lerini tuttuğunu okumak ve mint onayını istemek için kullanır; senin onayın olmadan hiçbir şey gönderilmez.",
+  "Connect with MetaMask, OKX Wallet, Coinbase Wallet, Rabby or any browser wallet. With several installed, you choose one and the site remembers it.": "MetaMask, OKX Wallet, Coinbase Wallet, Rabby ya da herhangi bir tarayıcı cüzdanıyla bağlan. Birden fazla cüzdan varsa birini seçersin; site bunu hatırlar.",
+  "The home page has a 3D neon core that turns and leans toward your pointer, and character cards tilt in 3D with a neon glare.": "Ana sayfada dönen ve imlecine doğru eğilen 3D bir neon çekirdek var; karakter kartları da neon bir parıltıyla 3D eğiliyor.",
+  "The cover and the intro switch in one scroll step, and pages open without sliding.": "Kapak ile tanıtım tek kaydırmada değişiyor; sayfalar kaymadan açılıyor.",
+  "Pass previews on the mint page and in the academy use the neon portraits; wallets still show each pass’s original artwork.": "Mint sayfasındaki ve akademideki geçiş önizlemeleri neon portreleri kullanıyor; cüzdanlar her geçişi yine orijinal görseliyle gösteriyor.",
+  "The wallet picker lists each wallet once and suggests OKX Wallet, Coinbase Wallet, Trust Wallet and others when they are not installed.": "Cüzdan seçici her cüzdanı bir kez listeliyor; kurulu değillerse OKX Wallet, Coinbase Wallet, Trust Wallet ve diğerlerini öneriyor."
 }

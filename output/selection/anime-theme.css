@@ -1273,17 +1273,8 @@
 :root #chapter:has(.layout > img.portrait) .learning-note::before { content: none; }
 :root #chapter:has(.layout > img.portrait) .learning-note::after { left: 24px; }
 
-/* ------------------------------------------------------------------ 12. Page changes: a short neon fade between pages */
-/* Same-origin page loads cross-fade where the browser supports view transitions; elsewhere pages load as before. */
-@view-transition { navigation: auto; }
-::view-transition-old(root) { animation: vn-page-out .2s ease-in both; }
-::view-transition-new(root) { animation: vn-page-in .32s cubic-bezier(.2, .7, .2, 1) both; }
-@keyframes vn-page-out { to { opacity: 0; filter: brightness(1.5) saturate(1.4); } }
-@keyframes vn-page-in { from { opacity: 0; transform: perspective(900px) translateZ(-50px) translateY(8px); } }
-@media (prefers-reduced-motion: reduce) {
-  @view-transition { navigation: none; }
-  :root body::after { animation: none; }
-}
+/* ------------------------------------------------------------------ 12. Reduced motion for the grid floor */
+@media (prefers-reduced-motion: reduce) { :root body::after { animation: none; } }
 
 /* ------------------------------------------------------------------ 13. Pages with their own palettes (home, mint, My Resonance, vaults) */
 /* The theme loads last, so redefining the pages' colour variables here turns their accents neon without touching their rules. */
@@ -1344,7 +1335,25 @@
 /* Character cards lean toward the pointer, like the Nexus operator cards. */
 :root :is(#resonance-select .rs-person, #characters .card) { transition: transform .35s ease, box-shadow .3s, filter .3s; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  :root :is(#resonance-select .rs-person, #characters .card):hover { transform: perspective(900px) rotateY(-4deg) translateY(-6px); }
+  :root :is(#resonance-select .rs-person, #characters .card):hover {
+    transform: perspective(900px) rotateX(var(--vn-tilt-x, 0deg)) rotateY(var(--vn-tilt-y, -4deg)) translateY(-6px);
+    transition: transform .12s ease-out, box-shadow .3s, filter .3s;
+  }
+  /* Neon glare that follows the pointer (anime-theme.js sets the position). */
+  :root :is(#resonance-select .rs-person, #characters .card)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s;
+    background:
+      radial-gradient(circle at var(--vn-glare-x, 50%) var(--vn-glare-y, 30%), rgba(164, 243, 255, .3), transparent 42%),
+      linear-gradient(115deg, transparent 38%, rgba(255, 79, 163, .14) 50%, transparent 62%);
+    mix-blend-mode: screen;
+  }
+  :root :is(#resonance-select .rs-person, #characters .card):hover::before { opacity: 1; }
 }
 
 /* Phones: long capitalised words (Turkish especially) must fit the line instead of breaking mid-word. */

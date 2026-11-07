@@ -57,10 +57,10 @@ check('storm adventure: Ece is sent to her 4-question check, then to mint, and a
 check('mint page: first-visit texts, lesson link, wallet needs, Denis artwork note',async b=>{
  const p=await fresh(b);await p.goto('file://'+SEL+'/mint/index.html');
  assert.equal(await p.locator('#account').textContent(),'Not connected');assert.equal(await p.locator('#holdings').textContent(),'NFT ownership has not been checked.');assert.equal(await p.locator('#fee').textContent(),'No fee estimate yet.');
- assert(await p.locator('#lesson-start').isVisible());assert.equal(await p.locator('#lesson-start a').textContent(),'Start Diren’s lesson in the academy →');assert(await p.locator('#artwork-note').isHidden());assert.equal(await p.locator('.wallet-needs a').count(),3);
- await p.selectOption('#character','2');assert(await p.locator('#artwork-note').isVisible());assert.equal(await p.locator('#lesson-start a').textContent(),'Start Denis’s lesson in the academy →');assert.equal(await p.locator('#vault-access').textContent(),'Already have a Denis NFT? Check vault access →');assert.equal(await p.locator('#vault-access').getAttribute('href'),'../vault/eric.html');assert.equal(await p.locator('#account').textContent(),'Not connected');
+ assert(await p.locator('#lesson-start').isVisible());assert.equal(await p.locator('#lesson-start a').textContent(),'Start Diren’s lesson in the academy →');assert.match(await p.locator('#artwork-note').textContent(),/original artwork; this preview uses the new neon portrait/);assert.equal(await p.locator('.wallet-needs a').count(),3);
+ await p.selectOption('#character','2');assert.match(await p.locator('#artwork-note').textContent(),/original Eric artwork/);assert.equal(await p.locator('#lesson-start a').textContent(),'Start Denis’s lesson in the academy →');assert.equal(await p.locator('#vault-access').textContent(),'Already have a Denis NFT? Check vault access →');assert.equal(await p.locator('#vault-access').getAttribute('href'),'../vault/eric.html');assert.equal(await p.locator('#account').textContent(),'Not connected');
  await p.evaluate(()=>localStorage.setItem('resonance.learning-passes.v1',JSON.stringify({2:{character:2,quizVersion:1,correctAnswers:4}})));await p.goto('file://'+SEL+'/mint/index.html?character=2');assert(await p.locator('#lesson-start').isHidden());
- await p.click('#connect');await p.waitForSelector('.wallet-picker');assert.equal(await p.locator('#wallet-picker-title').textContent(),'No wallet found');assert.equal(await p.locator('.wallet-picker .wallet-install a').count(),3);await p.click('.wallet-cancel');await p.waitForFunction(()=>/No browser wallet was found\. Install MetaMask, Rabby/.test(document.getElementById('status').textContent));
+ await p.click('#connect');await p.waitForSelector('.wallet-picker');assert.equal(await p.locator('#wallet-picker-title').textContent(),'No wallet found');assert.equal(await p.locator('.wallet-picker .wallet-install a').count(),5);await p.click('.wallet-cancel');await p.waitForFunction(()=>/No browser wallet was found\. Install MetaMask, OKX Wallet/.test(document.getElementById('status').textContent));
  await p.evaluate(()=>localStorage.setItem('resonance.language.v1','tr'));await p.reload();const tr=await p.locator('main').innerText();for(const english of ['Minting needs','Wallets show this pass','Get Rabby'])assert(!tr.includes(english),'English left: '+english);
  await done(p);
 });
@@ -70,11 +70,20 @@ check('wallet picker: several wallets are listed, the chosen one is used and rem
   const list=[make('MetaMask','io.metamask','0x'+'1'.repeat(40)),make('Rabby Wallet','io.rabby','0x'+'2'.repeat(40))];window.testWallets=list;
   window.addEventListener('eip6963:requestProvider',()=>{for(const w of list)window.dispatchEvent(new CustomEvent('eip6963:announceProvider',{detail:Object.freeze({info:w.info,provider:w.provider})}));});});
  await p.goto('file://'+SEL+'/mint/index.html');await p.click('#connect');await p.waitForSelector('.wallet-picker');
- assert.deepEqual(await p.locator('.wallet-picker li button').allInnerTexts(),['MetaMask','Rabby Wallet']);
+ assert.deepEqual(await p.locator('.wallet-picker li button').allInnerTexts(),['MetaMask','Rabby Wallet']);assert.deepEqual(await p.locator('.wallet-picker .wallet-install a').allTextContents(),['Get OKX Wallet ↗','Get Coinbase Wallet ↗','Get Trust Wallet ↗']);
  await p.locator('.wallet-picker li button').nth(1).click();await p.waitForFunction(()=>window.testWallets[1].provider.calls.includes('eth_requestAccounts'));
  assert.equal(await p.evaluate(()=>window.testWallets[0].provider.calls.length),0,'the other wallet is never asked');
  assert.equal(await p.evaluate(()=>localStorage.getItem('resonance.wallet.v1')),'io.rabby');
  await p.reload();await p.click('#connect');await p.waitForSelector('.wallet-picker');assert.match(await p.locator('.wallet-picker li').nth(1).innerText(),/Last used/i);
+ await done(p);
+});
+
+check('wallet picker: a wallet that both announces itself and sets window.ethereum is listed once',async b=>{
+ const p=await fresh(b);await p.addInitScript(()=>{const mk=()=>({calls:[],on(){},removeListener(){},async request({method}){this.calls.push(method);if(method==='eth_requestAccounts'||method==='eth_accounts')return ['0x'+'3'.repeat(40)];if(method==='eth_chainId')return '0x1';throw Object.assign(Error('stop'),{code:4001});}});
+  window.legacy=Object.assign(mk(),{isRabby:true,isMetaMask:true});window.ethereum=window.legacy;window.announced=mk();
+  window.addEventListener('eip6963:requestProvider',()=>window.dispatchEvent(new CustomEvent('eip6963:announceProvider',{detail:Object.freeze({info:{uuid:'r',name:'Rabby Wallet',rdns:'io.rabby',icon:''},provider:window.announced})})));});
+ await p.goto('file://'+SEL+'/mint/index.html');await p.click('#connect');await p.waitForFunction(()=>window.announced.calls.includes('eth_requestAccounts'));
+ assert.equal(await p.locator('.wallet-picker').count(),0,'one wallet connects without a picker');assert.equal(await p.evaluate(()=>window.legacy.calls.length),0);
  await done(p);
 });
 

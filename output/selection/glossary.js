@@ -3,7 +3,7 @@
 const TERMS={
  'demo-rlo':['Demo RLO','A made-up practice unit. It is not a token, has no price and cannot be withdrawn.'],
  'sepolia':['Sepolia','A free Ethereum test network. Its ETH has no real value and only pays test fees.'],
- 'rabby':['Wallet','A browser wallet such as MetaMask, Rabby or Coinbase Wallet. Resonance uses it to read which pass NFTs you hold and to ask for your mint approval; nothing is sent without your confirmation.'],
+ 'rabby':['Wallet','A browser wallet such as MetaMask, OKX Wallet, Coinbase Wallet or Rabby. Resonance uses it to read which pass NFTs you hold and to ask for your mint approval; nothing is sent without your confirmation.'],
  'pass':['Learning pass (NFT)','A test NFT you earn after a lesson. It opens the matching tool; it never allows spending.'],
  'mint':['Mint','Creating your pass NFT on Sepolia. You confirm it in your wallet and pay a small test-ETH fee.'],
  'tx-hash':['Transaction hash','The ID of a transaction. Paste it to check a mint you already sent.'],
