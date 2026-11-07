@@ -30,7 +30,9 @@ function draw(t){const cx=w*dpr/2,cy=h*dpr*.46,r=Math.min(w,h)*dpr*.27;ctx.setTr
  // The four characters' lights, with short trails, on the two rings.
  CAST.forEach((color,i)=>{const tilt=i%2?-.5:.42,phase=i%2?1.7:0;for(let k=6;k>=0;k--){const a=spin*.9+i*Math.PI/2-k*.06,p=project(rotate([Math.cos(a)*1.55,0,Math.sin(a)*1.55],spin*.3+phase,tiltX+tilt,.35),r,cx,cy);dot(p,color,k?1.6:3.2,(k?.18*(7-k)/7:1)*depth(p[2]/1.55));}});
  ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';}
-function loop(t){frame=0;if(!visible||document.hidden)return;const dt=Math.min(50,t-(last||t));last=t;spin+=dt*.00035;tiltX+=(aimX-tiltX)*.05;tiltY+=(aimY-tiltY)*.05;draw(t);frame=requestAnimationFrame(loop);}
+// Touch devices draw about 30 frames a second; mouse devices keep 60.
+const minGap=matchMedia('(pointer: coarse)').matches?30:0;
+function loop(t){frame=0;if(!visible||document.hidden)return;if(minGap&&last&&t-last<minGap){frame=requestAnimationFrame(loop);return;}const dt=Math.min(66,t-(last||t));last=t;spin+=dt*.00035;tiltX+=(aimX-tiltX)*.05;tiltY+=(aimY-tiltY)*.05;draw(t);frame=requestAnimationFrame(loop);}
 const start=()=>{if(!reduce.matches&&!frame&&visible&&!document.hidden){last=0;frame=requestAnimationFrame(loop);}};
 const area=host.closest('section')||host;
 area.addEventListener('pointermove',e=>{const b=host.getBoundingClientRect();aimY=Math.max(-1,Math.min(1,(e.clientX-b.left-b.width/2)/b.width))*.6;aimX=Math.max(-1,Math.min(1,(e.clientY-b.top-b.height/2)/b.height))*.4;});

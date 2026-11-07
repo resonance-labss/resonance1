@@ -100,7 +100,7 @@
   }
 
   // Character cards lean toward the pointer, with a glare where it points. Mouse and pen only; reduced motion skips it.
-  const tiltable = '#resonance-select .rs-person, #characters .card';
+  const tiltable = '#resonance-select .rs-person, #characters .card, .holo, .rm-card';
   if (matchMedia('(hover: hover)').matches) {
     const vars = ['--vn-tilt-x', '--vn-tilt-y', '--vn-glare-x', '--vn-glare-y'];
     document.addEventListener('pointermove', e => {

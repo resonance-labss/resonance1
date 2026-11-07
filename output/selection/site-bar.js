@@ -1,9 +1,9 @@
 /* Shared page chrome: one compact bar for the home link, demo budget unit and language. Load before i18n and demo-unit. */
 (()=>{'use strict';
-const RELEASE='0.10.2';
+const RELEASE='0.10.3';
 const script=document.currentScript,root=new URL('./',script&&script.src||document.baseURI).href;
 const css=`
-#site-bar{position:relative;z-index:40;display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;margin:0;padding:8px clamp(16px,3vw,32px);background:#0a131a;border-bottom:1px solid #22323a;color:#dfe7e3;font:13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:0;box-sizing:border-box;width:100%;max-width:100%}
+#site-bar{position:relative;z-index:40;display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;min-height:53px;margin:0;padding:8px clamp(16px,3vw,32px);background:#0a131a;border-bottom:1px solid #22323a;color:#dfe7e3;font:13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:0;box-sizing:border-box;width:100%;max-width:100%}
 #site-bar *{box-sizing:border-box}
 #site-bar a#site-home{display:inline-flex;align-items:center;gap:8px;min-height:36px;margin:0 auto 0 0;color:#e9e2d4;text-decoration:none;font:600 12px/1 system-ui,sans-serif;letter-spacing:2.2px;text-transform:uppercase}
 #site-bar a#site-home:hover{color:#f3d9a8}
@@ -23,6 +23,9 @@ const css=`
 #site-bar #demo-unit-status,#site-bar #language-status{flex-basis:100%;margin:0;color:#f3d9a8;font-size:12px}
 @media(max-width:560px){#site-bar{gap:6px 10px}#site-bar label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}#site-bar #site-release{display:none}}
 @media print{#site-bar{display:none}}
+/* The controls arrive at DOMContentLoaded; where they wrap to a second row, reserve that row from the first paint (widths measured in English and Turkish). */
+@media(max-width:395px){#site-bar{min-height:95px}}@media(min-width:564px) and (max-width:743px){#site-bar{min-height:97px}}
+@media(max-width:503px){#site-bar:has(#site-home){min-height:95px}}@media(min-width:564px) and (max-width:923px){#site-bar:has(#site-home){min-height:97px}}
 #site-bar .site-tool{display:inline-flex;align-items:center;gap:7px;width:auto;min-height:36px;margin:0;padding:6px 12px;border:1px solid #3b4f57;border-radius:8px;background:#122029;color:#eef3f0;font:500 13px/1.2 system-ui,sans-serif;letter-spacing:0;cursor:pointer;box-shadow:none;filter:none;opacity:1}
 #site-bar .site-tool:hover{border-color:#5f7a80;background:#16303a}
 #site-bar .site-tool[aria-expanded=true]{background:#22343c;border-color:#7c969b}
@@ -77,4 +80,10 @@ function ensure(){
 }
 if(!document.querySelector('link[rel~="icon"]')){const icon=document.createElement('link');icon.rel='icon';icon.type='image/svg+xml';icon.href=root+'favicon.svg';document.head.append(icon);}
 window.ResonanceSiteBar={release:RELEASE,add(el){ensure().append(el);return true;}};
+// Mount the bar the moment <body> exists, before the first paint, so it never pushes the page down later.
+if(document.body)ensure();else new MutationObserver((records,observer)=>{if(document.body){observer.disconnect();ensure();}}).observe(document.documentElement,{childList:true});
+// The two fonts every page uses first, requested now instead of after the first layout.
+for(const name of ['chakra-petch-700-latin','rajdhani-500-latin']){const link=document.createElement('link');link.rel='preload';link.as='font';link.type='font/woff2';link.crossOrigin='anonymous';link.href=root+'fonts/'+name+'.woff2';document.head.append(link);}
+// Same-site links are fetched when the pointer rests on them, so the next page opens without a wait (Chromium only; no prerendering).
+if(location.protocol.startsWith('http')&&window.HTMLScriptElement&&HTMLScriptElement.supports&&HTMLScriptElement.supports('speculationrules')){const rules=document.createElement('script');rules.type='speculationrules';rules.textContent=JSON.stringify({prefetch:[{where:{and:[{href_matches:'/*'},{not:{href_matches:'/api/*'}}]},eagerness:'moderate'}]});document.head.append(rules);}
 })();

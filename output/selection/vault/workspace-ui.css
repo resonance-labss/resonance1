@@ -132,3 +132,13 @@
 #rialo-schedule-list li:not(.missing){font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;overflow-wrap:anywhere}
 #plain-text{display:block;width:100%;box-sizing:border-box;margin:6px 0 4px;padding:10px 12px;font:inherit;line-height:1.45;color:var(--ink,#e6eeff);background:rgba(6,9,18,.72);border:1px solid var(--line-strong,rgba(51,227,255,.42));border-radius:6px;resize:vertical}
 #plain-text:focus-visible{outline:2px solid var(--mint,#33e3ff);outline-offset:2px}
+/* Character tool tabs ship in the HTML; their base layout lives here so the first paint already has their height. */
+.tool-navigation{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;padding:8px 0}.tool-navigation a{border:1px solid transparent;border-radius:24px;padding:8px 18px;color:#b8dfcb;text-decoration:none;font-size:14px}.tool-navigation [aria-current=page]{font-weight:700}
+/* 3D emblem in the hero (emblem-3d.js): beside the title on Diren and Denis, a halo behind Ece's and Ade's portraits. */
+.workspace-page main .hero{position:relative}
+.workspace-page main .hero>:not(.emblem-3d){position:relative;z-index:1}
+.emblem-3d{position:absolute;z-index:0;pointer-events:none}
+.emblem-3d canvas{display:block;width:100%;height:100%}
+.emblem-side{right:2%;top:50%;width:360px;height:360px;transform:translateY(-50%)}
+@media(max-width:1099px){.emblem-side{display:none}}
+.workspace-page main .hero figure>.emblem-over{inset:0;z-index:2;opacity:.6;mix-blend-mode:screen}

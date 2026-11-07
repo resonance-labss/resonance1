@@ -1305,7 +1305,7 @@
 :root .mint-page .badge { border-radius: 2px; border-color: rgba(51, 227, 255, .4); color: var(--vn-neon); font-family: var(--vn-display) !important; }
 :root .mint-page .pass-card #preview { border-radius: 2px; border-color: rgba(51, 227, 255, .35); box-shadow: 0 0 40px -10px rgba(51, 227, 255, .5), 0 18px 50px #0008; }
 /* Their buttons follow the neon command buttons. */
-:root :is(.mint-page button, .mint-page .next-link, body:has(#lesson-count) :is(button, .primary)) {
+:root :is(.mint-page button, .mint-page .next-link, body:has(#lesson-count) :is(button, .primary)):not(:where(#site-bar *, #tour-card *, #terms-panel *)) {
   background: var(--vn-neon);
   color: #04121c;
   border: 1px solid var(--vn-neon);
@@ -1316,13 +1316,13 @@
   letter-spacing: .05em;
   text-transform: uppercase;
 }
-:root :is(.mint-page button, body:has(#lesson-count) button):disabled {
+:root :is(.mint-page button, body:has(#lesson-count) button):disabled:not(:where(#site-bar *, #tour-card *, #terms-panel *)) {
   background: rgba(13, 21, 38, .6);
   color: #7f8fae;
   border: 1px dashed rgba(135, 150, 180, .45);
   box-shadow: none;
 }
-:root :is(.mint-page, body:has(#lesson-count)) :is(select, input[type=text]) { border-radius: 2px; background: #060c19; border-color: #52617e; }
+:root :is(.mint-page, body:has(#lesson-count)) :is(select, input[type=text]):not(:where(#site-bar *, #tour-card *, #terms-panel *)) { border-radius: 2px; background: #060c19; border-color: #52617e; }
 :root body:has(#lesson-count) .summary div { border-left-color: var(--vn-neon); background: linear-gradient(90deg, rgba(51, 227, 255, .07), transparent 70%); }
 :root body:has(#lesson-count) .summary strong { font-family: var(--vn-title) !important; color: #f0f6ff; text-shadow: 0 0 16px rgba(51, 227, 255, .35); }
 :root body:has(#lesson-count) .card img { border-radius: 2px; box-shadow: 0 0 0 1px rgba(51, 227, 255, .45), 0 0 18px -6px rgba(51, 227, 255, .6); }
@@ -1359,4 +1359,70 @@
 /* Phones: long capitalised words (Turkish especially) must fit the line instead of breaking mid-word. */
 @media (max-width: 480px) {
   :root body :is(main, #chapter, #resonance-select) h1 { font-size: min(8.2vw, 34px) !important; letter-spacing: .01em; }
+}
+
+/* ------------------------------------------------------------------ 3D depth (depth.js) */
+/* Holographic pass (mint): thickness from four stacked edge layers, a glare, a slow float and a turn on change. */
+:root .holo-stage { display: block; width: 100%; max-width: 300px; perspective: 1100px; margin: 18px auto 8px; }
+@media (max-width: 860px) { :root .holo-stage { max-width: 240px; } }
+:root .holo { position: relative; display: block; transform-style: preserve-3d;
+  transform: rotateX(var(--vn-tilt-x, 0deg)) rotateY(var(--vn-tilt-y, -6deg));
+  transition: transform .6s cubic-bezier(.2, .8, .2, 1); animation: holo-float 7s ease-in-out infinite;
+  --holo-c: #33e3ff; --holo-c2: #a679ff; }
+:root .holo[data-tone=ece] { --holo-c: #ff4fa3; --holo-c2: #ffb3d6; }
+:root .holo[data-tone=denis] { --holo-c: #aa82ff; --holo-c2: #33e3ff; }
+:root .holo[data-tone=ade] { --holo-c: #ff8a4c; --holo-c2: #ffd27a; }
+:root .holo:hover { transition: transform .12s ease-out; }
+:root .mint-page .pass-card .holo > #preview { position: relative; display: block; width: 100%; max-width: none; margin: 0; transform: translateZ(1px); backface-visibility: hidden; -webkit-backface-visibility: hidden; animation: none; }
+:root .holo-edge { position: absolute; inset: 0; border-radius: 2px; background: linear-gradient(155deg, var(--holo-c), #101a35 55%, var(--holo-c2)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--holo-c) 60%, transparent); }
+:root .holo-edge:nth-child(1) { transform: translateZ(-2px); }
+:root .holo-edge:nth-child(2) { transform: translateZ(-4px); }
+:root .holo-edge:nth-child(3) { transform: translateZ(-6px); }
+:root .holo-edge:nth-child(4) { transform: translateZ(-8px); box-shadow: 0 30px 60px -20px #000, 0 0 46px -8px var(--holo-c); }
+:root .holo-glare { position: absolute; inset: 0; z-index: 2; pointer-events: none; transform: translateZ(2px); mix-blend-mode: screen;
+  background: radial-gradient(circle at var(--vn-glare-x, 28%) var(--vn-glare-y, 18%), rgba(214, 251, 255, .32), transparent 46%),
+    linear-gradient(115deg, transparent 32%, color-mix(in srgb, var(--holo-c) 22%, transparent) 46%, color-mix(in srgb, var(--holo-c2) 18%, transparent) 54%, transparent 68%);
+  background-size: 100% 100%, 260% 100%; background-position: 0 0, var(--vn-glare-x, 30%) 0; opacity: .8; }
+:root .holo-stage::after { content: ""; display: block; height: 22px; margin: 14px 12% 0; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--holo-c, #33e3ff) 35%, transparent), transparent); filter: blur(2px); }
+:root .holo.holo-turn { animation: holo-turn .9s cubic-bezier(.2, .8, .2, 1), holo-float 7s ease-in-out .9s infinite; }
+@keyframes holo-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -9px; } }
+@keyframes holo-turn { from { rotate: y -180deg; } to { rotate: y 0deg; } }
+
+/* Pass rack (My Resonance): four passes on a turning ring; held passes glow, finished lessons are lit. */
+:root .pass-rack { display: none; }
+/* The header keeps room for the rack from the first paint (static CSS), so adding it later moves nothing. */
+@media (min-width: 861px) {
+  :root body:has(#lesson-count) main > header { position: relative; padding-right: 400px; padding-bottom: 56px; min-height: 250px; box-sizing: border-box; }
+  :root .pass-rack { display: block; position: absolute; right: 0; top: 8px; bottom: 20px; width: 380px; perspective: 1000px; }
+}
+:root .rack-ring { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; animation: rack-spin 36s linear infinite; }
+:root .pass-rack:hover .rack-ring, :root .pass-rack.rack-paused .rack-ring { animation-play-state: paused; }
+:root .rack-card { position: absolute; left: -62px; top: -83px; width: 124px; height: 166px; transform: rotateY(calc(var(--i) * 90deg)) translateZ(150px); }
+:root .rack-card img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px rgba(159, 176, 216, .35); filter: grayscale(.55) brightness(.6) saturate(.8); transition: filter .4s, box-shadow .4s; }
+:root .rack-card[data-state=done] img { filter: none; box-shadow: 0 0 0 1px rgba(164, 243, 255, .6); }
+:root .rack-card[data-state=held] img { filter: saturate(1.15); box-shadow: 0 0 0 1px #a4f3ff, 0 0 26px -2px #33e3ff, 0 0 60px -10px #ff4fa3; }
+:root .rack-floor { position: absolute; left: 50%; bottom: -46px; width: 340px; height: 70px; margin-left: -170px; border-radius: 50%; border: 1px solid rgba(51, 227, 255, .3); box-shadow: 0 0 30px rgba(51, 227, 255, .18), inset 0 0 30px rgba(166, 121, 255, .2); transform: rotateX(70deg); }
+@keyframes rack-spin { from { transform: rotateX(-8deg) rotateY(0deg); } to { transform: rotateX(-8deg) rotateY(-360deg); } }
+
+/* Reveal: cards below the first screen rise into place once (depth.js marks them). */
+:root .reveal-wait { opacity: 0; }
+:root .reveal-in { animation: reveal-rise .85s cubic-bezier(.2, .8, .2, 1) var(--reveal-delay, 0ms) backwards; }
+:root .reveal-flat.reveal-in { animation-name: reveal-rise-flat; }
+@keyframes reveal-rise-flat { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+/* The start scale offsets the perspective growth of the tilted card's near edge, so a card never gets wider than itself (no horizontal overflow). */
+@keyframes reveal-rise { from { opacity: 0; transform: perspective(900px) translateY(48px) rotateX(14deg) scale(.9); } to { opacity: 1; transform: perspective(900px) translateY(0) rotateX(0) scale(1); } }
+
+/* Academy learning pass: it turns in when earned and leans toward the pointer like the character cards. */
+:root .rm-card { position: relative; animation: rm-card-in 1s cubic-bezier(.2, .8, .2, 1) backwards; }
+@keyframes rm-card-in { from { opacity: 0; transform: perspective(1000px) rotateY(-75deg) translateZ(-80px); } 60% { opacity: 1; } to { transform: perspective(1000px) rotateY(0) translateZ(0); } }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  :root .rm-card { transition: transform .35s ease, box-shadow .3s; }
+  :root .rm-card:hover { transform: perspective(900px) rotateX(var(--vn-tilt-x, 0deg)) rotateY(var(--vn-tilt-y, -4deg)) translateY(-4px); transition: transform .12s ease-out, box-shadow .3s; box-shadow: 0 0 0 1px #a4f3ff, 0 24px 60px -20px #000, 0 0 40px -10px #33e3ff; }
+  :root .rm-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; mix-blend-mode: screen;
+    background: radial-gradient(circle at var(--vn-glare-x, 50%) var(--vn-glare-y, 30%), rgba(164, 243, 255, .3), transparent 45%); }
+  :root .rm-card:hover::after { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root .holo, :root .holo.holo-turn, :root .rack-ring, :root .reveal-in, :root .rm-card { animation: none !important; }
+  :root .reveal-wait { opacity: 1 !important; }
 }
