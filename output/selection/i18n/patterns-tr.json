@@ -250,5 +250,21 @@
   [
     "^(Diren|Ece|Denis|Ade) pass #(\\d+) is held by (0x\\S+), not by your connected wallet, so you could not transfer it\\.$",
     "$1 geçişi #$2 $3 adresinde, bağlı cüzdanında değil; bu yüzden onu transfer edemezsin."
+  ],
+  [
+    "^(Price limit|Budget|Expiry) must be between ([\\d.]+) and ([\\d.]+)( \\(whole steps\\))?\\. Kept:$",
+    "$1 $2 ile $3 arasında olmalı$4. Korunan:"
+  ],
+  [
+    "^ \\(whole steps\\)$",
+    " (tam adım)"
+  ],
+  [
+    "^Day (\\d+) of this period → transfer ([\\d.]+) Demo RLO to “(.+)”, once\\.$",
+    "Dönemin $1. günü → “$3” için $2 Demo RLO aktar, bir kez."
+  ],
+  [
+    "^“(.+)” is not funded in this proposal, so no rule is written\\.$",
+    "“$1” bu öneride karşılanmadığı için kural yazılmaz."
   ]
 ]

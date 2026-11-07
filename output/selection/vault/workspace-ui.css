@@ -122,3 +122,13 @@
 @keyframes vfx-sheen{0%{background-position:-60% 0}100%{background-position:160% 0}}
 @keyframes vfx-warn{0%,60%{box-shadow:0 0 0 2px rgba(255,143,122,.7),0 0 22px rgba(255,143,122,.35)}100%{box-shadow:0 0 0 0 transparent}}
 @media(prefers-reduced-motion:reduce){.vfx-layer{display:none}.workspace-page *{animation:none!important}}
+/* Plain-sentence rule (Diren) and Rialo scheduled transfers (Denis) */
+#plain-result,#rialo-schedule-list{margin:10px 0 0;padding-left:1.3em}
+#plain-result li,#rialo-schedule-list li{margin:.3em 0;line-height:1.45}
+#plain-result li.missing,#rialo-schedule-list li.missing{color:var(--muted,#9fb0d8)}
+#plain-result b{color:var(--mint,#33e3ff)}
+#rialo-schedule{margin:18px 0;padding:14px 16px;border:1px solid var(--line,rgba(51,227,255,.22));border-radius:8px}
+#rialo-schedule h3{margin-top:0}
+#rialo-schedule-list li:not(.missing){font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;overflow-wrap:anywhere}
+#plain-text{display:block;width:100%;box-sizing:border-box;margin:6px 0 4px;padding:10px 12px;font:inherit;line-height:1.45;color:var(--ink,#e6eeff);background:rgba(6,9,18,.72);border:1px solid var(--line-strong,rgba(51,227,255,.42));border-radius:6px;resize:vertical}
+#plain-text:focus-visible{outline:2px solid var(--mint,#33e3ff);outline-offset:2px}

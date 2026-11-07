@@ -11,7 +11,7 @@ PUBLIC=DEST/'public'
 if PUBLIC.exists(): shutil.rmtree(PUBLIC)
 PUBLIC.mkdir()
 files=['site-bar.js','wallet.js','neon-core.js','anime-theme.css','anime-theme.js','fonts/chakra-petch-600-latin-ext.woff2','fonts/chakra-petch-600-latin.woff2','fonts/chakra-petch-700-latin-ext.woff2','fonts/chakra-petch-700-latin.woff2','fonts/rajdhani-500-latin-ext.woff2','fonts/rajdhani-500-latin.woff2','fonts/rajdhani-600-latin-ext.woff2','fonts/rajdhani-600-latin.woff2','fonts/rajdhani-700-latin-ext.woff2','fonts/rajdhani-700-latin.woff2','fonts/OFL.txt','glossary.js','tour.js','favicon.svg','i18n/tr.js','i18n/i18n.js','my/index.html','my/dashboard.css','my/dashboard.js','my/operations.js','demo-unit.js','resonance-playable-v1.html','nft-artwork.js','diren.jpg','ece.jpg','ade.jpg','denis.jpg','hero/entry-1672.webp','hero/entry-960.webp','deploy/ethers.umd.min.js','nft/diren.webp','nft/ece.webp','nft/denis.webp','nft/ade.webp','mint/index.html','mint/mint.js','mint/mint-config.js']
-files += ['vault/'+name for name in ['index.html','gate.js','policy.js','progress.js','vault.js','lesson-bridge.js','latch-check.js','ai-guide.js','outcome.js','scenarios.js','entry.js','protection.html','protection.css','protection.js','protection-engine.js','protection-ai.js','journey.js','price-sequence.js','scenario-library.js','experience.js','ade.html','ade.js','ade-engine.js','eric.html','eric.js','eric-engine.js','orientation.js','form-feedback.js','workspace-ui.js','workspace-ui.css','result-card.js','vault-fx.js']]
+files += ['vault/'+name for name in ['index.html','gate.js','policy.js','progress.js','vault.js','lesson-bridge.js','latch-check.js','ai-guide.js','outcome.js','scenarios.js','entry.js','protection.html','protection.css','protection.js','protection-engine.js','protection-ai.js','journey.js','price-sequence.js','scenario-library.js','experience.js','ade.html','ade.js','ade-engine.js','eric.html','eric.js','eric-engine.js','eric-rules.js','orientation.js','form-feedback.js','workspace-ui.js','workspace-ui.css','result-card.js','vault-fx.js','plain-rule.js']]
 for name in files:
  target=PUBLIC/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(SOURCE/name,target)
 def patch(text,old,new):
@@ -39,7 +39,9 @@ home=Path(__file__).with_name('home.html').read_text()
 if os.environ.get('RESONANCE_HOSTED_SERVICES') != 'enabled':
  # Replace the whole card: the hosted version advertises AI drafts and quotas that this build switches off.
  start=home.index('<div class="card"><h3>AI drafts · Latch proposal checks</h3>');end=home.index('<a href="https://learn.rialo.io/"',start)
- home=patch(home,home[start:end],'<div class="card"><h3>Guided examples and manual rules</h3><p>AI drafts and live Latch checks are off in this public release. Every character tool runs its guided examples and your own rules in this browser.</p>')
+ home=patch(home,home[start:end],'<div class="card"><h3>Guided examples and manual rules</h3><p>AI drafts and live Latch checks need the hosted services, which this copy runs without. Every character tool runs its guided examples and your own rules in this browser.</p>')
+if os.environ.get('RESONANCE_HOSTED_SERVICES') != 'enabled':
+ home=patch(home,'<li>Draft a Demo RLO rule with AI, check the proposal through Latch, then review and confirm yourself.</li>','<li>With the hosted services, draft a Demo RLO rule with AI and check the proposal through Latch, then review and confirm yourself.</li>')
 (PUBLIC/'index.html').write_text(home)
 (PUBLIC/'robots.txt').write_text('User-agent: *\nAllow: /\n')
 (PUBLIC/'404.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Resonance · Page not found</title><body style="background:#0c161e;color:#eee9de;font:20px system-ui;padding:40px"><h1>This path is not open yet.</h1><a href="/" style="color:#b6dfcc">Return to Resonance</a></body></html>')
