@@ -3,9 +3,9 @@
 const TERMS={
  'demo-rlo':['Demo RLO','A made-up practice unit. It is not a token, has no price and cannot be withdrawn.'],
  'sepolia':['Sepolia','A free Ethereum test network. Its ETH has no real value and only pays test fees.'],
- 'rabby':['Rabby','A browser wallet extension. Resonance uses it to read which pass NFTs your wallet holds.'],
+ 'rabby':['Wallet','A browser wallet such as MetaMask, Rabby or Coinbase Wallet. Resonance uses it to read which pass NFTs you hold and to ask for your mint approval; nothing is sent without your confirmation.'],
  'pass':['Learning pass (NFT)','A test NFT you earn after a lesson. It opens the matching tool; it never allows spending.'],
- 'mint':['Mint','Creating your pass NFT on Sepolia. You confirm it in Rabby and pay a small test-ETH fee.'],
+ 'mint':['Mint','Creating your pass NFT on Sepolia. You confirm it in your wallet and pay a small test-ETH fee.'],
  'tx-hash':['Transaction hash','The ID of a transaction. Paste it to check a mint you already sent.'],
  'condition':['Condition (trigger)','A rule such as “price at or below 8”. When it becomes true, the action is queued, not done yet.'],
  'execution':['Execution check','Right before acting, the rule is checked again. If the price moved past your limit, nothing is bought.'],

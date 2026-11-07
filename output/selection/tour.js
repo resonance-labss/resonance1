@@ -6,7 +6,7 @@ const tool=(what,next)=>[
  {target:q('main h1'),title:'What this tool does',text:what},
  {target:q('main details.fine-print'),title:'The fine print',text:'Safety notes are folded into one line. Open Details to read all of it.'},
  {target:q('.tool-navigation'),title:'Four tools',text:'Switch between the character tools. Each one checks its own pass.'},
- {target:q('#gate'),title:'Open the tool',text:'Follow the numbered steps: connect Rabby, switch to Sepolia, check your pass, then enter. The NFT is access only; it never allows spending.'},
+ {target:q('#gate'),title:'Open the tool',text:'Follow the numbered steps: connect your wallet, switch to Sepolia, check your pass, then enter. The NFT is access only; it never allows spending.'},
  {target:q('#first-example'),title:'Start with the example',text:'One click prepares a worked example. You still review and confirm every step yourself.'},
  {target:q('#diren-plan,#tool-plan'),title:'Your rules',text:'Change the limits here. The small i next to a field explains the term.'},
  {target:q('#diren-result,#tool-result'),title:'Results',text:next},
@@ -28,11 +28,11 @@ const PAGES={
   bar],
  mint:[
   {target:q('.pass-card'),title:'Pick your pass',text:'Choose a character. The card shows the NFT you will receive.'},
-  {target:()=>document.querySelector('.mint-steps .step'),title:'Connect and check',text:'Connect Rabby, switch to Sepolia, then check whether this wallet can claim. Nothing is sent yet.'},
-  {target:()=>document.querySelectorAll('.mint-steps .step')[1],title:'Mint',text:'Tick the review box, then request the mint. Rabby shows the final test-ETH fee before you confirm.'},
+  {target:()=>document.querySelector('.mint-steps .step'),title:'Connect and check',text:'Connect your wallet, switch to Sepolia, then check whether this wallet can claim. Nothing is sent yet.'},
+  {target:()=>document.querySelectorAll('.mint-steps .step')[1],title:'Mint',text:'Tick the review box, then request the mint. Your wallet shows the final test-ETH fee before you confirm.'},
   bar],
  my:[
-  {target:q('.wallet'),title:'Check your passes',text:'Connect Rabby to see which character passes this wallet holds. Connecting never allows spending.'},
+  {target:q('.wallet'),title:'Check your passes',text:'Connect your wallet to see which character passes this wallet holds. Connecting never allows spending.'},
   {target:q('.summary'),title:'Your progress',text:'Lessons finished in this browser, passes held on Sepolia and saved plans.'},
   {target:q('.characters'),title:'Your next step',text:'Each card shows where you are with a character and where to go next.'},
   {target:q('#plans'),title:'Saved plans',text:'Plans you saved in any tool. Opening one never runs it automatically.'},

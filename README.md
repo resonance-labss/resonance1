@@ -7,7 +7,8 @@ An anime-inspired learning adventure connecting reactive transaction concepts to
 ## What works today
 
 - Short character lessons; Diren, Ece and Ade each have a current four-question, four-option check.
-- Sepolia character NFTs, Rabby connection, mint receipt verification and current-ownership access checks.
+- Sepolia character NFTs, connection with any browser wallet (MetaMask, Rabby, Coinbase Wallet and others, with a picker when several are installed), mint receipt verification and current-ownership access checks.
+- Read-only operations on My Resonance: transaction status, pass verification and a transfer preview that never sends anything.
 - Diren's conditional-buy simulation: explicit budget, price cap, expiry, cancellation and execution checks.
 - Ece's Reserve Studio: shared weekly cap, reserve floor and data-age checks, three stress scenarios, protected/unprotected comparisons, downloadable local reports, browser-saved settings and comparisons between completed policies.
 - Ade’s NFT-gated Plan Lab: audit two policies on identical hypothetical price paths, compare cash/asset value/fees, and explore compound growth in a separate assumption-based calculator.
@@ -19,7 +20,7 @@ NFT minting is on Sepolia, not Rialo. Purchases and balances in the vault are fi
 
 ## Run the public version locally
 
-Requirements: Python 3 and a modern browser. Rabby in an extension-enabled browser is needed for wallet features.
+Requirements: Python 3 and a modern browser. A browser wallet such as MetaMask or Rabby is needed for wallet features.
 
 ```sh
 python3 integrations/web/build.py

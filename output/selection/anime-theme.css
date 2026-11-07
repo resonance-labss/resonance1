@@ -1,59 +1,63 @@
-/* Resonance anime theme: dusk academy + visual-novel game UI.
+/* Resonance cyberpunk anime theme: neon grid, glass HUD panels and the cast in their neon colours.
    Presentation only: no text, no layout order, no clickable geometry changes.
-   Decorative text comes from ::before/::after with empty alt text (content: "x" / ""). */
-@font-face{font-family:'Resonance Display';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/cinzel-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
-@font-face{font-family:'Resonance Display';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/cinzel-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'Resonance Body';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/mplus-rounded-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
-@font-face{font-family:'Resonance Body';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/mplus-rounded-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'Resonance Body';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/mplus-rounded-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
-@font-face{font-family:'Resonance Body';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/mplus-rounded-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'Resonance Body';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/mplus-rounded-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
-@font-face{font-family:'Resonance Body';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/mplus-rounded-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'Resonance Title';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/shippori-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
-@font-face{font-family:'Resonance Title';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/shippori-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'Resonance Display';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/shippori-700-latin.woff2) format('woff2');unicode-range:U+0030-0039}
-@font-face{font-family:'Resonance Title';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/shippori-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
-@font-face{font-family:'Resonance Title';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/shippori-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-
+   Decorative text comes from ::before/::after with empty alt text (content: "x" / "").
+   Fonts: Chakra Petch for titles and labels, Rajdhani for text (both SIL OFL, self-hosted in fonts/). */
+@font-face{font-family:'Resonance Display';font-style:normal;font-weight:500 600;font-display:swap;src:url(fonts/chakra-petch-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Resonance Display';font-style:normal;font-weight:500 600;font-display:swap;src:url(fonts/chakra-petch-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Resonance Display';font-style:normal;font-weight:700 900;font-display:swap;src:url(fonts/chakra-petch-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Resonance Display';font-style:normal;font-weight:700 900;font-display:swap;src:url(fonts/chakra-petch-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Resonance Title';font-style:normal;font-weight:500 600;font-display:swap;src:url(fonts/chakra-petch-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Resonance Title';font-style:normal;font-weight:500 600;font-display:swap;src:url(fonts/chakra-petch-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Resonance Title';font-style:normal;font-weight:700 900;font-display:swap;src:url(fonts/chakra-petch-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Resonance Title';font-style:normal;font-weight:700 900;font-display:swap;src:url(fonts/chakra-petch-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Resonance Body';font-style:normal;font-weight:400 500;font-display:swap;src:url(fonts/rajdhani-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Resonance Body';font-style:normal;font-weight:400 500;font-display:swap;src:url(fonts/rajdhani-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Resonance Body';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/rajdhani-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Resonance Body';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/rajdhani-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Resonance Body';font-style:normal;font-weight:700 900;font-display:swap;src:url(fonts/rajdhani-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Resonance Body';font-style:normal;font-weight:700 900;font-display:swap;src:url(fonts/rajdhani-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 
 @property --vn-bob { syntax: '<length>'; inherits: false; initial-value: 0px; }
 @property --vn-cue { syntax: '<number>'; inherits: false; initial-value: 1; }
 
 :root {
-  /* Sampled from the cast art: sky #2f4382, dusk violet #715f89, horizon #d38d72,
-     lanterns #eab270, uniform trim #c19061..#f7c995, Eric teal #324e56, Ece burgundy #391b20. */
-  --vn-night: #0b0d1f;
-  --vn-ink: #14172f;
-  --vn-ink-2: #1c2041;
-  --vn-ink-3: #282d55;
-  --vn-sky: #2f4382;
-  --vn-violet: #7a6596;
-  --vn-plum: #3a2c55;
-  --vn-sunset: #f0a07f;
-  --vn-lantern: #f2b56f;
-  --vn-gold: #e2bd7f;
-  --vn-gold-hi: #fbe2b0;
-  --vn-gold-lo: #9c7448;
-  --vn-cream: #f5eddc;
-  --vn-mist: #d2cce0;
-  --vn-teal: #7fe0cf;
-  --vn-crimson: #d0606f;
-  --vn-glass: rgba(18, 21, 46, .88);
-  --vn-glass-hi: rgba(32, 36, 74, .92);
-  --vn-line: rgba(226, 189, 127, .42);
-  --vn-line-soft: rgba(226, 189, 127, .2);
+  /* Neon palette from the Rialo Nexus design: cyan #33e3ff, hot pink #ff4fa3, violet #a679ff, on #060912 navy.
+     The --vn-* names stay so every rule keeps working; gold now means neon cyan. */
+  --vn-night: #060912;
+  --vn-ink: #0b1221;
+  --vn-ink-2: #0f1a2e;
+  --vn-ink-3: #16233d;
+  --vn-sky: #123c6b;
+  --vn-violet: #a679ff;
+  --vn-plum: #2a1850;
+  --vn-sunset: #ff5b87;
+  --vn-lantern: #ff4fa3;
+  --vn-gold: #33e3ff;
+  --vn-gold-hi: #a4f3ff;
+  --vn-gold-lo: #127fa3;
+  --vn-cream: #e6eeff;
+  --vn-mist: #b4c2df;
+  --vn-teal: #6cf5cb;
+  --vn-crimson: #ff4f6d;
+  --vn-glass: rgba(12, 23, 44, .88);
+  --vn-glass-hi: rgba(21, 37, 70, .92);
+  --vn-line: rgba(51, 227, 255, .42);
+  --vn-line-soft: rgba(51, 227, 255, .2);
   --vn-char: var(--vn-gold);
-  --vn-char-deep: #8a6236;
+  --vn-char-deep: #0e4a63;
   --vn-face: url("/diren.jpg");
-  --vn-display: 'Resonance Display', Georgia, serif;
-  --vn-title: 'Resonance Title', 'Hiragino Mincho ProN', Georgia, serif;
+  --vn-display: 'Resonance Display', 'Arial Narrow', system-ui, sans-serif;
+  --vn-title: 'Resonance Title', 'Arial Narrow', system-ui, sans-serif;
   --vn-body: 'Resonance Body', system-ui, sans-serif;
+  --vn-neon: #33e3ff;
+  --vn-hot: #ff4fa3;
+  --vn-ultra: #a679ff;
   color-scheme: dark;
   background: var(--vn-night) !important;
 }
-:root[data-vn-char="ece"]  { --vn-char: #e07583; --vn-char-deep: #6b1f2b; }
-:root[data-vn-char="eric"] { --vn-char: #6fd0bd; --vn-char-deep: #24504f; }
-:root[data-vn-char="ade"]  { --vn-char: #ecdcbc; --vn-char-deep: #2b3866; }
+:root[data-vn-char="ece"]  { --vn-char: #ff4fa3; --vn-char-deep: #5c0f3a; }
+:root[data-vn-char="eric"] { --vn-char: #aa82ff; --vn-char-deep: #2e1a5c; }
+:root[data-vn-char="ade"]  { --vn-char: #ff8a4c; --vn-char-deep: #5a2a10; }
 
 /* Framed elements share one corner-bracket recipe; --vn-c recolours it per element. */
 :root :is(.tutorial-stage, .vn-framed, #chapter .layout > section:nth-child(2), #resonance-select .rs-bottom > section,
@@ -71,7 +75,7 @@
     linear-gradient(var(--vn-c), var(--vn-c)) right 6px bottom 6px / 1.5px 16px no-repeat;
 }
 
-/* ------------------------------------------------------------------ 1. Stage: dusk sky + castle skyline */
+/* ------------------------------------------------------------------ 1. Stage: night city glow + neon grid floor */
 :root body {
   background: transparent !important;
   color: var(--vn-cream);
@@ -84,51 +88,65 @@
   z-index: -1;
   pointer-events: none;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='560' viewBox='0 0 640 560'%3E%3Ccircle cx='209' cy='87' r='1.1' fill='%23d8defc' opacity='0.28'/%3E%3Ccircle cx='63' cy='326' r='1.0' fill='%23fff6e1' opacity='0.38'/%3E%3Ccircle cx='278' cy='43' r='0.6' fill='%23fff6e1' opacity='0.58'/%3E%3Ccircle cx='527' cy='72' r='0.7' fill='%23d8defc' opacity='0.63'/%3E%3Ccircle cx='603' cy='323' r='0.9' fill='%23fff6e1' opacity='0.28'/%3E%3Ccircle cx='33' cy='478' r='0.8' fill='%23d8defc' opacity='0.50'/%3E%3Ccircle cx='78' cy='174' r='1.3' fill='%23fff6e1' opacity='0.66'/%3E%3Ccircle cx='372' cy='357' r='0.8' fill='%23d8defc' opacity='0.31'/%3E%3Ccircle cx='44' cy='37' r='0.7' fill='%23d8defc' opacity='0.55'/%3E%3Ccircle cx='274' cy='177' r='1.0' fill='%23fbe2b0' opacity='0.80'/%3E%3Ccircle cx='193' cy='442' r='1.1' fill='%23fff6e1' opacity='0.72'/%3E%3Ccircle cx='367' cy='294' r='0.8' fill='%23fbe2b0' opacity='0.69'/%3E%3Ccircle cx='389' cy='44' r='1.0' fill='%23fbe2b0' opacity='0.50'/%3E%3Ccircle cx='100' cy='274' r='0.6' fill='%23fff6e1' opacity='0.83'/%3E%3Ccircle cx='487' cy='320' r='1.3' fill='%23d8defc' opacity='0.44'/%3E%3Ccircle cx='225' cy='278' r='1.3' fill='%23fff6e1' opacity='0.52'/%3E%3Ccircle cx='601' cy='266' r='1.1' fill='%23d8defc' opacity='0.29'/%3E%3Ccircle cx='447' cy='361' r='1.1' fill='%23fbe2b0' opacity='0.74'/%3E%3Ccircle cx='457' cy='494' r='0.8' fill='%23fbe2b0' opacity='0.26'/%3E%3Ccircle cx='229' cy='341' r='0.9' fill='%23fbe2b0' opacity='0.29'/%3E%3Ccircle cx='86' cy='141' r='0.9' fill='%23fbe2b0' opacity='0.80'/%3E%3Ccircle cx='55' cy='252' r='1.0' fill='%23fff6e1' opacity='0.42'/%3E%3Ccircle cx='522' cy='481' r='0.8' fill='%23fbe2b0' opacity='0.67'/%3E%3Ccircle cx='435' cy='214' r='0.7' fill='%23fff6e1' opacity='0.34'/%3E%3Ccircle cx='100' cy='368' r='0.6' fill='%23d8defc' opacity='0.54'/%3E%3Ccircle cx='119' cy='160' r='0.7' fill='%23fbe2b0' opacity='0.50'/%3E%3Ccircle cx='389' cy='180' r='0.7' fill='%23d8defc' opacity='0.66'/%3E%3Ccircle cx='605' cy='366' r='1.1' fill='%23d8defc' opacity='0.28'/%3E%3Ccircle cx='508' cy='221' r='0.9' fill='%23fbe2b0' opacity='0.49'/%3E%3Ccircle cx='405' cy='38' r='0.6' fill='%23fbe2b0' opacity='0.84'/%3E%3Ccircle cx='107' cy='192' r='0.6' fill='%23d8defc' opacity='0.31'/%3E%3Ccircle cx='100' cy='60' r='0.8' fill='%23fff6e1' opacity='0.62'/%3E%3Ccircle cx='557' cy='343' r='0.7' fill='%23fbe2b0' opacity='0.63'/%3E%3Ccircle cx='385' cy='266' r='0.6' fill='%23fbe2b0' opacity='0.76'/%3E%3Ccircle cx='308' cy='176' r='0.7' fill='%23fbe2b0' opacity='0.31'/%3E%3Ccircle cx='472' cy='268' r='1.1' fill='%23fff6e1' opacity='0.35'/%3E%3Ccircle cx='134' cy='530' r='0.8' fill='%23d8defc' opacity='0.34'/%3E%3Ccircle cx='582' cy='422' r='0.8' fill='%23fff6e1' opacity='0.84'/%3E%3Ccircle cx='444' cy='148' r='0.8' fill='%23fbe2b0' opacity='0.79'/%3E%3Ccircle cx='492' cy='298' r='1.3' fill='%23d8defc' opacity='0.55'/%3E%3Ccircle cx='145' cy='452' r='1.3' fill='%23fff6e1' opacity='0.76'/%3E%3Ccircle cx='521' cy='412' r='0.7' fill='%23fbe2b0' opacity='0.37'/%3E%3Ccircle cx='229' cy='20' r='0.6' fill='%23fbe2b0' opacity='0.72'/%3E%3Ccircle cx='168' cy='386' r='0.8' fill='%23d8defc' opacity='0.52'/%3E%3Ccircle cx='628' cy='531' r='0.8' fill='%23fff6e1' opacity='0.30'/%3E%3Ccircle cx='147' cy='113' r='0.7' fill='%23d8defc' opacity='0.54'/%3E%3Cpath d='M524 263.7L525.2 268.4L529.9 269L525.2 270.2L524 275.0L523.4 270.2L518.6 269L523.4 268.4Z' fill='%23fff1d0' opacity='.75'/%3E%3Cpath d='M500 58.4L500.7 63.2L505.4 64L500.7 65.0L500 69.7L498.9 65.0L494.1 64L498.9 63.2Z' fill='%23fff1d0' opacity='.75'/%3E%3Cpath d='M566 420.9L566.8 425.9L571.7 427L566.8 427.7L566 432.7L565.0 427.7L560.0 427L565.0 425.9Z' fill='%23fff1d0' opacity='.75'/%3E%3Cpath d='M307 106.9L307.7 111.9L312.8 113L307.7 113.7L307 118.8L305.9 113.7L300.8 113L305.9 111.9Z' fill='%23fff1d0' opacity='.75'/%3E%3C/svg%3E") 0 0 / 640px 560px,
-    radial-gradient(120% 55% at 72% 112%, rgba(240, 160, 127, .34), transparent 62%),
-    radial-gradient(90% 60% at 10% 108%, rgba(122, 101, 150, .38), transparent 66%),
-    linear-gradient(180deg, #0a0c1e 0%, #11143a 38%, #1f1f48 70%, #33285a 100%);
+    repeating-linear-gradient(0deg, rgba(164, 243, 255, .025) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse 55% 42% at 72% 12%, rgba(166, 121, 255, .2), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 8% 80%, rgba(51, 227, 255, .14), transparent 70%),
+    radial-gradient(ellipse 38% 30% at 96% 92%, rgba(255, 79, 163, .13), transparent 70%),
+    linear-gradient(180deg, #05080f 0%, #070c1a 55%, #0a0f22 100%);
 }
+/* The grid is drawn once and slides by one cell on the compositor, so it never repaints while it moves. */
 :root body::after {
   content: "";
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: min(30vh, 260px);
+  left: -60%;
+  right: -60%;
+  bottom: -64px;
+  height: 62vh;
   z-index: -1;
   pointer-events: none;
-  opacity: .9;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231c1a44' stop-opacity='.55'/%3E%3Cstop offset='1' stop-color='%230a0b20' stop-opacity='.9'/%3E%3C/linearGradient%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f6c27a' stop-opacity='.55'/%3E%3Cstop offset='1' stop-color='%23f6c27a' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 214 Q 90 186 190 204 T 400 196 Q 520 160 640 198 T 860 200 L 860 236 L 0 236 Z' fill='%23221f47'/%3E%3Cpath d='M700 222 Q 820 176 960 206 T 1220 190 L 1220 236 L 700 236 Z' fill='%231d1b40'/%3E%3Crect y='234' width='1600' height='66' fill='url(%23s)'/%3E%3Cpath d='M960 236 C 1010 214 1050 186 1100 172 C 1150 160 1240 158 1600 150 L 1600 236 Z' fill='%23141331'/%3E%3Cg fill='%23121130'%3E%3Crect x='1150' y='138' width='340' height='30'/%3E%3Crect x='1262' y='76' width='58' height='76'/%3E%3Ccircle cx='1291' cy='78' r='26'/%3E%3Crect x='1289' y='34' width='4' height='22'/%3E%3Crect x='1180' y='100' width='24' height='50'/%3E%3Cpolygon points='1175,101 1192,58 1209,101'/%3E%3Crect x='1356' y='92' width='28' height='56'/%3E%3Cpolygon points='1351,93 1370,48 1389,93'/%3E%3Crect x='1418' y='114' width='20' height='36'/%3E%3Cpolygon points='1414,115 1428,82 1442,115'/%3E%3Crect x='1138' y='126' width='16' height='26'/%3E%3Cpolygon points='1134,127 1146,98 1158,127'/%3E%3Ccircle cx='1226' cy='122' r='16'/%3E%3Crect x='1210' y='122' width='32' height='26'/%3E%3Crect x='1470' y='120' width='14' height='30'/%3E%3Cpolygon points='1466,121 1477,92 1488,121'/%3E%3Crect x='196' y='150' width='18' height='70'/%3E%3Cpolygon points='192,152 205,120 218,152'/%3E%3C/g%3E%3Cg fill='%230e0d26'%3E%3Cellipse cx='1070' cy='206' rx='6' ry='26'/%3E%3Cellipse cx='1086' cy='210' rx='5' ry='20'/%3E%3Cellipse cx='1118' cy='196' rx='6' ry='30'/%3E%3Cellipse cx='1500' cy='190' rx='6' ry='28'/%3E%3Cellipse cx='1520' cy='196' rx='5' ry='20'/%3E%3C/g%3E%3Cg fill='%23f6c27a'%3E%3Crect x='1270' y='96' width='4' height='7'/%3E%3Crect x='1284' y='96' width='4' height='7'/%3E%3Crect x='1298' y='96' width='4' height='7'/%3E%3Crect x='1310' y='96' width='4' height='7'/%3E%3Crect x='1276' y='118' width='4' height='7'/%3E%3Crect x='1304' y='118' width='4' height='7'/%3E%3Crect x='1188' y='112' width='4' height='6'/%3E%3Crect x='1366' y='108' width='4' height='7'/%3E%3Crect x='1366' y='126' width='4' height='7'/%3E%3Crect x='1425' y='126' width='3' height='6'/%3E%3Crect x='1162' y='150' width='3' height='5'/%3E%3Crect x='1180' y='154' width='3' height='5'/%3E%3Crect x='1236' y='152' width='3' height='5'/%3E%3Crect x='1332' y='150' width='3' height='5'/%3E%3Crect x='1400' y='154' width='3' height='5'/%3E%3Crect x='1452' y='150' width='3' height='5'/%3E%3Ccircle cx='205' cy='134' r='3'/%3E%3C/g%3E%3Cg fill='%23f6c27a' opacity='.8'%3E%3Ccircle cx='40' cy='231' r='1.4'/%3E%3Ccircle cx='88' cy='229' r='1.2'/%3E%3Ccircle cx='130' cy='231' r='1.5'/%3E%3Ccircle cx='300' cy='231' r='1.2'/%3E%3Ccircle cx='352' cy='230' r='1.5'/%3E%3Ccircle cx='470' cy='231' r='1.2'/%3E%3Ccircle cx='560' cy='231' r='1.4'/%3E%3Ccircle cx='980' cy='230' r='1.3'/%3E%3Ccircle cx='1010' cy='226' r='1.4'/%3E%3Ccircle cx='1040' cy='220' r='1.2'/%3E%3C/g%3E%3Cg fill='url(%23g)'%3E%3Crect x='1268' y='240' width='44' height='40' opacity='.5'/%3E%3Crect x='1184' y='240' width='10' height='28' opacity='.4'/%3E%3Crect x='1364' y='240' width='10' height='30' opacity='.4'/%3E%3Crect x='200' y='240' width='10' height='34' opacity='.5'/%3E%3C/g%3E%3Cg stroke='%23f6c27a' stroke-opacity='.18' stroke-width='1.2'%3E%3Cpath d='M1230 252 h90 M1250 262 h60 M1180 270 h40 M170 256 h60 M1360 258 h40'/%3E%3C/g%3E%3C/svg%3E") center bottom / auto 100% no-repeat;
-  -webkit-mask-image: linear-gradient(to top, #000 55%, transparent);
-  mask-image: linear-gradient(to top, #000 55%, transparent);
+  opacity: .42;
+  background-image:
+    linear-gradient(rgba(51, 227, 255, .3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(51, 227, 255, .3) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform-origin: 50% 100%;
+  transform: perspective(420px) rotateX(62deg);
+  -webkit-mask-image: linear-gradient(to top, #000 15%, transparent 85%);
+  mask-image: linear-gradient(to top, #000 15%, transparent 85%);
+  animation: vn-grid 6s linear infinite;
 }
-@media (min-width: 1500px) { :root body::after { background-size: cover; } }
+@keyframes vn-grid { to { transform: perspective(420px) rotateX(62deg) translateY(64px); } }
 
-/* Fonts: rounded game sans for UI, Mincho for titles, Cinzel caps for plates and HUD labels. */
+/* Fonts: Rajdhani for text, Chakra Petch for titles, plates and HUD labels. */
 :root body :where(#chapter, #resonance-select, main, nav, footer, #site-bar, .save-status, dialog),
 :root body :where(#chapter, #resonance-select, main, nav, footer, #site-bar, .save-status, dialog) :where(:not(.log, code, pre, .term-chip)) {
   font-family: var(--vn-body) !important;
 }
 :root body :is(h1, h2, h3, .rs-name, .brand, .rs-brand), :root body :is(h1, h2, h3) * { font-family: var(--vn-title) !important; }
-/* Cinzel only where the text is already capitals (literal or existing text-transform), so Turkish i/ı stay distinct. */
+/* Labels and plates in spaced capitals. text-transform follows <html lang>, so Turkish i becomes İ. */
 :root body :is(.eyebrow, .rs-step, .rs-sub, #chapter .small, #chapter .tag, .number, .learning-progress,
   .result-headline-eyebrow, #site-bar a#site-home, .rs-mark, .rs-label, #state, .workspace-page .stats span) {
   font-family: var(--vn-display) !important;
   font-weight: 700;
   letter-spacing: .14em;
+  text-transform: uppercase;
 }
+/* Page titles: large neon capitals, like the Nexus screens. */
+:root body :is(h1, h2) { text-transform: uppercase; letter-spacing: .03em; }
+:root body h1 { text-shadow: 0 0 28px rgba(51, 227, 255, .32); }
+/* Rajdhani has a small x-height; scale it to the size the old text font had, so line lengths and legibility hold. */
+:root body :where(#chapter, #resonance-select, main, nav, footer, #site-bar, .save-status, dialog) { font-size-adjust: .5; }
 :root body :is(.brand, .rs-brand, nav .brand) { font-family: var(--vn-display) !important; font-weight: 700; }
 :root[lang="tr"] body :is(.rs-label, #chapter .speech .small, #chapter .city-reaction .small, #opening-speaker) { font-family: var(--vn-title) !important; font-weight: 800; letter-spacing: .06em; }
-::selection { background: var(--vn-gold); color: #1a1424; }
+::selection { background: var(--vn-gold); color: #04121c; }
 
 :root body :is(.eyebrow, .rs-step, .result-headline-eyebrow, #chapter header .small) { color: var(--vn-char) !important; }
-:root body :where(main, #chapter, #resonance-select) a:not([class]) { color: color-mix(in srgb, var(--vn-char) 70%, #fff6e6); }
+:root body :where(main, #chapter, #resonance-select) a:not([class]) { color: color-mix(in srgb, var(--vn-char) 70%, #eef6ff); }
 
 /* ------------------------------------------------------------------ 2. Top bar = system menu */
 :root #site-bar {
-  background: linear-gradient(180deg, rgba(8, 10, 24, .96), rgba(16, 18, 42, .9));
-  border-bottom: 1px solid rgba(226, 189, 127, .3);
+  background: linear-gradient(180deg, rgba(5, 12, 23, .96), rgba(10, 20, 40, .9));
+  border-bottom: 1px solid rgba(51, 227, 255, .3);
   box-shadow: 0 10px 30px -18px #000;
   backdrop-filter: blur(8px);
 }
@@ -148,42 +166,47 @@
 :root #site-bar .site-tool,
 :root #site-bar select,
 :root #site-bar #demo-unit-info > summary {
-  background-color: rgba(30, 34, 70, .85);
+  background-color: rgba(20, 35, 66, .85);
   border-color: var(--vn-line);
   color: var(--vn-cream);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06);
 }
-:root #site-bar .site-tool { border-radius: 4px; }
-:root #site-bar select { border-radius: 4px; }
+:root #site-bar .site-tool { border-radius: 2px; }
+:root #site-bar select { border-radius: 2px; }
 :root #site-bar .site-tool:hover,
-:root #site-bar select:hover { border-color: var(--vn-gold); background-color: rgba(48, 52, 98, .9); }
+:root #site-bar select:hover { border-color: var(--vn-gold); background-color: rgba(31, 52, 93, .9); }
 :root #site-bar .site-tool-icon { color: var(--vn-gold-hi); }
-:root #site-bar label { color: #c7c0d6; }
+:root #site-bar label { color: #a7b6d4; }
 :root :is(#terms-panel, #site-bar #demo-unit-info > p, #term-popover, #tour-card) {
-  background: linear-gradient(180deg, #1c2042, #12142c);
+  background: linear-gradient(180deg, #0f1b32, #0a1222);
   border-color: var(--vn-line);
-  box-shadow: inset 0 0 0 3px #12142c, inset 0 0 0 4px var(--vn-line-soft), 0 20px 50px #000a;
+  box-shadow: inset 0 0 0 3px #0a1222, inset 0 0 0 4px var(--vn-line-soft), 0 20px 50px #000a;
 }
 
-/* ------------------------------------------------------------------ 3. Buttons: JRPG command buttons */
+/* ------------------------------------------------------------------ 3. Buttons: neon command buttons */
 :root :is(#chapter button, #resonance-select .rs-start, .hero .button:not(.secondary), .workspace-page button:not(.secondary):not(.site-tool):not(:disabled), .player-profile button, .save-home button) {
-  background: linear-gradient(180deg, #fbe4b4 0%, #e8c287 46%, #cfa063 54%, #e6c084 100%);
-  color: #1b1526;
-  border: 1px solid #fde9c0;
-  border-radius: 5px;
-  box-shadow: inset 0 0 0 2px rgba(232, 194, 135, .9), inset 0 0 0 3px rgba(92, 62, 30, .45), 0 6px 18px -8px rgba(242, 181, 111, .7);
-  font-weight: 800;
-  letter-spacing: .02em;
-  text-shadow: 0 1px 0 rgba(255, 240, 210, .5);
+  background: var(--vn-neon);
+  color: #04121c;
+  border: 1px solid var(--vn-neon);
+  border-radius: 2px;
+  box-shadow: 0 0 24px -6px rgba(51, 227, 255, .75), inset 0 0 0 1px rgba(255, 255, 255, .25);
+  font-family: var(--vn-display) !important;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-shadow: none;
 }
 :root :is(#chapter .secondary, #chapter header button, #chapter .structure-inspector button, #resonance-select .rs-top button,
   #resonance-select button.rs-secondary, .hero .button.secondary, .workspace-page button.secondary, .rl-learn-button, .save-menu-button, .profile-trigger, #chapter .choice, #chapter .knowledge-check button) {
-  background: linear-gradient(180deg, rgba(44, 49, 96, .95), rgba(22, 25, 54, .96));
-  color: var(--vn-cream);
-  border: 1px solid var(--vn-line);
-  border-radius: 5px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), inset 0 0 0 2px rgba(14, 16, 36, .6);
+  background: rgba(13, 21, 38, .82);
+  color: #e4edff;
+  border: 1px solid #5e7194;
+  border-radius: 2px;
+  box-shadow: none;
+  font-family: var(--vn-display) !important;
   font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
   text-shadow: none;
 }
 :root :is(#chapter header button, #resonance-select .rs-top button, .rl-learn-button, .save-menu-button, .profile-trigger) {
@@ -191,13 +214,17 @@
   font-size: 13px;
 }
 :root :is(#chapter button, #resonance-select button, .hero .button, .workspace-page button):not(:disabled):hover {
-  filter: brightness(1.08);
-  box-shadow: inset 0 0 0 2px rgba(232, 194, 135, .35), 0 0 0 1px rgba(251, 226, 176, .5), 0 0 22px -4px rgba(242, 181, 111, .55);
+  filter: brightness(1.1);
+  box-shadow: 0 0 0 1px rgba(164, 243, 255, .6), 0 0 28px -4px rgba(51, 227, 255, .7);
+}
+:root :is(#chapter .secondary, #chapter header button, #resonance-select button.rs-secondary, .hero .button.secondary, .workspace-page button.secondary, .save-menu-button, .profile-trigger):not(:disabled):hover {
+  border-color: var(--vn-neon);
+  color: var(--vn-neon);
 }
 :root :is(#chapter button, .workspace-page button):disabled {
-  background: rgba(30, 33, 62, .7);
-  color: #a9a3ba;
-  border: 1px dashed rgba(169, 163, 186, .45);
+  background: rgba(20, 34, 59, .7);
+  color: #8796b4;
+  border: 1px dashed rgba(135, 150, 180, .45);
   box-shadow: none;
   text-shadow: none;
   opacity: .75;
@@ -205,26 +232,26 @@
 /* Main "continue" calls get a slow light sweep. */
 :root :is(#resonance-select .rs-start, .hero .actions .button:not(.secondary), #character-enter, #chapter #next:not(:disabled), .workspace-page #example-next:not(:disabled)) {
   background:
-    linear-gradient(105deg, transparent 38%, rgba(255, 252, 240, .55) 50%, transparent 62%) var(--vn-sweep, -120%) 0 / 260% 100% no-repeat,
-    linear-gradient(180deg, #fbe4b4 0%, #e8c287 46%, #cfa063 54%, #e6c084 100%);
-  color: #1b1526;
-  border: 1px solid #fde9c0;
-  text-shadow: 0 1px 0 rgba(255, 240, 210, .5);
+    linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, .6) 50%, transparent 62%) var(--vn-sweep, -120%) 0 / 260% 100% no-repeat,
+    var(--vn-neon);
+  color: #04121c;
+  border: 1px solid var(--vn-neon);
+  text-shadow: none;
   animation: vn-sweep 3.6s ease-in-out 2;
 }
 @property --vn-sweep { syntax: '<percentage>'; inherits: false; initial-value: -120%; }
 @keyframes vn-sweep { 0%, 55% { --vn-sweep: 130%; } 100% { --vn-sweep: -130%; } }
 
 :root :is(#chapter select, #chapter input, #resonance-select input, .workspace-page #workspace input:not([type=checkbox]), .workspace-page #workspace select, .workspace-page input:not([type=checkbox]), .mint-layout select, .mint-layout input:not([type=checkbox])) {
-  background-color: rgba(10, 12, 30, .82);
-  border: 1px solid rgba(226, 189, 127, .38);
-  border-radius: 5px;
+  background-color: rgba(6, 14, 28, .82);
+  border: 1px solid rgba(51, 227, 255, .38);
+  border-radius: 2px;
   color: var(--vn-cream);
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, .45);
 }
 :root :is(#chapter select, #chapter input, #resonance-select input, .workspace-page input, .workspace-page select):focus {
   border-color: var(--vn-gold-hi);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, .45), 0 0 0 3px rgba(226, 189, 127, .22);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, .45), 0 0 0 3px rgba(51, 227, 255, .22);
 }
 :root :where(a, button, select, input, textarea, summary, [tabindex]):focus-visible { outline: 3px solid var(--vn-gold-hi); outline-offset: 3px; }
 
@@ -236,13 +263,13 @@
 :root body > nav .brand {
   font-size: 24px;
   letter-spacing: .32em;
-  background: linear-gradient(180deg, #fff3d6 10%, #e2bd7f 60%, #a77a45);
+  background: linear-gradient(180deg, #e0fcff 10%, #33e3ff 60%, #127fa3);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 10px rgba(242, 181, 111, .35));
+  filter: drop-shadow(0 0 10px rgba(51, 227, 255, .35));
 }
-:root body > nav .navlinks a { color: #d6d0e3; }
+:root body > nav .navlinks a { color: #b9c6e2; }
 :root body > nav .navlinks a:hover { color: var(--vn-gold-hi); }
 :root .hero { position: relative; }
 :root .hero .eyebrow { color: var(--vn-gold); font-size: 11px; }
@@ -259,17 +286,17 @@
 :root .hero h1 {
   font-weight: 800;
   letter-spacing: -.01em;
-  color: #fbf4e6;
-  text-shadow: 0 2px 0 rgba(10, 8, 30, .6), 0 0 28px rgba(122, 101, 150, .7);
+  color: #f0f6ff;
+  text-shadow: 0 2px 0 rgba(6, 11, 28, .6), 0 0 28px rgba(166, 121, 255, .7);
 }
 :root .hero h1 em {
   font-style: normal;
   text-shadow: none;
-  background: linear-gradient(180deg, #fff1cf 15%, #f2b56f 70%, #d98a5c);
+  background: linear-gradient(180deg, #d6fbff 15%, #ff4fa3 70%, #ff6a4a);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 14px rgba(240, 160, 127, .45));
+  filter: drop-shadow(0 0 14px rgba(255, 91, 135, .45));
 }
 /* The intro line becomes Diren's first line of dialogue. */
 :root .hero .intro {
@@ -281,11 +308,11 @@
   font-size: 17px;
   line-height: 1.7;
   border: 1px solid var(--vn-line);
-  border-radius: 10px;
+  border-radius: 2px;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%23e2bd7f' fill-opacity='.6'/%3E%3C/svg%3E") right 18px bottom 14px / 8px 8px no-repeat,
-    linear-gradient(180deg, rgba(28, 32, 66, .92), rgba(13, 15, 34, .94));
-  box-shadow: inset 0 0 0 3px rgba(13, 15, 34, .9), inset 0 0 0 4px var(--vn-line-soft), 0 18px 40px -20px #000;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff' fill-opacity='.6'/%3E%3C/svg%3E") right 18px bottom 14px / 8px 8px no-repeat,
+    linear-gradient(180deg, rgba(18, 33, 63, .92), rgba(8, 17, 32, .94));
+  box-shadow: inset 0 0 0 3px rgba(8, 17, 32, .9), inset 0 0 0 4px var(--vn-line-soft), 0 18px 40px -20px #000;
 }
 :root .hero .intro::before {
   content: "DIREN" / "";
@@ -295,28 +322,28 @@
   padding: 4px 18px 4px 14px;
   font: 700 12px/1.3 var(--vn-display);
   letter-spacing: .2em;
-  color: #1b1526;
-  background: linear-gradient(90deg, #fbe4b4, #e2bd7f 60%, #c99a5c);
+  color: #04121c;
+  background: linear-gradient(90deg, #a4f3ff, #33e3ff 60%, #1aa6c9);
   clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
-  box-shadow: 0 0 0 1px #fde9c0;
+  box-shadow: 0 0 0 1px #bdf6ff;
 }
 :root .hero .actions { margin-top: 26px; }
-:root .hero .button { border-radius: 5px; padding: 14px 24px; font-weight: 800; }
+:root .hero .button { border-radius: 2px; padding: 14px 24px; font-weight: 800; }
 :root .hero .button.secondary { color: var(--vn-cream); }
-:root .hero p.small { color: #c9c2d8; font-size: 12px; letter-spacing: .04em; }
+:root .hero p.small { color: #a9b8d6; font-size: 12px; letter-spacing: .04em; }
 /* Rarity card: the guide portrait. */
 :root .hero .portrait {
   padding: 10px;
   border: 2px solid transparent;
-  border-radius: 14px;
+  border-radius: 2px;
   background:
-    linear-gradient(180deg, #1f2347, #12142e) padding-box,
-    linear-gradient(140deg, #fff1cf, #c99a5c 30%, #7a6596 55%, #f2b56f 80%, #fff1cf) border-box;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, .6), 0 30px 80px -20px rgba(0, 0, 0, .9), 0 0 60px -10px rgba(240, 160, 127, .35);
+    linear-gradient(180deg, #111f38, #0a1324) padding-box,
+    linear-gradient(140deg, #d6fbff, #1aa6c9 30%, #a679ff 55%, #ff4fa3 80%, #d6fbff) border-box;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .6), 0 30px 80px -20px rgba(0, 0, 0, .9), 0 0 60px -10px rgba(255, 91, 135, .35);
   overflow: hidden;
 }
 :root .hero .portrait { border-radius: 999px 999px 14px 14px / 240px 240px 14px 14px !important; }
-:root .hero .portrait img { border-radius: 999px 999px 8px 8px / 232px 232px 8px 8px; box-shadow: 0 0 0 1px rgba(251, 226, 176, .45); }
+:root .hero .portrait img { border-radius: 999px 999px 8px 8px / 232px 232px 8px 8px; box-shadow: 0 0 0 1px rgba(164, 243, 255, .45); }
 :root .hero .portrait::before {
   content: none;
   position: absolute;
@@ -327,10 +354,10 @@
   border-radius: 20px;
   font: 13px/1.2 var(--vn-body);
   letter-spacing: .12em;
-  color: #ffe2a4;
-  background: rgba(12, 12, 32, .72);
-  box-shadow: 0 0 0 1px rgba(251, 226, 176, .5);
-  text-shadow: 0 0 8px rgba(242, 181, 111, .9);
+  color: #8ef0ff;
+  background: rgba(8, 14, 30, .72);
+  box-shadow: 0 0 0 1px rgba(164, 243, 255, .5);
+  text-shadow: 0 0 8px rgba(51, 227, 255, .9);
 }
 :root .hero .portrait::after {
   content: "";
@@ -338,9 +365,9 @@
   inset: 10px 10px auto 10px;
   aspect-ratio: 5 / 6;
   max-height: 460px;
-  border-radius: 8px;
+  border-radius: 2px;
   pointer-events: none;
-  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .22) 45%, rgba(173, 216, 255, .18) 50%, rgba(255, 210, 160, .2) 55%, transparent 70%) var(--vn-sweep) 0 / 300% 100% no-repeat;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .22) 45%, rgba(173, 216, 255, .18) 50%, rgba(190, 140, 255, .2) 55%, transparent 70%) var(--vn-sweep) 0 / 300% 100% no-repeat;
   display: none;
 }
 :root .hero .portrait figcaption {
@@ -372,37 +399,37 @@
   transform: rotate(45deg);
 }
 :root .section .eyebrow { color: var(--vn-gold); }
-:root .section h2 { color: #fbf4e6; font-weight: 800; }
-:root main p { color: #d6d0e3; }
-:root main .muted, :root main .small { color: #cbc4da; }
+:root .section h2 { color: #f0f6ff; font-weight: 800; }
+:root main p { color: #b9c6e2; }
+:root main .muted, :root main .small { color: #acbad8; }
 /* Quest cards. */
 :root #journey .card,
 :root #characters .card,
 :root body > main .split > .card {
   position: relative;
   border: 1px solid var(--vn-line);
-  border-radius: 10px;
-  background: var(--vn-corners), linear-gradient(180deg, rgba(31, 35, 72, .92), rgba(16, 18, 40, .94));
-  box-shadow: inset 0 0 0 3px rgba(16, 18, 40, .7), 0 18px 40px -24px #000;
+  border-radius: 2px;
+  background: var(--vn-corners), linear-gradient(180deg, rgba(20, 36, 68, .92), rgba(10, 20, 38, .94));
+  box-shadow: inset 0 0 0 3px rgba(10, 20, 38, .7), 0 18px 40px -24px #000;
 }
 :root #journey .card .number {
   display: inline-block;
   padding: 3px 12px;
   border-radius: 3px;
-  color: #1b1526;
+  color: #04121c;
   font-size: 11px;
-  background: linear-gradient(90deg, #fbe4b4, #e2bd7f);
+  background: linear-gradient(90deg, #a4f3ff, #33e3ff);
 }
-:root #journey .card h3, :root #characters .card h3 { color: #fbf4e6; font-weight: 800; }
+:root #journey .card h3, :root #characters .card h3 { color: #f0f6ff; font-weight: 800; }
 :root main .card a { color: var(--vn-gold-hi); }
 /* Character tool cards: rarity frames in each character's colour. */
 :root #characters .card { --vn-acc: var(--vn-gold); border-color: transparent; border-width: 2px;
-  background: var(--vn-corners), linear-gradient(180deg, rgba(31, 35, 72, .95), rgba(16, 18, 40, .96)) padding-box, linear-gradient(150deg, var(--vn-acc), rgba(20, 22, 48, .2) 45%, var(--vn-acc)) border-box; }
-:root #characters .card:nth-child(1) { --vn-acc: #e2bd7f; }
-:root #characters .card:nth-child(2) { --vn-acc: #e07583; }
-:root #characters .card:nth-child(3) { --vn-acc: #ecdcbc; }
-:root #characters .card:nth-child(4) { --vn-acc: #6fd0bd; }
-:root #characters .character-photo { border-radius: 8px; box-shadow: 0 0 0 1px var(--vn-acc), 0 10px 30px -14px #000; }
+  background: var(--vn-corners), linear-gradient(180deg, rgba(20, 36, 68, .95), rgba(10, 20, 38, .96)) padding-box, linear-gradient(150deg, var(--vn-acc), rgba(13, 24, 46, .2) 45%, var(--vn-acc)) border-box; }
+:root #characters .card:nth-child(1) { --vn-acc: #33e3ff; }
+:root #characters .card:nth-child(2) { --vn-acc: #ff4fa3; }
+:root #characters .card:nth-child(3) { --vn-acc: #ff8a4c; }
+:root #characters .card:nth-child(4) { --vn-acc: #aa82ff; }
+:root #characters .character-photo { border-radius: 2px; box-shadow: 0 0 0 1px var(--vn-acc), 0 10px 30px -14px #000; }
 :root #characters .card h3::before {
   content: "";
   display: inline-block;
@@ -413,37 +440,37 @@
   transform: rotate(45deg);
   box-shadow: 0 0 10px var(--vn-acc);
 }
-:root .release { border-left: 0; border: 1px solid var(--vn-line); border-radius: 10px; background: var(--vn-corners), rgba(18, 21, 46, .9); }
-:root .release li { color: #d6d0e3; }
-:root .status { border-color: var(--vn-gold); color: var(--vn-gold-hi); background: rgba(226, 189, 127, .08); font-size: 11px; }
-:root body > footer { border-top-color: var(--vn-line-soft); color: #c4bdd3; }
+:root .release { border-left: 0; border: 1px solid var(--vn-line); border-radius: 2px; background: var(--vn-corners), rgba(12, 23, 44, .9); }
+:root .release li { color: #b9c6e2; }
+:root .status { border-color: var(--vn-gold); color: var(--vn-gold-hi); background: rgba(51, 227, 255, .08); font-size: 11px; }
+:root body > footer { border-top-color: var(--vn-line-soft); color: #a3b2d0; }
 
 /* ------------------------------------------------------------------ 5. Character select: title screen */
 :root #resonance-select { background: transparent; }
 :root #resonance-select .rs-top { border-bottom: 1px solid transparent; border-image: linear-gradient(90deg, transparent, var(--vn-line), transparent) 1; }
 :root #resonance-select .rs-brand {
   letter-spacing: .3em;
-  background: linear-gradient(180deg, #fff3d6 10%, #e2bd7f 60%, #a77a45);
+  background: linear-gradient(180deg, #e0fcff 10%, #33e3ff 60%, #127fa3);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 12px rgba(242, 181, 111, .35));
+  filter: drop-shadow(0 0 12px rgba(51, 227, 255, .35));
 }
-:root #resonance-select .rs-sub { color: #cfc8de; font-size: 10px; }
+:root #resonance-select .rs-sub { color: #b0bedb; font-size: 10px; }
 :root #resonance-select .rs-step {
   padding: 5px 12px 5px 22px;
   color: var(--vn-gold-hi);
   border: 1px solid var(--vn-line);
   border-radius: 3px;
   font-size: 11px;
-  background: linear-gradient(var(--vn-gold), var(--vn-gold)) 9px 50% / 6px 6px no-repeat, rgba(20, 22, 48, .7);
+  background: linear-gradient(var(--vn-gold), var(--vn-gold)) 9px 50% / 6px 6px no-repeat, rgba(13, 24, 46, .7);
 }
 :root #resonance-select h2 {
   text-align: center;
   font-weight: 800;
   font-size: 40px;
-  color: #fbf4e6;
-  text-shadow: 0 0 26px rgba(122, 101, 150, .8);
+  color: #f0f6ff;
+  text-shadow: 0 0 26px rgba(166, 121, 255, .8);
   margin-top: 34px;
 }
 :root #resonance-select h2::before,
@@ -460,22 +487,22 @@
   -webkit-mask: linear-gradient(#000, #000);
   clip-path: polygon(0 45%, 46% 45%, 50% 0, 54% 45%, 100% 45%, 100% 55%, 54% 55%, 50% 100%, 46% 55%, 0 55%);
 }
-:root #resonance-select .rs-intro { text-align: center; color: #d2cce0; }
+:root #resonance-select .rs-intro { text-align: center; color: #b4c2df; }
 /* Rarity cards for the cast. */
 :root #resonance-select .rs-person {
-  --vn-acc: #e2bd7f;
+  --vn-acc: #33e3ff;
   border: 2px solid transparent;
-  border-radius: 12px;
+  border-radius: 2px;
   background:
-    linear-gradient(180deg, #1d2145, #12142e) padding-box,
-    linear-gradient(160deg, var(--vn-acc), rgba(30, 32, 64, .4) 40%, rgba(30, 32, 64, .4) 60%, var(--vn-acc)) border-box;
+    linear-gradient(180deg, #0f1c34, #0a1324) padding-box,
+    linear-gradient(160deg, var(--vn-acc), rgba(20, 33, 61, .4) 40%, rgba(20, 33, 61, .4) 60%, var(--vn-acc)) border-box;
   box-shadow: 0 16px 40px -22px #000;
   transition: box-shadow .3s, filter .3s;
 }
-:root #resonance-select .rs-person:nth-child(1) { --vn-acc: #e2bd7f; }
-:root #resonance-select .rs-person:nth-child(2) { --vn-acc: #e07583; }
-:root #resonance-select .rs-person:nth-child(3) { --vn-acc: #6fd0bd; }
-:root #resonance-select .rs-person:nth-child(4) { --vn-acc: #ecdcbc; }
+:root #resonance-select .rs-person:nth-child(1) { --vn-acc: #33e3ff; }
+:root #resonance-select .rs-person:nth-child(2) { --vn-acc: #ff4fa3; }
+:root #resonance-select .rs-person:nth-child(3) { --vn-acc: #aa82ff; }
+:root #resonance-select .rs-person:nth-child(4) { --vn-acc: #ff8a4c; }
 :root #resonance-select .rs-person img {
   border-radius: 10px 10px 0 0;
   -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent);
@@ -497,9 +524,9 @@
   position: relative;
   margin-top: -34px;
   padding: 10px 14px 16px;
-  background: linear-gradient(180deg, transparent, rgba(14, 16, 36, .9) 36%);
+  background: linear-gradient(180deg, transparent, rgba(9, 18, 34, .9) 36%);
 }
-:root #resonance-select .rs-name { font-weight: 800; font-size: 26px; color: #fbf4e6; text-shadow: 0 2px 10px #000; }
+:root #resonance-select .rs-name { font-weight: 800; font-size: 26px; color: #f0f6ff; text-shadow: 0 2px 10px #000; }
 :root #resonance-select .rs-name::after {
   content: "";
   display: block;
@@ -508,17 +535,17 @@
   margin-top: 6px;
   background: linear-gradient(90deg, var(--vn-acc), transparent);
 }
-:root #resonance-select .rs-trait { color: #d6d0e3; letter-spacing: .03em; }
+:root #resonance-select .rs-trait { color: #b9c6e2; letter-spacing: .03em; }
 :root #resonance-select .rs-person[aria-pressed="true"] {
   border: 2px solid transparent;
   background:
-    linear-gradient(180deg, #262a58, #14163a) padding-box,
-    linear-gradient(160deg, #fff6dc, var(--vn-acc) 30%, #fff6dc 50%, var(--vn-acc) 70%, #fff6dc) border-box;
-  box-shadow: 0 0 0 1px rgba(255, 246, 220, .4), 0 0 34px -4px var(--vn-acc), 0 20px 50px -20px #000;
+    linear-gradient(180deg, #142646, #0c1630) padding-box,
+    linear-gradient(160deg, #e6fdff, var(--vn-acc) 30%, #e6fdff 50%, var(--vn-acc) 70%, #e6fdff) border-box;
+  box-shadow: 0 0 0 1px rgba(210, 250, 255, .4), 0 0 34px -4px var(--vn-acc), 0 20px 50px -20px #000;
   animation: vn-chosen 2.4s ease-in-out 2;
 }
 @keyframes vn-chosen {
-  50% { box-shadow: 0 0 0 1px rgba(255, 246, 220, .6), 0 0 46px 0 var(--vn-acc), 0 20px 50px -20px #000; }
+  50% { box-shadow: 0 0 0 1px rgba(210, 250, 255, .6), 0 0 46px 0 var(--vn-acc), 0 20px 50px -20px #000; }
 }
 /* Sparkles burst when a card becomes the chosen one (the animation restarts on each choice). */
 :root #resonance-select .rs-person[aria-pressed="true"]::after {
@@ -530,19 +557,19 @@
   background:
     radial-gradient(2px 14px at 50% 50%, #fff 40%, transparent 62%) 14% 20% / 28px 28px no-repeat,
     radial-gradient(14px 2px at 50% 50%, #fff 40%, transparent 62%) 14% 20% / 28px 28px no-repeat,
-    radial-gradient(2px 18px at 50% 50%, #ffe8b8 40%, transparent 62%) 86% 30% / 36px 36px no-repeat,
-    radial-gradient(18px 2px at 50% 50%, #ffe8b8 40%, transparent 62%) 86% 30% / 36px 36px no-repeat,
+    radial-gradient(2px 18px at 50% 50%, #a4f3ff 40%, transparent 62%) 86% 30% / 36px 36px no-repeat,
+    radial-gradient(18px 2px at 50% 50%, #a4f3ff 40%, transparent 62%) 86% 30% / 36px 36px no-repeat,
     radial-gradient(1.6px 11px at 50% 50%, #fff 40%, transparent 62%) 80% 58% / 22px 22px no-repeat,
     radial-gradient(11px 1.6px at 50% 50%, #fff 40%, transparent 62%) 80% 58% / 22px 22px no-repeat,
-    radial-gradient(2px 15px at 50% 50%, #ffe8b8 40%, transparent 62%) 10% 64% / 30px 30px no-repeat,
-    radial-gradient(15px 2px at 50% 50%, #ffe8b8 40%, transparent 62%) 10% 64% / 30px 30px no-repeat,
-    radial-gradient(circle, rgba(255, 236, 190, .9), transparent 60%) 14% 20% / 12px 12px no-repeat,
-    radial-gradient(circle, rgba(255, 236, 190, .9), transparent 60%) 86% 30% / 14px 14px no-repeat,
-    radial-gradient(circle, rgba(255, 236, 190, .9), transparent 60%) 10% 64% / 12px 12px no-repeat,
-    radial-gradient(3px 3px at 50% 50%, rgba(255, 240, 200, .95), transparent) 60% 30% / 8px 8px no-repeat,
-    radial-gradient(3px 3px at 50% 50%, rgba(255, 240, 200, .95), transparent) 30% 46% / 8px 8px no-repeat,
-    radial-gradient(3px 3px at 50% 50%, rgba(255, 240, 200, .95), transparent) 90% 40% / 8px 8px no-repeat,
-    linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .16) 48%, rgba(255, 220, 170, .12) 52%, transparent 65%) var(--vn-sweep) 0 / 300% 100% no-repeat;
+    radial-gradient(2px 15px at 50% 50%, #a4f3ff 40%, transparent 62%) 10% 64% / 30px 30px no-repeat,
+    radial-gradient(15px 2px at 50% 50%, #a4f3ff 40%, transparent 62%) 10% 64% / 30px 30px no-repeat,
+    radial-gradient(circle, rgba(210, 250, 255, .9), transparent 60%) 14% 20% / 12px 12px no-repeat,
+    radial-gradient(circle, rgba(210, 250, 255, .9), transparent 60%) 86% 30% / 14px 14px no-repeat,
+    radial-gradient(circle, rgba(210, 250, 255, .9), transparent 60%) 10% 64% / 12px 12px no-repeat,
+    radial-gradient(3px 3px at 50% 50%, rgba(210, 250, 255, .95), transparent) 60% 30% / 8px 8px no-repeat,
+    radial-gradient(3px 3px at 50% 50%, rgba(210, 250, 255, .95), transparent) 30% 46% / 8px 8px no-repeat,
+    radial-gradient(3px 3px at 50% 50%, rgba(210, 250, 255, .95), transparent) 90% 40% / 8px 8px no-repeat,
+    linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .16) 48%, rgba(160, 240, 255, .12) 52%, transparent 65%) var(--vn-sweep) 0 / 300% 100% no-repeat;
   animation: vn-twinkle 1.8s ease-in-out 1 forwards, vn-sweep 4s ease-in-out 1;
 }
 @keyframes vn-twinkle { 0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: 0; } }
@@ -552,10 +579,10 @@
   padding: 4px 10px 4px 20px;
   font-size: 10px;
   letter-spacing: .18em;
-  color: #1b1526;
+  color: #04121c;
   border-radius: 2px;
-  background: linear-gradient(#1b1526, #1b1526) 8px 50% / 5px 5px no-repeat, linear-gradient(90deg, #fbe4b4, var(--vn-acc));
-  box-shadow: 0 0 0 1px #fff3d6, 0 0 16px -2px var(--vn-acc);
+  background: linear-gradient(#04121c, #04121c) 8px 50% / 5px 5px no-repeat, linear-gradient(90deg, #a4f3ff, var(--vn-acc));
+  box-shadow: 0 0 0 1px #e0fcff, 0 0 16px -2px var(--vn-acc);
   z-index: 4;
 }
 /* Dialogue: the chosen character's description, with the selection label as the name plate. */
@@ -564,11 +591,11 @@
   position: relative;
   padding: 26px 22px 18px 104px;
   border: 1px solid var(--vn-line);
-  border-radius: 10px;
+  border-radius: 2px;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%23e2bd7f' fill-opacity='.6'/%3E%3C/svg%3E") right 18px bottom 16px / 8px 8px no-repeat,
-    linear-gradient(180deg, rgba(28, 32, 66, .94), rgba(13, 15, 34, .96));
-  box-shadow: inset 0 0 0 3px rgba(13, 15, 34, .9), inset 0 0 0 4px var(--vn-line-soft), 0 18px 40px -20px #000;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff' fill-opacity='.6'/%3E%3C/svg%3E") right 18px bottom 16px / 8px 8px no-repeat,
+    linear-gradient(180deg, rgba(18, 33, 63, .94), rgba(8, 17, 32, .96));
+  box-shadow: inset 0 0 0 3px rgba(8, 17, 32, .9), inset 0 0 0 4px var(--vn-line-soft), 0 18px 40px -20px #000;
 }
 :root #resonance-select .rs-bottom > section:first-child::before {
   content: "";
@@ -577,9 +604,9 @@
   top: 22px;
   width: 72px;
   height: 84px;
-  border-radius: 8px;
+  border-radius: 2px;
   background: var(--vn-face) 50% 8% / 190% auto no-repeat;
-  box-shadow: 0 0 0 2px var(--vn-char), 0 0 0 4px rgba(13, 15, 34, .9), 0 0 18px -2px var(--vn-char);
+  box-shadow: 0 0 0 2px var(--vn-char), 0 0 0 4px rgba(8, 17, 32, .9), 0 0 18px -2px var(--vn-char);
   pointer-events: none;
 }
 :root #resonance-select #rs-selected {
@@ -589,8 +616,8 @@
   padding: 4px 18px 4px 14px;
   font-size: 11px;
   letter-spacing: .18em;
-  color: #1b1526;
-  background: linear-gradient(90deg, #fbe4b4, var(--vn-char) 70%);
+  color: #04121c;
+  background: linear-gradient(90deg, #a4f3ff, var(--vn-char) 70%);
   clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
 }
 :root #resonance-select .rs-desc { color: var(--vn-cream); font-size: 15px; margin-top: 4px; }
@@ -598,20 +625,20 @@
   position: relative;
   padding: 18px 20px;
   border: 1px solid var(--vn-line);
-  border-radius: 10px;
-  background: var(--vn-corners), rgba(18, 21, 46, .9);
+  border-radius: 2px;
+  background: var(--vn-corners), rgba(12, 23, 44, .9);
 }
 :root #resonance-select .rs-bottom > section:last-child label { color: var(--vn-gold); font-size: 12px; letter-spacing: .08em; }
 :root #resonance-select .rs-start { font-size: 16px; padding: 16px; }
-:root #resonance-select .rs-note { border-top-color: var(--vn-line-soft); color: #c9c2d8; text-align: center; }
-:root .save-status { background: transparent; color: #c9c2d8; }
+:root #resonance-select .rs-note { border-top-color: var(--vn-line-soft); color: #a9b8d6; text-align: center; }
+:root .save-status { background: transparent; color: #a9b8d6; }
 
 /* ------------------------------------------------------------------ 6. Academy chapter */
 :root #chapter { background: transparent; }
 :root #chapter header { border-bottom: 1px solid transparent; border-image: linear-gradient(90deg, transparent, var(--vn-line), transparent) 1; }
 :root #chapter .brand {
   letter-spacing: .3em;
-  background: linear-gradient(180deg, #fff3d6 10%, #e2bd7f 60%, #a77a45);
+  background: linear-gradient(180deg, #e0fcff 10%, #33e3ff 60%, #127fa3);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -624,10 +651,10 @@
   border-radius: 3px;
   font-size: 11px;
   color: var(--vn-gold-hi);
-  background: linear-gradient(var(--vn-gold), var(--vn-gold)) 11px 50% / 6px 6px no-repeat, rgba(20, 22, 48, .75);
+  background: linear-gradient(var(--vn-gold), var(--vn-gold)) 11px 50% / 6px 6px no-repeat, rgba(13, 24, 46, .75);
 }
-:root #chapter h1 { font-weight: 800; color: #fbf4e6; text-shadow: 0 0 26px rgba(122, 101, 150, .8); }
-:root #chapter h1 + p, :root #chapter p { color: #d6d0e3; }
+:root #chapter h1 { font-weight: 800; color: #f0f6ff; text-shadow: 0 0 26px rgba(166, 121, 255, .8); }
+:root #chapter h1 + p, :root #chapter p { color: #b9c6e2; }
 :root #chapter .tag { color: var(--vn-teal); }
 :root #chapter .small { color: var(--vn-gold); }
 :root #chapter label { color: var(--vn-gold); font-size: 12px; letter-spacing: .06em; }
@@ -635,47 +662,47 @@
 /* The map is a framed game screen. */
 :root #chapter .map.tutorial-stage {
   position: relative;
-  border: 1px solid rgba(226, 189, 127, .55);
-  border-radius: 12px;
+  border: 1px solid rgba(51, 227, 255, .55);
+  border-radius: 2px;
   background: linear-gradient(180deg, #171a3a, #0e1026);
-  box-shadow: 0 0 0 4px rgba(12, 13, 32, .85), 0 0 0 5px rgba(226, 189, 127, .25), 0 26px 60px -24px #000;
+  box-shadow: 0 0 0 4px rgba(8, 15, 30, .85), 0 0 0 5px rgba(51, 227, 255, .25), 0 26px 60px -24px #000;
 }
 :root #chapter .map.tutorial-stage::after {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 12px;
+  border-radius: 2px;
   pointer-events: none;
   background: var(--vn-corners);
-  box-shadow: inset 0 0 40px rgba(8, 8, 26, .55);
+  box-shadow: inset 0 0 40px rgba(5, 11, 25, .55);
 }
-:root #chapter .structure-button { font-family: var(--vn-body) !important; font-weight: 700; border-radius: 4px; border: 1px solid rgba(226, 189, 127, .75); background: rgba(16, 18, 44, .9); color: var(--vn-cream); text-shadow: 0 1px 2px #000; box-shadow: 0 0 0 1px rgba(8, 8, 24, .6), 0 4px 12px rgba(0, 0, 0, .45); }
-:root #chapter .structure-button[aria-pressed="true"] { background: linear-gradient(180deg, #fbe4b4, #e2bd7f); color: #1b1526; text-shadow: none; border: 2px solid #fff3d6; box-shadow: 0 0 18px rgba(242, 181, 111, .7); }
+:root #chapter .structure-button { font-family: var(--vn-body) !important; font-weight: 700; border-radius: 2px; border: 1px solid rgba(51, 227, 255, .75); background: rgba(10, 20, 42, .9); color: var(--vn-cream); text-shadow: 0 1px 2px #000; box-shadow: 0 0 0 1px rgba(5, 11, 23, .6), 0 4px 12px rgba(0, 0, 0, .45); }
+:root #chapter .structure-button[aria-pressed="true"] { background: linear-gradient(180deg, #a4f3ff, #33e3ff); color: #04121c; text-shadow: none; border: 2px solid #e0fcff; box-shadow: 0 0 18px rgba(51, 227, 255, .7); }
 /* The game's own change toast and vault chips wear the same frame (colours only; their motion is untouched). */
 :root .fx-toast, :root .vfx-chip {
-  border: 1px solid rgba(226, 189, 127, .6);
+  border: 1px solid rgba(51, 227, 255, .6);
   border-radius: 6px;
-  background: linear-gradient(180deg, rgba(30, 34, 72, .96), rgba(12, 14, 32, .96));
-  box-shadow: inset 0 0 0 2px rgba(12, 14, 32, .9), inset 0 0 0 3px rgba(226, 189, 127, .2), 0 10px 30px rgba(0, 0, 0, .6);
+  background: linear-gradient(180deg, rgba(20, 35, 68, .96), rgba(8, 16, 30, .96));
+  box-shadow: inset 0 0 0 2px rgba(8, 16, 30, .9), inset 0 0 0 3px rgba(51, 227, 255, .2), 0 10px 30px rgba(0, 0, 0, .6);
   font-family: var(--vn-body);
 }
-:root #chapter .structure-inspector { background: linear-gradient(180deg, rgba(26, 29, 62, .96), rgba(17, 19, 44, .96)); border-top: 1px solid var(--vn-line); }
+:root #chapter .structure-inspector { background: linear-gradient(180deg, rgba(17, 31, 59, .96), rgba(11, 21, 42, .96)); border-top: 1px solid var(--vn-line); }
 :root #chapter .structure-inspector h3 { color: var(--vn-gold-hi); font-weight: 800; }
 
 /* HUD gauges for SHIELD and RESERVE (the nodes' own ::before/::after belong to game-fx). */
-:root #chapter .tutorial-stage .nodes { padding: 12px; gap: 10px; background: rgba(10, 11, 28, .6); }
+:root #chapter .tutorial-stage .nodes { padding: 12px; gap: 10px; background: rgba(6, 13, 27, .6); }
 :root #chapter .nodes .node {
-  border: 1px solid rgba(226, 189, 127, .5);
-  border-radius: 8px;
+  border: 1px solid rgba(51, 227, 255, .5);
+  border-radius: 2px;
   padding: 8px 12px 10px;
   text-align: left;
-  background: var(--vn-corners), linear-gradient(160deg, #1d2148, #10122c);
+  background: var(--vn-corners), linear-gradient(160deg, #1d2148, #081120);
 }
 :root #chapter .node:has(#reserve) {
-  --vn-c: rgba(251, 226, 176, .9);
-  background: var(--vn-corners), radial-gradient(ellipse at 50% 115%, rgba(239, 207, 134, calc(.06 + var(--fx-fill, .5) * .24)), transparent 70%), linear-gradient(160deg, #241f45, #12122c);
+  --vn-c: rgba(164, 243, 255, .9);
+  background: var(--vn-corners), radial-gradient(ellipse at 50% 115%, rgba(255, 79, 163, calc(.06 + var(--fx-fill, .5) * .24)), transparent 70%), linear-gradient(160deg, #16123a, #0a1222);
 }
-:root #chapter .node:has(#shield) { --vn-c: rgba(127, 224, 207, .9); background: var(--vn-corners), radial-gradient(ellipse at 50% 120%, rgba(127, 224, 207, .16), transparent 70%), linear-gradient(160deg, #18264a, #0f142e); }
+:root #chapter .node:has(#shield) { --vn-c: rgba(108, 245, 203, .9); background: var(--vn-corners), radial-gradient(ellipse at 50% 120%, rgba(108, 245, 203, .16), transparent 70%), linear-gradient(160deg, #18264a, #0a1428); }
 :root #chapter .node .small {
   display: flex;
   align-items: center;
@@ -704,28 +731,28 @@
   font: 800 28px/1.1 var(--vn-body) !important;
   letter-spacing: 0;
   color: var(--vn-gold-hi);
-  text-shadow: 0 0 14px rgba(242, 181, 111, .65), 0 2px 0 #000;
+  text-shadow: 0 0 14px rgba(51, 227, 255, .65), 0 2px 0 #000;
   font-variant-numeric: tabular-nums;
 }
-:root #chapter #shield.number { color: #d6fff7; text-shadow: 0 0 14px rgba(127, 224, 207, .75), 0 2px 0 #000; }
+:root #chapter #shield.number { color: #dcfff3; text-shadow: 0 0 14px rgba(108, 245, 203, .75), 0 2px 0 #000; }
 :root #chapter .node .meter {
   position: relative;
   height: 10px;
   margin-top: 4px;
   border-radius: 2px;
   background: #090a1c;
-  box-shadow: inset 0 0 0 1px rgba(226, 189, 127, .35), inset 0 2px 4px #000;
+  box-shadow: inset 0 0 0 1px rgba(51, 227, 255, .35), inset 0 2px 4px #000;
   overflow: hidden;
 }
 :root #chapter .node .meter::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), rgba(9, 10, 28, .9) calc(10% - 2px) 10%);
+  background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), rgba(6, 12, 27, .9) calc(10% - 2px) 10%);
   pointer-events: none;
 }
-:root #chapter #rbar.fill { background: linear-gradient(180deg, #fff1cf, #f2b56f 55%, #c98b45); box-shadow: 0 0 10px rgba(242, 181, 111, .8); }
-:root #chapter #sbar.fill { background: linear-gradient(180deg, #e2fffa, #7fe0cf 55%, #3a9f95); box-shadow: 0 0 10px rgba(127, 224, 207, .8); }
+:root #chapter #rbar.fill { background: linear-gradient(180deg, #d6fbff, #ff4fa3 55%, #b0306e); box-shadow: 0 0 10px rgba(51, 227, 255, .8); }
+:root #chapter #sbar.fill { background: linear-gradient(180deg, #e2fffa, #6cf5cb 55%, #3a9f95); box-shadow: 0 0 10px rgba(108, 245, 203, .8); }
 :root #chapter #arrow { color: var(--vn-gold-hi); text-shadow: 0 0 10px var(--vn-lantern); font-size: 20px; }
 
 /* Wave narration: a dialogue box that slides over the (hidden) HUD while the wave plays,
@@ -738,12 +765,12 @@
   font-size: 14px;
   line-height: 1.6;
   pointer-events: none;
-  border: 1px solid rgba(226, 189, 127, .65);
-  border-radius: 10px;
+  border: 1px solid rgba(51, 227, 255, .65);
+  border-radius: 2px;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%23e2bd7f' fill-opacity='.6'/%3E%3C/svg%3E") right 18px bottom 12px / 8px 8px no-repeat,
-    linear-gradient(180deg, rgba(28, 32, 66, .97), rgba(12, 14, 32, .98));
-  box-shadow: inset 0 0 0 3px rgba(12, 14, 32, .9), inset 0 0 0 4px var(--vn-line-soft), 0 -10px 30px -10px rgba(0, 0, 0, .7);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff' fill-opacity='.6'/%3E%3C/svg%3E") right 18px bottom 12px / 8px 8px no-repeat,
+    linear-gradient(180deg, rgba(18, 33, 63, .97), rgba(8, 16, 30, .98));
+  box-shadow: inset 0 0 0 3px rgba(8, 16, 30, .9), inset 0 0 0 4px var(--vn-line-soft), 0 -10px 30px -10px rgba(0, 0, 0, .7);
   animation: vn-box-in .35s ease-out both;
 }
 :root #chapter .animation-message::before {
@@ -768,8 +795,8 @@
   padding: 4px 18px 4px 14px;
   font: 700 11px/1.3 var(--vn-display);
   letter-spacing: .2em;
-  color: #1b1526;
-  background: linear-gradient(90deg, #fbe4b4, var(--vn-char) 70%);
+  color: #04121c;
+  background: linear-gradient(90deg, #a4f3ff, var(--vn-char) 70%);
   clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
 }
 :root #chapter .map.tutorial-stage > .animation-message { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 3; }
@@ -795,8 +822,8 @@
     width: 68px;
     height: 12px;
     pointer-events: none;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%23e2bd7f'/%3E%3C/svg%3E") 0 50% / 10px 10px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%23e2bd7f'/%3E%3C/svg%3E") 50% 50% / 10px 10px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%23e2bd7f'/%3E%3C/svg%3E") 100% 50% / 10px 10px no-repeat;
-    filter: drop-shadow(0 0 6px rgba(242, 181, 111, .8));
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff'/%3E%3C/svg%3E") 0 50% / 10px 10px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff'/%3E%3C/svg%3E") 50% 50% / 10px 10px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff'/%3E%3C/svg%3E") 100% 50% / 10px 10px no-repeat;
+    filter: drop-shadow(0 0 6px rgba(51, 227, 255, .8));
     animation: vn-wait 1.2s ease-in-out infinite;
   }
 }
@@ -808,7 +835,7 @@
 /* Character name plates (decorative, empty alt text). */
 :root[data-vn-char="diren"] :is(#chapter .learning-note, .workspace-page #first-example)::after { content: "DIREN" / ""; }
 :root[data-vn-char="ece"]   :is(#chapter .learning-note, .workspace-page #first-example)::after { content: "ECE" / ""; }
-:root[data-vn-char="eric"]  :is(#chapter .learning-note, .workspace-page #first-example)::after { content: "ERIC" / ""; }
+:root[data-vn-char="eric"]  :is(#chapter .learning-note, .workspace-page #first-example)::after { content: "DENIS" / ""; }
 :root[data-vn-char="ade"]   :is(#chapter .learning-note, .workspace-page #first-example)::after { content: "ADE" / ""; }
 :root :is(#chapter .animation-message, #chapter #status)::after { content: "RESONANCE" / ""; background: linear-gradient(90deg, #d8dcf0, #9aa3c9 80%) !important; }
 :root #chapter .animation-message::before { content: none !important; }
@@ -818,9 +845,9 @@
 /* Rule console = command menu. */
 :root #chapter.first-wave-layout .layout > section:nth-child(2) {
   border: 1px solid var(--vn-line);
-  border-radius: 12px;
-  background: var(--vn-corners), linear-gradient(180deg, rgba(30, 34, 70, .94), rgba(15, 17, 38, .95));
-  box-shadow: inset 0 0 0 3px rgba(15, 17, 38, .7), 0 26px 60px -30px #000;
+  border-radius: 2px;
+  background: var(--vn-corners), linear-gradient(180deg, rgba(20, 35, 66, .94), rgba(10, 19, 36, .95));
+  box-shadow: inset 0 0 0 3px rgba(10, 19, 36, .7), 0 26px 60px -30px #000;
 }
 :root #chapter.first-wave-layout .layout > section:nth-child(2) > .small {
   display: flex;
@@ -837,12 +864,12 @@
 }
 :root #chapter .quick-guide {
   position: relative;
-  border: 1px solid rgba(127, 224, 207, .45);
-  border-radius: 10px;
-  background: linear-gradient(180deg, rgba(25, 52, 66, .9), rgba(15, 30, 44, .92));
-  box-shadow: inset 0 0 0 3px rgba(12, 22, 34, .7), inset 0 0 0 4px rgba(127, 224, 207, .15);
+  border: 1px solid rgba(108, 245, 203, .45);
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(16, 52, 63, .9), rgba(10, 32, 42, .92));
+  box-shadow: inset 0 0 0 3px rgba(8, 24, 32, .7), inset 0 0 0 4px rgba(108, 245, 203, .15);
 }
-:root #chapter .quick-guide :is(h2, h3, strong, b) { color: #d6fff7; }
+:root #chapter .quick-guide :is(h2, h3, strong, b) { color: #dcfff3; }
 :root #chapter .quick-guide p { color: #e3efec; }
 /* Status line after each block: a short dialogue box with the name plate and continue cue. */
 :root #chapter.first-wave-layout #status,
@@ -850,18 +877,18 @@
   position: relative;
   margin-top: 22px;
   padding: 18px 40px 14px 16px;
-  border: 1px solid rgba(226, 189, 127, .6);
+  border: 1px solid rgba(51, 227, 255, .6);
   border-left-width: 1px;
-  border-radius: 10px;
-  color: #fbe9c6;
+  border-radius: 2px;
+  color: #e6eeff;
   font-family: var(--vn-body) !important;
   font-weight: 500;
   letter-spacing: 0;
   font-size: 14px;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%23e2bd7f' fill-opacity='.6'/%3E%3C/svg%3E") right 16px bottom 12px / 8px 8px no-repeat,
-    linear-gradient(180deg, rgba(28, 32, 66, .96), rgba(12, 14, 32, .97));
-  box-shadow: inset 0 0 0 3px rgba(12, 14, 32, .9), inset 0 0 0 4px var(--vn-line-soft);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff' fill-opacity='.6'/%3E%3C/svg%3E") right 16px bottom 12px / 8px 8px no-repeat,
+    linear-gradient(180deg, rgba(18, 33, 63, .96), rgba(8, 16, 30, .97));
+  box-shadow: inset 0 0 0 3px rgba(8, 16, 30, .9), inset 0 0 0 4px var(--vn-line-soft);
 }
 :root #chapter #status:empty { padding: 0; border-color: transparent; background: none; box-shadow: none; animation: none; }
 :root #chapter #status:empty::after { display: none; }
@@ -872,11 +899,11 @@
   padding: 3px 16px 3px 12px;
   font: 700 10.5px/1.3 var(--vn-display);
   letter-spacing: .2em;
-  color: #1b1526;
-  background: linear-gradient(90deg, #fbe4b4, var(--vn-char) 70%);
+  color: #04121c;
+  background: linear-gradient(90deg, #a4f3ff, var(--vn-char) 70%);
   clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
 }
-:root #chapter #phase { padding: 3px 10px; border: 1px solid rgba(127, 224, 207, .45); border-radius: 3px; background: rgba(10, 30, 36, .6); }
+:root #chapter #phase { padding: 3px 10px; border: 1px solid rgba(108, 245, 203, .45); border-radius: 3px; background: rgba(6, 32, 34, .6); }
 :root #chapter #block { color: var(--vn-gold); }
 
 /* Lesson note = the main VN dialogue: character standing at the left, plate, text, cue. */
@@ -885,14 +912,14 @@
   margin-top: 40px;
   min-height: 150px;
   padding: 24px 52px 18px 196px;
-  border: 1px solid rgba(226, 189, 127, .6);
-  border-left: 1px solid rgba(226, 189, 127, .6);
-  border-radius: 12px;
+  border: 1px solid rgba(51, 227, 255, .6);
+  border-left: 1px solid rgba(51, 227, 255, .6);
+  border-radius: 2px;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%23e2bd7f' fill-opacity='.6'/%3E%3C/svg%3E") right 20px bottom 16px / 8px 8px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff' fill-opacity='.6'/%3E%3C/svg%3E") right 20px bottom 16px / 8px 8px no-repeat,
     var(--vn-corners),
-    linear-gradient(180deg, rgba(28, 32, 66, .95), rgba(12, 14, 32, .97));
-  box-shadow: inset 0 0 0 3px rgba(12, 14, 32, .9), inset 0 0 0 4px var(--vn-line-soft), 0 20px 50px -24px #000;
+    linear-gradient(180deg, rgba(18, 33, 63, .95), rgba(8, 16, 30, .97));
+  box-shadow: inset 0 0 0 3px rgba(8, 16, 30, .9), inset 0 0 0 4px var(--vn-line-soft), 0 20px 50px -24px #000;
 }
 :root #chapter .learning-note::before {
   content: "";
@@ -916,8 +943,8 @@
   padding: 4px 18px 4px 14px;
   font: 700 11px/1.3 var(--vn-display);
   letter-spacing: .2em;
-  color: #1b1526;
-  background: linear-gradient(90deg, #fbe4b4, var(--vn-char) 70%);
+  color: #04121c;
+  background: linear-gradient(90deg, #a4f3ff, var(--vn-char) 70%);
   clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
 }
 :root #chapter .learning-note .learning-progress { color: var(--vn-teal); font-size: 10px; }
@@ -929,85 +956,85 @@
 :root #chapter .speech:not(#wave-guide) {
   position: relative;
   padding: 22px 40px 14px 18px;
-  border: 1px solid rgba(226, 189, 127, .55);
-  border-radius: 10px;
+  border: 1px solid rgba(51, 227, 255, .55);
+  border-radius: 2px;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%23e2bd7f' fill-opacity='.6'/%3E%3C/svg%3E") right 16px bottom 12px / 8px 8px no-repeat,
-    linear-gradient(180deg, rgba(28, 32, 66, .94), rgba(12, 14, 32, .96));
-  box-shadow: inset 0 0 0 3px rgba(12, 14, 32, .9), inset 0 0 0 4px var(--vn-line-soft);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff' fill-opacity='.6'/%3E%3C/svg%3E") right 16px bottom 12px / 8px 8px no-repeat,
+    linear-gradient(180deg, rgba(18, 33, 63, .94), rgba(8, 16, 30, .96));
+  box-shadow: inset 0 0 0 3px rgba(8, 16, 30, .9), inset 0 0 0 4px var(--vn-line-soft);
 }
 :root #chapter .speech #opening-speaker {
   position: absolute;
   top: -12px;
   left: 14px;
   padding: 3px 16px 3px 12px;
-  color: #1b1526;
+  color: #04121c;
   letter-spacing: .14em;
-  background: linear-gradient(90deg, #fbe4b4, var(--vn-gold) 70%);
+  background: linear-gradient(90deg, #a4f3ff, var(--vn-gold) 70%);
   clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
 }
 :root #chapter .portrait {
-  border-radius: 14px;
+  border-radius: 2px;
   border: 2px solid transparent;
-  background: linear-gradient(140deg, #fff1cf, #c99a5c 30%, #7a6596 55%, #f2b56f 80%, #fff1cf) border-box;
-  box-shadow: 0 30px 70px -26px #000, 0 0 50px -14px rgba(240, 160, 127, .4);
+  background: linear-gradient(140deg, #d6fbff, #1aa6c9 30%, #a679ff 55%, #ff4fa3 80%, #d6fbff) border-box;
+  box-shadow: 0 30px 70px -26px #000, 0 0 50px -14px rgba(255, 91, 135, .4);
 }
 :root #chapter .city-reaction {
   border: 1px solid var(--vn-line);
   border-left: 1px solid var(--vn-line);
-  border-radius: 10px;
-  background: linear-gradient(180deg, rgba(28, 32, 66, .94), rgba(12, 14, 32, .96));
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(18, 33, 63, .94), rgba(8, 16, 30, .96));
 }
-:root #chapter .city-reaction img { border-radius: 8px; box-shadow: 0 0 0 2px var(--vn-gold), 0 0 0 4px #12142c; }
+:root #chapter .city-reaction img { border-radius: 2px; box-shadow: 0 0 0 2px var(--vn-gold), 0 0 0 4px #0a1222; }
 :root #chapter .block-flow, :root #chapter .flow-step, :root #chapter .lesson-note, :root #chapter .storm-intel, :root #chapter .storm-banner {
-  background: rgba(20, 23, 50, .9);
+  background: rgba(13, 25, 48, .9);
   border-color: var(--vn-line);
 }
 :root #chapter .flow-step.done { border-top-color: var(--vn-teal); }
-:root #chapter .log { background: rgba(6, 7, 20, .92); border: 1px solid var(--vn-line-soft); border-radius: 8px; color: #cfd6e6; }
-:root #chapter .foot { border-top-color: var(--vn-line-soft); color: #c4bdd3; }
+:root #chapter .log { background: rgba(4, 10, 19, .92); border: 1px solid var(--vn-line-soft); border-radius: 2px; color: #cfd6e6; }
+:root #chapter .foot { border-top-color: var(--vn-line-soft); color: #a3b2d0; }
 :root #chapter .wave-extras > summary, :root #chapter .reading-details > summary { color: var(--vn-gold-hi); }
 
 /* ------------------------------------------------------------------ 7. Vault tools */
 :root .workspace-page main header { border-bottom: 1px solid transparent; border-image: linear-gradient(90deg, transparent, var(--vn-line), transparent) 1; }
 :root .workspace-page .eyebrow { color: var(--vn-gold); font-size: 11px; }
-:root .workspace-page h1 { font-weight: 800; color: #fbf4e6; text-shadow: 0 0 26px rgba(122, 101, 150, .8); }
-:root .workspace-page h2 { font-weight: 800; color: #fbf4e6; }
-:root .workspace-page p { color: #d6d0e3; }
-:root .workspace-page .muted { color: #cbc4da; }
+:root .workspace-page h1 { font-weight: 800; color: #f0f6ff; text-shadow: 0 0 26px rgba(166, 121, 255, .8); }
+:root .workspace-page h2 { font-weight: 800; color: #f0f6ff; }
+:root .workspace-page p { color: #b9c6e2; }
+:root .workspace-page .muted { color: #acbad8; }
 :root .workspace-page a { color: var(--vn-gold-hi); }
 :root .workspace-page label { color: var(--vn-cream); }
-:root .workspace-page .tool-navigation a { border-radius: 4px; color: #d6d0e3; }
-:root .workspace-page .tool-navigation [aria-current=page] { background: linear-gradient(180deg, #fbe4b4, #e2bd7f); border-color: #fff3d6; color: #1b1526; }
+:root .workspace-page .tool-navigation a { border-radius: 2px; color: #b9c6e2; }
+:root .workspace-page .tool-navigation [aria-current=page] { background: linear-gradient(180deg, #a4f3ff, #33e3ff); border-color: #e0fcff; color: #04121c; }
 :root .workspace-page .card {
   border: 1px solid var(--vn-line-soft);
-  border-radius: 10px;
-  background: rgba(18, 21, 46, .8);
+  border-radius: 2px;
+  background: rgba(12, 23, 44, .8);
 }
 :root .workspace-page .card.active {
   border: 2px solid transparent;
-  background: var(--vn-corners), linear-gradient(180deg, #262a58, #14163a) padding-box, linear-gradient(150deg, #fff3d6, var(--vn-char) 35%, rgba(30, 32, 64, .4) 60%, var(--vn-char)) border-box;
+  background: var(--vn-corners), linear-gradient(180deg, #142646, #0c1630) padding-box, linear-gradient(150deg, #e0fcff, var(--vn-char) 35%, rgba(20, 33, 61, .4) 60%, var(--vn-char)) border-box;
   box-shadow: 0 0 30px -8px var(--vn-char);
 }
 :root .workspace-page .panel {
   border: 1px solid var(--vn-line);
-  border-radius: 12px;
-  background: var(--vn-corners), linear-gradient(180deg, rgba(30, 34, 70, .94), rgba(15, 17, 38, .95));
-  box-shadow: inset 0 0 0 3px rgba(15, 17, 38, .7), 0 20px 50px -30px #000;
+  border-radius: 2px;
+  background: var(--vn-corners), linear-gradient(180deg, rgba(20, 35, 66, .94), rgba(10, 19, 36, .95));
+  box-shadow: inset 0 0 0 3px rgba(10, 19, 36, .7), 0 20px 50px -30px #000;
 }
-:root .workspace-page details.fine-print { background: rgba(18, 21, 46, .85); border-color: var(--vn-line-soft) var(--vn-line-soft) var(--vn-line-soft) var(--vn-gold); }
-:root .workspace-page .workspace-shortcuts { background: rgba(12, 14, 34, .94); border-bottom-color: var(--vn-line); }
+:root .workspace-page details.fine-print { background: rgba(12, 23, 44, .85); border-color: var(--vn-line-soft) var(--vn-line-soft) var(--vn-line-soft) var(--vn-gold); }
+:root .workspace-page .workspace-shortcuts { background: rgba(8, 16, 32, .94); border-bottom-color: var(--vn-line); }
 /* The guided example is Diren talking you through it. */
 :root .workspace-page #workspace #first-example {
   position: relative;
   margin-top: 16px;
   padding: 26px 44px 18px 150px;
   min-height: 176px;
-  border: 1px solid rgba(226, 189, 127, .6);
+  border: 1px solid rgba(51, 227, 255, .6);
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%23e2bd7f' fill-opacity='.6'/%3E%3C/svg%3E") right 18px bottom 16px / 8px 8px no-repeat,
-    linear-gradient(180deg, rgba(28, 32, 66, .96), rgba(12, 14, 32, .97));
-  box-shadow: inset 0 0 0 3px rgba(12, 14, 32, .9), inset 0 0 0 4px var(--vn-line-soft), 0 18px 40px -20px #000;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff' fill-opacity='.6'/%3E%3C/svg%3E") right 18px bottom 16px / 8px 8px no-repeat,
+    linear-gradient(180deg, rgba(18, 33, 63, .96), rgba(8, 16, 30, .97));
+  box-shadow: inset 0 0 0 3px rgba(8, 16, 30, .9), inset 0 0 0 4px var(--vn-line-soft), 0 18px 40px -20px #000;
 }
 :root .workspace-page #workspace #first-example::before {
   content: "";
@@ -1031,8 +1058,8 @@
   padding: 4px 18px 4px 14px;
   font: 700 11px/1.3 var(--vn-display);
   letter-spacing: .2em;
-  color: #1b1526;
-  background: linear-gradient(90deg, #fbe4b4, var(--vn-char) 70%);
+  color: #04121c;
+  background: linear-gradient(90deg, #a4f3ff, var(--vn-char) 70%);
   clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
 }
 :root .workspace-page #first-example h2 { font: 800 19px/1.4 var(--vn-title) !important; color: var(--vn-gold-hi); }
@@ -1043,31 +1070,31 @@
   position: relative;
   flex: 1 1 150px;
   padding: 10px 14px 12px;
-  border: 1px solid rgba(226, 189, 127, .5);
-  border-radius: 8px;
-  background: var(--vn-corners), radial-gradient(ellipse at 50% 130%, rgba(242, 181, 111, .16), transparent 70%), linear-gradient(160deg, #1f2350, #10122c);
+  border: 1px solid rgba(51, 227, 255, .5);
+  border-radius: 2px;
+  background: var(--vn-corners), radial-gradient(ellipse at 50% 130%, rgba(51, 227, 255, .16), transparent 70%), linear-gradient(160deg, #1f2350, #081120);
 }
 :root .workspace-page .stats span { font-size: 10px; letter-spacing: .18em; color: var(--vn-gold); }
 :root .workspace-page .stats strong {
   margin-top: 4px;
   font: 800 27px/1.15 var(--vn-body) !important;
   color: var(--vn-gold-hi);
-  text-shadow: 0 0 14px rgba(242, 181, 111, .6), 0 2px 0 #000;
+  text-shadow: 0 0 14px rgba(51, 227, 255, .6), 0 2px 0 #000;
   font-variant-numeric: tabular-nums;
 }
-:root .workspace-page .stats > div:nth-child(2) strong { color: #d6fff7; text-shadow: 0 0 14px rgba(127, 224, 207, .65), 0 2px 0 #000; }
-:root .workspace-page .stats > div:nth-child(2) { background: var(--vn-corners), radial-gradient(ellipse at 50% 130%, rgba(127, 224, 207, .16), transparent 70%), linear-gradient(160deg, #1a2a50, #0f142e); }
+:root .workspace-page .stats > div:nth-child(2) strong { color: #dcfff3; text-shadow: 0 0 14px rgba(108, 245, 203, .65), 0 2px 0 #000; }
+:root .workspace-page .stats > div:nth-child(2) { background: var(--vn-corners), radial-gradient(ellipse at 50% 130%, rgba(108, 245, 203, .16), transparent 70%), linear-gradient(160deg, #1a2a50, #0a1428); }
 /* Quest steps. */
-:root .workspace-page #rule-progress li.badge { border-radius: 3px; border-color: var(--vn-line); color: var(--vn-cream); background: rgba(12, 14, 34, .7); }
-:root .workspace-page #rule-progress li[aria-current=step] { background: linear-gradient(180deg, #fbe4b4, #e2bd7f) !important; color: #1b1526; border-color: #fff3d6 !important; box-shadow: 0 0 16px -2px var(--vn-lantern); }
-:root .workspace-page #state.badge { border-radius: 3px; padding: 5px 14px; color: #d6fff7; border-color: var(--vn-teal); background: rgba(14, 40, 46, .7); font-size: 11px; }
+:root .workspace-page #rule-progress li.badge { border-radius: 3px; border-color: var(--vn-line); color: var(--vn-cream); background: rgba(8, 16, 32, .7); }
+:root .workspace-page #rule-progress li[aria-current=step] { background: linear-gradient(180deg, #a4f3ff, #33e3ff) !important; color: #04121c; border-color: #e0fcff !important; box-shadow: 0 0 16px -2px var(--vn-lantern); }
+:root .workspace-page #state.badge { border-radius: 3px; padding: 5px 14px; color: #dcfff3; border-color: var(--vn-teal); background: rgba(9, 41, 44, .7); font-size: 11px; }
 /* Result screen. */
 :root .workspace-page #result-headline {
   position: relative;
   border: 2px solid transparent;
-  border-radius: 12px;
-  background: var(--vn-corners), linear-gradient(180deg, #2a2a5c, #16173a) padding-box, linear-gradient(140deg, #fff1cf, #c99a5c 30%, #7a6596 55%, #f2b56f 80%, #fff1cf) border-box;
-  box-shadow: 0 0 40px -10px rgba(242, 181, 111, .5);
+  border-radius: 2px;
+  background: var(--vn-corners), linear-gradient(180deg, #2a2a5c, #16173a) padding-box, linear-gradient(140deg, #d6fbff, #1aa6c9 30%, #a679ff 55%, #ff4fa3 80%, #d6fbff) border-box;
+  box-shadow: 0 0 40px -10px rgba(51, 227, 255, .5);
 }
 :root .workspace-page #result-headline::before {
   content: "" / "";
@@ -1079,45 +1106,45 @@
   display: grid;
   place-items: center;
   font: 15px/1 var(--vn-body);
-  color: #1b1526;
+  color: #04121c;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #fff3d6, #e2bd7f 60%, #a77a45);
-  box-shadow: 0 0 0 2px #14163a, 0 0 18px var(--vn-lantern);
+  background: radial-gradient(circle at 35% 30%, #e0fcff, #33e3ff 60%, #127fa3);
+  box-shadow: 0 0 0 2px #0c1630, 0 0 18px var(--vn-lantern);
 }
 :root .workspace-page .result-headline-eyebrow { color: var(--vn-gold); }
 :root .workspace-page #result-sentence { color: #fff8ea; font-size: 17px; }
-:root .workspace-page #outcome-next.notice { background: rgba(14, 40, 46, .6); border-color: rgba(127, 224, 207, .4); }
+:root .workspace-page #outcome-next.notice { background: rgba(9, 41, 44, .6); border-color: rgba(108, 245, 203, .4); }
 
 /* ------------------------------------------------------------------ 8. NFT passes as rarity cards (mint / passes) */
 :root .mint-layout .step {
   border: 1px solid var(--vn-line);
-  border-radius: 12px;
-  background: var(--vn-corners), linear-gradient(180deg, rgba(30, 34, 70, .94), rgba(15, 17, 38, .95));
-  box-shadow: inset 0 0 0 3px rgba(15, 17, 38, .7), 0 20px 50px -30px #000;
+  border-radius: 2px;
+  background: var(--vn-corners), linear-gradient(180deg, rgba(20, 35, 66, .94), rgba(10, 19, 36, .95));
+  box-shadow: inset 0 0 0 3px rgba(10, 19, 36, .7), 0 20px 50px -30px #000;
 }
-:root .mint-layout .step h2, :root .mint-hero h1 { color: #fbf4e6; font-weight: 800; }
-:root .mint-hero .badge { font-family: var(--vn-display) !important; color: var(--vn-gold-hi); border-color: var(--vn-line); background: rgba(20, 22, 48, .7); }
-:root .mint-layout :is(#account, #holdings, #fee) { background: rgba(10, 12, 30, .7); border-color: var(--vn-line-soft); color: var(--vn-cream); }
+:root .mint-layout .step h2, :root .mint-hero h1 { color: #f0f6ff; font-weight: 800; }
+:root .mint-hero .badge { font-family: var(--vn-display) !important; color: var(--vn-gold-hi); border-color: var(--vn-line); background: rgba(13, 24, 46, .7); }
+:root .mint-layout :is(#account, #holdings, #fee) { background: rgba(6, 14, 28, .7); border-color: var(--vn-line-soft); color: var(--vn-cream); }
 :root .mint-layout :is(#connect, #claim):not(:disabled) {
-  background: linear-gradient(180deg, #fbe4b4 0%, #e8c287 46%, #cfa063 54%, #e6c084 100%);
-  color: #1b1526;
-  border: 1px solid #fde9c0;
-  box-shadow: inset 0 0 0 2px rgba(232, 194, 135, .9), inset 0 0 0 3px rgba(92, 62, 30, .45), 0 6px 18px -8px rgba(242, 181, 111, .7);
+  background: linear-gradient(180deg, #a4f3ff 0%, #33e3ff 46%, #1aa6c9 54%, #2fd3f0 100%);
+  color: #04121c;
+  border: 1px solid #bdf6ff;
+  box-shadow: inset 0 0 0 2px rgba(51, 227, 255, .9), inset 0 0 0 3px rgba(6, 40, 60, .45), 0 6px 18px -8px rgba(51, 227, 255, .7);
 }
 :root .pass-card #preview {
   padding: 5px;
   border: 0;
-  border-radius: 14px;
-  background: linear-gradient(140deg, #fff1cf, #c99a5c 30%, #7a6596 55%, #f2b56f 80%, #fff1cf);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, .55), 0 24px 60px -18px #000, 0 0 50px -6px rgba(242, 181, 111, .6);
+  border-radius: 2px;
+  background: linear-gradient(140deg, #d6fbff, #1aa6c9 30%, #a679ff 55%, #ff4fa3 80%, #d6fbff);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .55), 0 24px 60px -18px #000, 0 0 50px -6px rgba(51, 227, 255, .6);
   animation: vn-pass 4.5s ease-in-out 2;
 }
-@keyframes vn-pass { 50% { box-shadow: 0 0 0 1px rgba(0, 0, 0, .55), 0 24px 60px -18px #000, 0 0 64px 0 rgba(242, 181, 111, .8); } }
+@keyframes vn-pass { 50% { box-shadow: 0 0 0 1px rgba(0, 0, 0, .55), 0 24px 60px -18px #000, 0 0 64px 0 rgba(51, 227, 255, .8); } }
 :root img[src*="nft/"] {
-  border-radius: 12px;
+  border-radius: 2px;
   border: 2px solid transparent;
-  background: linear-gradient(140deg, #fff1cf, #c99a5c 30%, #7a6596 55%, #f2b56f 80%, #fff1cf) border-box;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, .5), 0 20px 50px -20px #000, 0 0 40px -12px rgba(242, 181, 111, .55);
+  background: linear-gradient(140deg, #d6fbff, #1aa6c9 30%, #a679ff 55%, #ff4fa3 80%, #d6fbff) border-box;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .5), 0 20px 50px -20px #000, 0 0 40px -12px rgba(51, 227, 255, .55);
 }
 
 /* Every decoration ignores the pointer, so it can never intercept a click. */
@@ -1130,19 +1157,21 @@
   #chapter.first-wave-layout .layout > section:nth-child(2) > .small, .workspace-page #first-example, #site-bar)::after,
 :root :is(#resonance-select #rs-selected, #chapter .speech #opening-speaker) { pointer-events: none; }
 
-/* ------------------------------------------------------------------ 9. Script-made layer: lantern motes + scene wipe */
+/* ------------------------------------------------------------------ 9. Script-made layer: neon motes + scene wipe */
 .vn-layer { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
 .vn-layer i {
   position: absolute;
   bottom: -12px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff3d6, rgba(242, 181, 111, .7) 45%, transparent 70%);
+  width: 4px;
+  height: 4px;
+  background: var(--vn-neon);
+  box-shadow: 0 0 6px 1px rgba(51, 227, 255, .8);
   opacity: 0;
   animation: vn-mote 14s linear 2;
   will-change: transform, opacity;
 }
+.vn-layer i:nth-child(even) { background: var(--vn-hot); box-shadow: 0 0 6px 1px rgba(255, 79, 163, .8); }
+.vn-layer i:nth-child(3n) { background: var(--vn-ultra); box-shadow: 0 0 6px 1px rgba(166, 121, 255, .8); }
 .vn-layer i:nth-child(1) { left: 8%; animation-delay: -2s; }
 .vn-layer i:nth-child(2) { left: 22%; animation-delay: -9s; animation-duration: 18s; }
 .vn-layer i:nth-child(3) { left: 41%; animation-delay: -5s; width: 3px; height: 3px; }
@@ -1165,7 +1194,9 @@
   bottom: 0;
   left: -45vw;
   width: 160vw;
-  background: linear-gradient(100deg, transparent 14%, rgba(242, 181, 111, .5) 17.2%, #fbe2b0 18%, #1d1c44 18.4%, #0d1028 40% 100%);
+  background:
+    repeating-linear-gradient(0deg, rgba(164, 243, 255, .05) 0 1px, transparent 1px 3px),
+    linear-gradient(100deg, transparent 14%, rgba(255, 79, 163, .65) 16.6%, #a4f3ff 17.8%, #33e3ff 18.1%, #0b1630 18.5%, #060912 40% 100%);
 }
 .vn-wipe.run::before { animation: vn-wipe 1s cubic-bezier(.55, 0, .25, 1) both; }
 .vn-wipe::after {
@@ -1176,9 +1207,11 @@
   place-content: center;
   text-align: center;
   padding: 0 24px;
-  font: 800 clamp(26px, 4vw, 44px)/1.25 var(--vn-title);
-  color: #fff3dc;
-  text-shadow: 0 0 24px rgba(242, 181, 111, .55);
+  font: 700 clamp(26px, 4vw, 44px)/1.25 var(--vn-title);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: #eef6ff;
+  text-shadow: 0 0 24px rgba(51, 227, 255, .7), 0 0 2px #fff;
   opacity: 0;
 }
 .vn-wipe.run::after, .vn-wipe.run b { animation: vn-eyecatch 1s ease both; }
@@ -1239,3 +1272,82 @@
 :root #chapter:has(.layout > img.portrait) .learning-note { padding-left: 24px; min-height: 0; }
 :root #chapter:has(.layout > img.portrait) .learning-note::before { content: none; }
 :root #chapter:has(.layout > img.portrait) .learning-note::after { left: 24px; }
+
+/* ------------------------------------------------------------------ 12. Page changes: a short neon fade between pages */
+/* Same-origin page loads cross-fade where the browser supports view transitions; elsewhere pages load as before. */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: vn-page-out .2s ease-in both; }
+::view-transition-new(root) { animation: vn-page-in .32s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes vn-page-out { to { opacity: 0; filter: brightness(1.5) saturate(1.4); } }
+@keyframes vn-page-in { from { opacity: 0; transform: perspective(900px) translateZ(-50px) translateY(8px); } }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  :root body::after { animation: none; }
+}
+
+/* ------------------------------------------------------------------ 13. Pages with their own palettes (home, mint, My Resonance, vaults) */
+/* The theme loads last, so redefining the pages' colour variables here turns their accents neon without touching their rules. */
+:root {
+  --gold: #33e3ff;
+  --mint: #33e3ff;
+  --mint-ink: #04121c;
+  --rose: #ff4fa3;
+  --bg: #060912;
+  --panel: rgba(11, 20, 37, .88);
+  --panel-2: rgba(21, 34, 58, .88);
+  --line: rgba(51, 227, 255, .22);
+  --line-strong: rgba(51, 227, 255, .42);
+  --ink: #e6eeff;
+  --muted: #9fb0d8;
+}
+:root :is(.mint-page, body:has(#lesson-count)) { background: transparent !important; }
+/* Glass panels with a thin neon edge. */
+:root :is(.mint-page .step, body:has(#lesson-count) :is(.wallet, .card, .op)) {
+  background: var(--vn-corners), linear-gradient(145deg, rgba(21, 34, 58, .82), rgba(8, 15, 29, .9));
+  border: 1px solid rgba(51, 227, 255, .26);
+  border-radius: 2px;
+  box-shadow: inset 0 0 30px rgba(51, 227, 255, .04), 0 18px 50px -24px #000;
+  backdrop-filter: blur(10px);
+}
+:root body:has(#lesson-count) :is(.wallet, .card) { --vn-c: color-mix(in srgb, var(--vn-char) 85%, transparent); }
+:root body:has(#lesson-count) .op { --vn-c: var(--op-tone); }
+:root .mint-page .badge { border-radius: 2px; border-color: rgba(51, 227, 255, .4); color: var(--vn-neon); font-family: var(--vn-display) !important; }
+:root .mint-page .pass-card #preview { border-radius: 2px; border-color: rgba(51, 227, 255, .35); box-shadow: 0 0 40px -10px rgba(51, 227, 255, .5), 0 18px 50px #0008; }
+/* Their buttons follow the neon command buttons. */
+:root :is(.mint-page button, .mint-page .next-link, body:has(#lesson-count) :is(button, .primary)) {
+  background: var(--vn-neon);
+  color: #04121c;
+  border: 1px solid var(--vn-neon);
+  border-radius: 2px;
+  box-shadow: 0 0 22px -6px rgba(51, 227, 255, .7);
+  font-family: var(--vn-display) !important;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+:root :is(.mint-page button, body:has(#lesson-count) button):disabled {
+  background: rgba(13, 21, 38, .6);
+  color: #7f8fae;
+  border: 1px dashed rgba(135, 150, 180, .45);
+  box-shadow: none;
+}
+:root :is(.mint-page, body:has(#lesson-count)) :is(select, input[type=text]) { border-radius: 2px; background: #060c19; border-color: #52617e; }
+:root body:has(#lesson-count) .summary div { border-left-color: var(--vn-neon); background: linear-gradient(90deg, rgba(51, 227, 255, .07), transparent 70%); }
+:root body:has(#lesson-count) .summary strong { font-family: var(--vn-title) !important; color: #f0f6ff; text-shadow: 0 0 16px rgba(51, 227, 255, .35); }
+:root body:has(#lesson-count) .card img { border-radius: 2px; box-shadow: 0 0 0 1px rgba(51, 227, 255, .45), 0 0 18px -6px rgba(51, 227, 255, .6); }
+:root body:has(#lesson-count) nav a:first-child { font-family: var(--vn-display) !important; color: var(--vn-neon); text-shadow: 0 0 12px rgba(51, 227, 255, .5); }
+
+/* The academy map: the same drawing, graded to a neon night (presentation only; the canvas pixels are untouched). */
+:root #chapter .tutorial-canvas,
+:root #chapter .defense-city { filter: url(#vn-neon-grade) contrast(1.12) saturate(1.25); }
+
+/* Character cards lean toward the pointer, like the Nexus operator cards. */
+:root :is(#resonance-select .rs-person, #characters .card) { transition: transform .35s ease, box-shadow .3s, filter .3s; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  :root :is(#resonance-select .rs-person, #characters .card):hover { transform: perspective(900px) rotateY(-4deg) translateY(-6px); }
+}
+
+/* Phones: long capitalised words (Turkish especially) must fit the line instead of breaking mid-word. */
+@media (max-width: 480px) {
+  :root body :is(main, #chapter, #resonance-select) h1 { font-size: min(8.2vw, 34px) !important; letter-spacing: .01em; }
+}

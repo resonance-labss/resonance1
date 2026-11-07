@@ -44,7 +44,17 @@
   wipe.dataset.i18nIgnore = '';
   const stepLine = document.createElement('b');
   wipe.append(stepLine);
-  document.body.append(layer, wipe);
+  // Neon grade for the academy map canvas: a gradient map (navy, violet, pink, cyan) mixed with the original colours,
+  // so the game's own warning and energy colours stay readable. Referenced from anime-theme.css.
+  const grade = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  grade.setAttribute('aria-hidden', 'true');
+  grade.setAttribute('width', '0');
+  grade.setAttribute('height', '0');
+  grade.style.position = 'absolute';
+  grade.innerHTML = '<filter id="vn-neon-grade" color-interpolation-filters="sRGB"><feColorMatrix in="SourceGraphic" type="saturate" values="0" result="grey"/>' +
+    '<feComponentTransfer in="grey" result="map"><feFuncR type="table" tableValues="0.02 0.12 0.62 0.25 0.9"/><feFuncG type="table" tableValues="0.03 0.08 0.22 0.82 1"/><feFuncB type="table" tableValues="0.09 0.32 0.85 1 1"/></feComponentTransfer>' +
+    '<feComposite in="map" in2="SourceGraphic" operator="arithmetic" k1="0" k2="0.55" k3="0.5" k4="0"/></filter>';
+  document.body.append(layer, wipe, grade);
 
   // Eyecatch: the new scene's step label and title, shown on the curtain (aria-hidden, read from the page, never written to it).
   function playWipe() {

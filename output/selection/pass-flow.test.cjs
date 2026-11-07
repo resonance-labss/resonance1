@@ -20,7 +20,7 @@ check('lesson end: the wrong rule asks for a retry, the right rule keeps its ste
  await p.click('#lesson-quiz');await quiz(p);await p.waitForSelector('#lesson-mint');
  assert.equal(await p.locator('#mastery-content h1').textContent(),'Learning pass earned.');assert.equal(await p.locator('.rm-card').count(),0);
  assert.equal(await p.locator('#lesson-mint').getAttribute('href'),'mint/index.html?character=0');assert.equal(await p.locator('#lesson-mint').textContent(),'Claim your Diren learning pass on Sepolia →');
- assert.notEqual(await p.locator('#lesson-tool-next').evaluate(e=>getComputedStyle(e).color),'rgb(0, 0, 238)');assert.equal(await p.locator('.lesson-requirements a').count(),2);
+ assert.notEqual(await p.locator('#lesson-tool-next').evaluate(e=>getComputedStyle(e).color),'rgb(0, 0, 238)');assert.equal(await p.locator('.lesson-requirements a').count(),3);
  await p.click('#lesson-characters');await enterLesson(p,1,'Ece');await runLesson(p,3);const ece=await p.locator('#status').textContent();assert.match(ece,/Second reinforcement stopped.+Mission complete/);
  await done(p);
 });
@@ -57,11 +57,24 @@ check('storm adventure: Ece is sent to her 4-question check, then to mint, and a
 check('mint page: first-visit texts, lesson link, wallet needs, Denis artwork note',async b=>{
  const p=await fresh(b);await p.goto('file://'+SEL+'/mint/index.html');
  assert.equal(await p.locator('#account').textContent(),'Not connected');assert.equal(await p.locator('#holdings').textContent(),'NFT ownership has not been checked.');assert.equal(await p.locator('#fee').textContent(),'No fee estimate yet.');
- assert(await p.locator('#lesson-start').isVisible());assert.equal(await p.locator('#lesson-start a').textContent(),'Start Diren’s lesson in the academy →');assert(await p.locator('#artwork-note').isHidden());assert.equal(await p.locator('.wallet-needs a').count(),2);
+ assert(await p.locator('#lesson-start').isVisible());assert.equal(await p.locator('#lesson-start a').textContent(),'Start Diren’s lesson in the academy →');assert(await p.locator('#artwork-note').isHidden());assert.equal(await p.locator('.wallet-needs a').count(),3);
  await p.selectOption('#character','2');assert(await p.locator('#artwork-note').isVisible());assert.equal(await p.locator('#lesson-start a').textContent(),'Start Denis’s lesson in the academy →');assert.equal(await p.locator('#vault-access').textContent(),'Already have a Denis NFT? Check vault access →');assert.equal(await p.locator('#vault-access').getAttribute('href'),'../vault/eric.html');assert.equal(await p.locator('#account').textContent(),'Not connected');
  await p.evaluate(()=>localStorage.setItem('resonance.learning-passes.v1',JSON.stringify({2:{character:2,quizVersion:1,correctAnswers:4}})));await p.goto('file://'+SEL+'/mint/index.html?character=2');assert(await p.locator('#lesson-start').isHidden());
- await p.click('#connect');assert.match(await p.locator('#status').textContent(),/Install Rabby from rabby\.io/);
+ await p.click('#connect');await p.waitForSelector('.wallet-picker');assert.equal(await p.locator('#wallet-picker-title').textContent(),'No wallet found');assert.equal(await p.locator('.wallet-picker .wallet-install a').count(),3);await p.click('.wallet-cancel');await p.waitForFunction(()=>/No browser wallet was found\. Install MetaMask, Rabby/.test(document.getElementById('status').textContent));
  await p.evaluate(()=>localStorage.setItem('resonance.language.v1','tr'));await p.reload();const tr=await p.locator('main').innerText();for(const english of ['Minting needs','Wallets show this pass','Get Rabby'])assert(!tr.includes(english),'English left: '+english);
+ await done(p);
+});
+
+check('wallet picker: several wallets are listed, the chosen one is used and remembered',async b=>{
+ const p=await fresh(b);await p.addInitScript(()=>{const make=(name,rdns,account)=>({info:{uuid:rdns,name,rdns,icon:'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22/%3E'},provider:{calls:[],on(){},removeListener(){},async request({method}){this.calls.push(method);if(method==='eth_requestAccounts'||method==='eth_accounts')return [account];if(method==='eth_chainId')return '0x1';throw Object.assign(Error('stop'),{code:4001});}}});
+  const list=[make('MetaMask','io.metamask','0x'+'1'.repeat(40)),make('Rabby Wallet','io.rabby','0x'+'2'.repeat(40))];window.testWallets=list;
+  window.addEventListener('eip6963:requestProvider',()=>{for(const w of list)window.dispatchEvent(new CustomEvent('eip6963:announceProvider',{detail:Object.freeze({info:w.info,provider:w.provider})}));});});
+ await p.goto('file://'+SEL+'/mint/index.html');await p.click('#connect');await p.waitForSelector('.wallet-picker');
+ assert.deepEqual(await p.locator('.wallet-picker li button').allInnerTexts(),['MetaMask','Rabby Wallet']);
+ await p.locator('.wallet-picker li button').nth(1).click();await p.waitForFunction(()=>window.testWallets[1].provider.calls.includes('eth_requestAccounts'));
+ assert.equal(await p.evaluate(()=>window.testWallets[0].provider.calls.length),0,'the other wallet is never asked');
+ assert.equal(await p.evaluate(()=>localStorage.getItem('resonance.wallet.v1')),'io.rabby');
+ await p.reload();await p.click('#connect');await p.waitForSelector('.wallet-picker');assert.match(await p.locator('.wallet-picker li').nth(1).innerText(),/Last used/i);
  await done(p);
 });
 
@@ -91,9 +104,9 @@ check('Turkish dictionary: only Turkish visitors download it, and a saved choice
 
 check('public home: one honest AI/Latch card and the wallet note, in both languages',async b=>{
  const p=await fresh(b);await p.goto('file://'+PUB+'/index.html');const card=await p.locator('.card:has(h3:text("Guided examples and manual rules"))').innerText();assert.doesNotMatch(card,/20 AI drafts|quota/);
- assert.equal(await p.locator('.card-note a').count(),2);await p.evaluate(()=>localStorage.setItem('resonance.language.v1','tr'));await p.reload();
+ assert.equal(await p.locator('.card-note a').count(),3);await p.evaluate(()=>localStorage.setItem('resonance.language.v1','tr'));await p.reload();
  const text=await p.locator('main').innerText();for(const english of ['Guided examples and manual rules','AI drafts and live','Minting needs','Get Rabby'])assert(!text.includes(english),'English left: '+english);
  await done(p);
 });
 
-(async()=>{const b=await chromium.launch({channel:'chrome',headless:true});try{for(const [name,fn] of checks){try{await fn(b);}catch(e){e.message=name+': '+e.message;throw e;}}console.log('PASS pass flow: lesson end, learning pass, storm hand-over, mint page, vault results, comma input, on-demand Turkish, public home.');}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1);});
+(async()=>{const b=await chromium.launch({channel:'chrome',headless:true});try{for(const [name,fn] of checks){try{await fn(b);}catch(e){e.message=name+': '+e.message;throw e;}}console.log('PASS pass flow: lesson end, learning pass, storm hand-over, mint page, wallet picker, vault results, comma input, on-demand Turkish, public home.');}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1);});
