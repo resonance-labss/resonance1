@@ -4,7 +4,7 @@
 (()=>{'use strict';
 const host=document.querySelector('.core');if(!host)return;
 const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');if(!ctx)return;
-canvas.setAttribute('aria-hidden','true');host.prepend(canvas);host.classList.add('has-3d');
+canvas.setAttribute('aria-hidden','true');host.prepend(canvas);host.classList.add('has-3d');if(window.ResonanceRialoMark)host.dataset.mark='rialo';
 const reduce=matchMedia('(prefers-reduced-motion: reduce)'),CAST=['#35dcff','#ff4fa3','#aa82ff','#ff8a4c'];
 const P=(1+Math.sqrt(5))/2,ico=[[-1,P,0],[1,P,0],[-1,-P,0],[1,-P,0],[0,-1,P],[0,1,P],[0,-1,-P],[0,1,-P],[P,0,-1],[P,0,1],[-P,0,-1],[-P,0,1]].map(v=>v.map(c=>c/Math.hypot(1,P)));
 const edgesOf=(pts,len)=>{const e=[];for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++)if(Math.abs(Math.hypot(...pts[i].map((c,k)=>c-pts[j][k]))-len)<.01)e.push([i,j]);return e;};
@@ -24,11 +24,16 @@ function draw(t){const cx=w*dpr/2,cy=h*dpr*.46,r=Math.min(w,h)*dpr*.27;ctx.setTr
  for(let i=0;i<3;i++){ctx.globalAlpha=.22-i*.05;ctx.strokeStyle=i===1?'#a679ff':'#33e3ff';ctx.lineWidth=dpr;ctx.beginPath();ctx.ellipse(cx,cy+r*1.55,r*(1.2+i*.42),r*(.26+i*.09),0,0,7);ctx.stroke();}
  for(const s of stars){const p=project(rotate(s.map(c=>c*1.9),spin*.15+tiltY,tiltX),r,cx,cy);dot(p,'#a4f3ff',.8,(.25+.35*Math.sin(t/700+s[0]*9))*depth(p[2]/1.9));}
  ring(r,cx,cy,.42,'#a679ff',0);ring(r,cx,cy,-.5,'#33e3ff',1.7);
- const outer=ico.map(v=>project(rotate(v,spin+tiltY,tiltX+.35),r,cx,cy));for(const [a,b] of icoEdges)line(outer[a],outer[b],'#33e3ff',depth((outer[a][2]+outer[b][2])/2),1.4);for(const p of outer)dot(p,'#d6fbff',1.4,depth(p[2]));
- const inner=octa.map(v=>project(rotate(v.map(c=>c*.5),-spin*1.6+tiltY,tiltX-.2),r,cx,cy));for(const [a,b] of octaEdges)line(inner[a],inner[b],'#ff4fa3',depth((inner[a][2]+inner[b][2])/.5/2)*.95,1.3);
- const core=ctx.createRadialGradient(cx,cy,0,cx,cy,r*.55);core.addColorStop(0,'rgba(255,79,163,.35)');core.addColorStop(1,'rgba(255,79,163,0)');ctx.globalAlpha=1;ctx.fillStyle=core;ctx.beginPath();ctx.arc(cx,cy,r*.55,0,7);ctx.fill();
+ // The crystal; the Rialo symbol (rialo-mark.js, official path and colour) is drawn last, at its heart.
+ const outer=ico.map(v=>project(rotate(v,spin+tiltY,tiltX+.35),r,cx,cy));
+ for(const [a,b] of icoEdges)line(outer[a],outer[b],'#33e3ff',depth((outer[a][2]+outer[b][2])/2),1.4);for(const p of outer)dot(p,'#d6fbff',1.4,depth(p[2]));
+ const mark=window.ResonanceRialoMark;
+ if(!mark){const inner=octa.map(v=>project(rotate(v.map(c=>c*.5),-spin*1.6+tiltY,tiltX-.2),r,cx,cy));for(const [a,b] of octaEdges)line(inner[a],inner[b],'#ff4fa3',depth((inner[a][2]+inner[b][2])/.5/2)*.95,1.3);
+  const core=ctx.createRadialGradient(cx,cy,0,cx,cy,r*.55);core.addColorStop(0,'rgba(255,79,163,.35)');core.addColorStop(1,'rgba(255,79,163,0)');ctx.globalAlpha=1;ctx.fillStyle=core;ctx.beginPath();ctx.arc(cx,cy,r*.55,0,7);ctx.fill();}
  // The four characters' lights, with short trails, on the two rings.
  CAST.forEach((color,i)=>{const tilt=i%2?-.5:.42,phase=i%2?1.7:0;for(let k=6;k>=0;k--){const a=spin*.9+i*Math.PI/2-k*.06,p=project(rotate([Math.cos(a)*1.55,0,Math.sin(a)*1.55],spin*.3+phase,tiltX+tilt,.35),r,cx,cy);dot(p,color,k?1.6:3.2,(k?.18*(7-k)/7:1)*depth(p[2]/1.55));}});
+ // The symbol goes on top of everything, so no line or light ever crosses it.
+ if(mark)mark.draw(ctx,cx,cy,r*.92,Math.sin(spin*2.2)*.42+tiltY*.6,{glow:.26});
  ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';}
 // Touch devices draw about 30 frames a second; mouse devices keep 60.
 const minGap=matchMedia('(pointer: coarse)').matches?30:0;

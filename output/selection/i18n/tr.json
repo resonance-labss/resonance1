@@ -2100,5 +2100,7 @@
   "Each character tool has its own 3D emblem: Diren’s price crystal crossing a threshold, Ece’s shield, Denis’s clock ring and Ade’s three rings.": "Her karakter aracının kendi 3D amblemi var: Diren’in eşiği geçen fiyat kristali, Ece’nin kalkanı, Denis’in saat halkası ve Ade’nin üç halkası.",
   "The mint page shows your pass as a 3D card that turns when you pick another character, and My Resonance shows your four passes on a turning ring, with held passes glowing.": "Mint sayfası pass’ini başka bir karakter seçince dönen 3D bir kart olarak gösteriyor; My Resonance da dört pass’ini dönen bir halkada gösteriyor, sahip olduğun pass’ler parlıyor.",
   "Pages no longer jump while they load. In Chrome and Edge, a link starts loading as soon as you point at it.": "Sayfalar yüklenirken artık kaymıyor. Chrome ve Edge’de bir bağlantı, imleci üzerine getirdiğin anda yüklenmeye başlıyor.",
-  "Public preview · v0.10.3": "Herkese açık önizleme · v0.10.3"
+  "Independent community prototype · Not an official Rialo product · Rialo symbol from Rialo’s brand assets, unaltered": "Bağımsız topluluk prototipi · Resmî Rialo ürünü değildir · Rialo sembolü Rialo’nun marka dosyalarından, değiştirilmeden kullanıldı",
+  "The Rialo symbol, taken unchanged from Rialo’s brand assets, now sits at the heart of the home core and at the centre of Denis’s clock, and marks the links to Rialo’s own sites.": "Rialo’nun marka dosyalarından değiştirilmeden alınan Rialo sembolü artık ana sayfa çekirdeğinin kalbinde ve Denis’in saatinin merkezinde duruyor; Rialo’nun kendi sitelerine giden bağlantıları da işaretliyor.",
+  "Public preview · v0.10.4": "Herkese açık önizleme · v0.10.4"
 }

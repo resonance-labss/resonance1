@@ -1426,3 +1426,6 @@
   :root .holo, :root .holo.holo-turn, :root .rack-ring, :root .reveal-in, :root .rm-card { animation: none !important; }
   :root .reveal-wait { opacity: 1 !important; }
 }
+
+/* The Rialo symbol beside links to Rialo's sites (anime-theme.js). Official file and colour; only its size follows the text. */
+:root img.rialo-mark { display: inline-block; width: auto; height: 1em; margin: 0 .45em 0 0; vertical-align: -.14em; border: 0; box-shadow: none; filter: none; }

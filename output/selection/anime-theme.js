@@ -118,6 +118,18 @@
     });
   }
 
+  // Links to Rialo's own sites carry the Rialo symbol: the official file (brand/rialo-symbol.svg), its own colour and proportions.
+  for (const link of document.querySelectorAll('a[href*="rialo.io"]')) {
+    if (link.querySelector('.rialo-mark')) continue;
+    const mark = document.createElement('img');
+    mark.className = 'rialo-mark';
+    mark.src = new URL('brand/rialo-symbol.svg', base).href;
+    mark.alt = '';
+    mark.setAttribute('aria-hidden', 'true');
+    mark.width = 13; mark.height = 14;
+    link.prepend(mark);
+  }
+
   applyGuide();
   scene = sceneKey();
   const observer = new MutationObserver(onChange);

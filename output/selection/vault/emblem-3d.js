@@ -9,7 +9,7 @@
 const body=document.body;if(!body.classList.contains('workspace-page'))return;
 const who=Number(body.dataset.vaultCharacter||0),hero=document.querySelector('main .hero');if(!hero)return;
 const figure=hero.querySelector('figure');
-const host=document.createElement('div');host.className='emblem-3d'+(figure?' emblem-over':' emblem-side');host.setAttribute('aria-hidden','true');
+const host=document.createElement('div');host.className='emblem-3d'+(figure?' emblem-over':' emblem-side');if(who===2&&window.ResonanceRialoMark)host.dataset.mark='rialo';host.setAttribute('aria-hidden','true');
 const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');if(!ctx)return;host.append(canvas);
 // With a portrait, the emblem is a hologram over it (Ece inside her shield, Ade inside his rings); otherwise it stands beside the title.
 if(figure)figure.append(host);else hero.append(host);
@@ -67,8 +67,10 @@ function denis(){const spin=Math.sin(time*.0003)*.35,hand=time*.0009,tick=Math.f
  const tip=ring([Math.cos(hand)*1.22,0,Math.sin(hand)*1.22]),centre=ring([0,0,0]);line(centre,tip,ICE,.9,1.8);
  for(const pu of pulses){pu.t+=.012;const k=1-pu.t;const p=ring([Math.cos(pu.a)*1.3*k,0,Math.sin(pu.a)*1.3*k]);dot(p,CYAN,2.2,1-pu.t*.5);}
  while(pulses.length&&pulses[0].t>=1){pulses.shift();}
- const arrived=pulses.some(pu=>pu.t>.85);glow(centre,'rgba(170,130,255,.6)',R*(arrived?.5:.3),1);dot(centre,ICE,2.4,1);
- const stem=ring([0,-1.05,0]);line(centre,stem,VIOLET,.35,1);}
+ const arrived=pulses.some(pu=>pu.t>.85);glow(centre,'rgba(170,130,255,.6)',R*(arrived?.5:.3),1);
+ const stem=ring([0,-1.05,0]);line(centre,stem,VIOLET,.35,1);
+ // The pulses arrive at Rialo: its symbol (rialo-mark.js, official path and colour) sits at the centre of the clock.
+ const mark=window.ResonanceRialoMark;if(mark)mark.draw(ctx,centre[0],centre[1],R*.46,Math.sin(time*.0006)*.4+tiltY*.5,{glow:arrived?.45:.22});else dot(centre,ICE,2.4,1);}
 
 // Ade: value (cyan), risk (pink) and time (violet) rings turn independently, then line up for a moment.
 function ade(){const cycle=(time%7000)/7000,lock=cycle>.78?Math.sin((cycle-.78)/.22*Math.PI):0,ease=lock*lock*(3-2*lock);

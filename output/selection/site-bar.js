@@ -1,6 +1,6 @@
 /* Shared page chrome: one compact bar for the home link, demo budget unit and language. Load before i18n and demo-unit. */
 (()=>{'use strict';
-const RELEASE='0.10.3';
+const RELEASE='0.10.4';
 const script=document.currentScript,root=new URL('./',script&&script.src||document.baseURI).href;
 const css=`
 #site-bar{position:relative;z-index:40;display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;min-height:53px;margin:0;padding:8px clamp(16px,3vw,32px);background:#0a131a;border-bottom:1px solid #22323a;color:#dfe7e3;font:13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:0;box-sizing:border-box;width:100%;max-width:100%}
