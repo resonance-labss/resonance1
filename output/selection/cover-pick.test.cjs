@@ -23,16 +23,25 @@ const TYPES={'.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.
    await p.mouse.move(art.x+art.width*.5,art.y+art.height+60);await p.waitForTimeout(80);assert.equal(await active(p),'','leaving the cover clears it');
    // Every mask file loads.
    for(const who of ['diren','ece','ade','denis'])for(const f of ['pick-'+who+'.webp','pick-'+who+'-rim.webp'])assert.equal((await p.request.get(base+'/hero/'+f)).status(),200,f);
-   // Keyboard: focus lights the character; Enter opens the tool.
+   // Routing by this browser's progress: unfinished lessons lead to the academy with the character selected.
+   assert.deepEqual(await p.evaluate(()=>[...document.querySelectorAll('.entry-pick a')].map(a=>a.getAttribute('href')+'|'+a.querySelector('small').textContent)),
+    ['/resonance-playable-v1.html?character=0|Start the lesson','/resonance-playable-v1.html?character=1|Start the lesson','/resonance-playable-v1.html?character=3|Start the lesson','/resonance-playable-v1.html?character=2|Start the lesson']);
+   // Keyboard: focus lights the character; Enter follows its link.
    await p.locator('.entry-pick a[data-who=ade]').focus();assert.equal(await active(p),'ade');
-   await Promise.all([p.waitForURL(/\/vault\/ade\.html$/),p.keyboard.press('Enter')]);
-   await p.goBack();await p.waitForTimeout(300);
+   await Promise.all([p.waitForURL(/\/resonance-playable-v1\.html\?character=3$/),p.keyboard.press('Enter')]);await p.waitForTimeout(400);
+   assert.equal(await p.evaluate(()=>[...document.querySelectorAll('.rs-person')].map(b=>b.getAttribute('aria-pressed')).join()),'false,false,false,true','the academy opens with Ade selected');
+   assert.equal(await p.inputValue('#rs-input'),'Ade');assert.equal(await p.evaluate(()=>document.activeElement.id),'rs-start','Continue is ready');
+   // A finished lesson (same rule as the academy: current quiz version and 4/4) opens the tool directly.
+   await p.evaluate(()=>localStorage.setItem('resonance.learning-passes.v1',JSON.stringify({1:{quizVersion:3,correctAnswers:4},2:{quizVersion:0,correctAnswers:4}})));
+   await p.goto(base+'/');await p.waitForTimeout(300);
+   assert.equal(await p.locator('.entry-pick a[data-who=ece]').getAttribute('href'),'/vault/protection.html');assert.equal(await p.locator('.entry-pick a[data-who=ece] small').textContent(),'Reserve Studio');
+   assert.equal(await p.locator('.entry-pick a[data-who=denis]').getAttribute('href'),'/resonance-playable-v1.html?character=2','an outdated quiz still leads to the lesson');
    await Promise.all([p.waitForURL(/\/vault\/protection\.html$/),p.mouse.click(art.x+art.width*.38,art.y+art.height*.4)]);
    assert.deepEqual(p.errors,[]);await p.context().close();}
-  // Touch: a tap opens the tool directly; the names stay visible.
+  // Touch: a tap follows the link directly; the names stay visible.
   {const p=await open({viewport:{width:390,height:844},hasTouch:true,isMobile:true});await p.waitForTimeout(300);
    assert.equal(await p.locator('.entry-pick a[data-who=denis] .pick-tag').evaluate(e=>getComputedStyle(e).opacity),'0.92','names visible on touch screens');
-   const art=await p.locator('.entry-art').boundingBox();await Promise.all([p.waitForURL(/\/vault\/eric\.html$/),p.tap('.entry-pick a[data-who=denis]',{position:{x:20,y:art.height*.4}})]);
+   const art=await p.locator('.entry-art').boundingBox();await Promise.all([p.waitForURL(/\/resonance-playable-v1\.html\?character=2$/),p.tap('.entry-pick a[data-who=denis]',{position:{x:20,y:art.height*.4}})]);
    await p.context().close();}
   // Reduced motion: no intro sequence, no sweep; pointing still works.
   {const p=await open({reducedMotion:'reduce'});await p.waitForTimeout(1600);assert.equal(await active(p),'','no intro under reduced motion');
@@ -48,6 +57,6 @@ const TYPES={'.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.
   for(const [url,img] of [['/vault/index.html','diren.jpg'],['/vault/protection.html','ece.jpg'],['/vault/eric.html','denis.jpg'],['/vault/ade.html','ade.jpg']]){const ctx=await b.newContext({viewport:{width:1440,height:900}});const p=await ctx.newPage();await p.goto(base+url);
    const src=await p.locator('main .hero figure img').getAttribute('src');assert(src.endsWith(img),url+' shows '+img);await p.waitForFunction(()=>{const i=document.querySelector('main .hero figure img');return i.complete&&i.naturalWidth>0;});
    assert((await p.locator('main .hero figure').boundingBox()).height>150);await ctx.close();}
-  console.log('PASS cover pick: intro lights the four characters, pointer/keyboard light one and dim the rest, click/Enter/tap open the right tool, reduced motion; glass menus over the cover; portraits on all four tool pages.');
+  console.log('PASS cover pick: intro lights the four characters, pointer/keyboard light one and dim the rest, unfinished lessons open the academy with that character selected, finished ones open the tool (click/Enter/tap), reduced motion; glass menus over the cover; portraits on all four tool pages.');
  }finally{await b.close();server.close();}
 })().catch(e=>{console.error(e);process.exit(1);});

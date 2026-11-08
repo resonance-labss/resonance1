@@ -2115,5 +2115,6 @@
   "Diren’s and Denis’s tools now show their portraits, like Ece’s and Ade’s.": "Diren ve Denis’in araçlarında da artık Ece ve Ade’deki gibi portreleri var.",
   "The Rialo symbol now appears in all four tool emblems, the browser tab, the menu and the site bar, and Rialo’s wordmark sits under the home core. Every file comes unaltered from Rialo’s brand assets.": "Rialo sembolü artık dört aracın ambleminde, tarayıcı sekmesinde, menüde ve üst çubukta; ana sayfa çekirdeğinin altında Rialo’nun yazı logosu duruyor. Tüm dosyalar Rialo’nun marka dosyalarından değiştirilmeden alındı.",
   "Release notes / 8 November 2026": "Sürüm notları / 8 Kasım 2026",
-  "Public preview · v0.10.5": "Herkese açık önizleme · v0.10.5"
+  "Each character on the cover now takes you to where you are: the academy with that character selected if you have not finished their lesson in this browser, or straight to their tool if you have.": "Kapaktaki her karakter artık seni kaldığın yere götürüyor: bu tarayıcıda dersini bitirmediysen akademiye o karakter seçili olarak, bitirdiysen doğrudan aracına.",
+  "Public preview · v0.10.6": "Herkese açık önizleme · v0.10.6"
 }
