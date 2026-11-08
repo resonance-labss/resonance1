@@ -4,32 +4,30 @@ const SEL=path.resolve(__dirname),PUB=path.resolve(__dirname,'../vercel-site/pub
 const check=(name,fn)=>checks.push([name,fn]);
 async function fresh(b,opts={}){const ctx=await b.newContext({viewport:{width:1280,height:900},reducedMotion:'reduce',...opts});const p=await ctx.newPage();p.errors=[];p.on('pageerror',e=>p.errors.push(e.message));return p;}
 async function done(p){assert.deepEqual(p.errors,[]);await p.context().close();}
-async function enterLesson(p,i,name){await p.locator('.rs-person').nth(i).click();await p.fill('#rs-input',name);await p.click('#rs-start');await p.click('#character-enter');if(await p.locator('#lesson-briefing').count()){await p.check('#briefing-read');await p.click('#briefing-continue');}}
-async function runLesson(p,steps){await p.click('#lesson-register');for(let n=0;n<steps;n++)await p.click('#lesson-step');}
+// Continue opens the character's lesson page and its four cards; the last card starts the check.
+async function enterLesson(p,i,name){await p.locator('.rs-person').nth(i).click();await p.fill('#rs-input',name);await p.click('#rs-start');await p.locator('#rx').waitFor();}
+async function cards(p){for(let k=0;k<4;k++)await p.click('.rx-next');await p.waitForSelector('.mastery-option');}
 async function quiz(p){for(const a of [0,1,3,2]){await p.waitForTimeout(150);await p.locator('.mastery-option').nth(a).click();await p.click('#lesson-answer-next');}}
 async function stormMastery(p,character,name){await p.locator('.rs-person').nth(character).click();await p.fill('#rs-input',name);await p.click('#rs-start');await p.click('#enter');await p.click('#quick-recommend');await p.click('#register');await p.click('#next');await p.click('#next');await p.click('#quick-finish');await p.click('#mastery-start');
  for(let topic=0;topic<5&&!(await p.locator('.rm-card').count());topic++)for(let k=0;k<4;k++){await p.locator('.mastery-option').nth(k).click();const next=p.locator('#mastery-next'),label=await next.textContent();await next.click();if(!/again/.test(label))break;}
  await p.waitForSelector('.rm-card');}
 const unlock=p=>p.evaluate(()=>{window.resonanceVaultAuthorize=async()=>true;document.getElementById('workspace').hidden=false;});
 
-check('lesson end: the wrong rule asks for a retry, the right rule keeps its step message',async b=>{
+check('lesson: Continue opens the cards, the last card starts the check, and the pass screen offers the mint',async b=>{
  const p=await fresh(b);await p.goto('file://'+SEL+'/resonance-playable-v1.html');await enterLesson(p,0,'Diren');
- await p.selectOption('#lesson-rule','alternative');await runLesson(p,2);const wrong=await p.locator('#status').textContent();
- assert.match(wrong,/Try the recommended rule: Shield < 30 → transfer 20\.$/);assert.doesNotMatch(wrong,/Mission complete/);assert(await p.locator('#lesson-quiz').isHidden());
- await p.click('#lesson-retry');await runLesson(p,2);assert.match(await p.locator('#status').textContent(),/^Executed: .+ Mission complete\. You are ready for the knowledge check\.$/);
- await p.click('#lesson-quiz');if(await p.locator('#rx').isVisible())for(let k=0;k<4;k++)await p.click('.rx-next');await quiz(p);await p.waitForSelector('#lesson-mint');
+ assert.equal(await p.locator('#lesson-register, #lesson-step, #lesson-rule, #enter').count(),0,'no wave mission');assert.equal(await p.locator('#chapter h1').textContent(),'Reactive Vault');
+ await cards(p);await quiz(p);await p.waitForSelector('#lesson-mint');
  assert.equal(await p.locator('#mastery-content h1').textContent(),'Learning pass earned.');assert.equal(await p.locator('.rm-card').count(),0);
  assert.equal(await p.locator('#lesson-mint').getAttribute('href'),'mint/index.html?character=0');assert.equal(await p.locator('#lesson-mint').textContent(),'Claim your Diren learning pass on Sepolia →');
  assert.notEqual(await p.locator('#lesson-tool-next').evaluate(e=>getComputedStyle(e).color),'rgb(0, 0, 238)');assert.equal(await p.locator('.lesson-requirements a').count(),3);
- await p.click('#lesson-characters');await enterLesson(p,1,'Ece');await runLesson(p,3);const ece=await p.locator('#status').textContent();assert.match(ece,/Second reinforcement stopped.+Mission complete/);
+ await p.click('#lesson-characters');await enterLesson(p,1,'Ece');assert.equal(await p.locator('.rx-who').textContent(),'Ece · Reserve Studio');assert.equal(await p.locator('#chapter h1').textContent(),'Reserve Studio');
  await done(p);
 });
 
-check('lesson end and pass screen in Turkish',async b=>{
+check('lesson and pass screen in Turkish',async b=>{
  const p=await fresh(b);await p.goto('file://'+SEL+'/resonance-playable-v1.html');await p.evaluate(()=>localStorage.setItem('resonance.language.v1','tr'));await p.reload();await enterLesson(p,0,'Diren');
- await p.selectOption('#lesson-rule','alternative');await runLesson(p,2);assert.match(await p.locator('#status').textContent(),/Önerilen kuralı dene: Kalkan < 30 → 20 aktar\.$/);
- await p.click('#lesson-retry');await runLesson(p,2);assert.match(await p.locator('#status').textContent(),/Görev tamamlandı\. Bilgi kontrolüne hazırsın\.$/);
- await p.click('#lesson-quiz');if(await p.locator('#rx').isVisible())for(let k=0;k<4;k++)await p.click('.rx-next');await quiz(p);await p.waitForSelector('#lesson-mint');const text=await p.locator('#mastery-content').innerText();
+ await p.waitForFunction(()=>document.querySelector('#chapter h1').textContent==='Koşullu Alım Kasası');assert.equal(await p.locator('#lesson-quiz').textContent(),'Dört kartı izle →');
+ await cards(p);await quiz(p);await p.waitForSelector('#lesson-mint');const text=await p.locator('#mastery-content').innerText();
  for(const english of ['Claim your','Already hold','Minting needs','Get Rabby','Get Sepolia','Review this knowledge','Learn with another'])assert(!text.includes(english),'English left: '+english);
  await done(p);
 });

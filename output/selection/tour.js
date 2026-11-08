@@ -14,14 +14,14 @@ const tool=(what,next)=>[
  {target:q('#site-terms'),title:'Unfamiliar word?',text:'Open Terms for a one-sentence explanation of each term.'}];
 const PAGES={
  home:[bar,
-  {target:q('.hero .actions'),title:'Start here',text:'Begin the adventure to pick a character and play a short lesson. Lessons need no wallet.'},
+  {target:q('.hero .actions'),title:'Start here',text:'Begin the adventure to pick a character and watch four short cards. Lessons need no wallet.'},
   {target:q('#journey'),title:'Learn, earn, apply',text:'Each character teaches one rule. A four-question check unlocks a learning pass NFT on the Sepolia test network.'},
   {target:q('#characters'),title:'Four tools',text:'Each pass opens one tool. The tools use made-up money, so you can test rules safely.'},
   {target:q('#updates'),title:'What changed',text:'Release notes list what is new in each version.'}],
  academy:[
   {target:q('.rs-grid'),title:'Choose a guide',text:'Each character teaches a different rule and later opens a different tool.'},
   {target:q('#rs-input'),title:'Your name',text:'This name appears in the story. It stays in this browser.'},
-  {target:q('#rs-start'),title:'Begin',text:'Starts the story. Progress is saved in this browser, not on a server.'},
+  {target:q('#rs-start'),title:'Begin',text:'Opens four short cards about this character’s tool, then a four-question check. Progress is saved in this browser, not on a server.'},
   {target:q('#character-enter'),title:'Start the lesson',text:'A short lesson, then a four-question check. Passing it lets you mint this character’s pass.'},
   {target:q('.rl-learn-button'),title:'Learn more',text:'Background on Rialo’s reactive transactions, whenever you want it.'},
   {target:last('.profile-trigger'),title:'Learning passes',text:'See which lessons you finished and which passes you can mint.'},
