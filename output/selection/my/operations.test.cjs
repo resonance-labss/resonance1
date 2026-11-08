@@ -13,7 +13,7 @@ await p.addInitScript(()=>{const me='0x'+'1'.repeat(40),other='0x'+'2'.repeat(40
   if(method==='eth_getTransactionByHash')return params[0]===hash?{hash,from:me,to:c.address}:null;
   if(method==='eth_getTransactionReceipt'){const log=abi.encodeEventLog('RewardClaimed',[me,12n,1]);return {status:'0x1',blockNumber:'0x10',logs:[{address:c.address,topics:log.topics,data:log.data}]};}
   if(method==='eth_estimateGas')return '0x5208';if(method==='eth_gasPrice')return '0x3b9aca00';throw Error('Unexpected '+method);}};});
-await p.goto('file://'+__dirname+'/index.html');await p.evaluate(()=>{window.RESONANCE_MINT.runtimeHash=ethers.keccak256('0x1234');});
+await p.goto('file://'+__dirname+'/index.html');await p.evaluate(()=>window.resonanceEthers());await p.evaluate(()=>{window.RESONANCE_MINT.runtimeHash=ethers.keccak256('0x1234');});
 const result=async(button,id)=>{await p.click(button);await p.waitForFunction(i=>{const t=document.getElementById(i).textContent;return t&&!t.startsWith('Reading');},id);return p.locator('#'+id).textContent();};
 await p.fill('#op-hash','0x'+'a'.repeat(64));let text=await result('#op-tx-check','op-tx-result');
 assert.match(text,/Confirmed in block 16/);assert.match(text,/Pass mint: Ece pass #12 for 0x1111…1111/);assert.equal(await p.locator('#op-tx-result a').getAttribute('href'),'https://sepolia.etherscan.io/tx/0x'+'a'.repeat(64));

@@ -4,6 +4,7 @@ const q=s=>()=>document.querySelector(s),last=s=>()=>[...document.querySelectorA
 const bar={target:q('#site-bar'),title:'Your controls',text:'Go back home, switch English and Turkish, and choose the demo budget unit here. Terms explains the words you will meet.'};
 const tool=(what,next)=>[
  {target:q('main h1'),title:'What this tool does',text:what},
+ {target:q('.use-case'),title:'What it is for',text:'When to use this tool, an example, what you get and what changes when RLO launches.'},
  {target:q('main details.fine-print'),title:'The fine print',text:'Safety notes are folded into one line. Open Details to read all of it.'},
  {target:q('.tool-navigation'),title:'Four tools',text:'Switch between the character tools. Each one checks its own pass.'},
  {target:q('#gate'),title:'Open the tool',text:'Follow the numbered steps: connect your wallet, switch to Sepolia, check your pass, then enter. The NFT is access only; it never allows spending.'},
@@ -17,6 +18,7 @@ const PAGES={
   {target:q('.hero .actions'),title:'Start here',text:'Begin the adventure to pick a character and watch four short cards. Lessons need no wallet.'},
   {target:q('#journey'),title:'Learn, earn, apply',text:'Each character teaches one rule. A four-question check unlocks a learning pass NFT on the Sepolia test network.'},
   {target:q('#characters'),title:'Four tools',text:'Each pass opens one tool. The tools use made-up money, so you can test rules safely.'},
+  {target:q('#launch'),title:'When RLO launches',text:'What you can do today, what carries over when RLO launches and what never happens on this site.'},
   {target:q('#updates'),title:'What changed',text:'Release notes list what is new in each version.'}],
  academy:[
   {target:q('.rs-grid'),title:'Choose a guide',text:'Each character teaches a different rule and later opens a different tool.'},

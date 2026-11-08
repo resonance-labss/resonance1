@@ -151,3 +151,11 @@
 .hero-portrait figcaption small{display:block;font:10px system-ui;letter-spacing:2px;color:#ddd;margin-top:10px;font-style:normal}
 @media(max-width:980px){.hero-portrait{gap:20px;grid-template-columns:1.4fr 1fr}.hero-portrait figure{height:260px}}
 @media(max-width:700px){.hero-portrait{grid-template-columns:1fr}.hero-portrait figure{height:200px}.hero-portrait figure img{object-position:50% 26%}}
+
+/* "What it is for": when to use the tool, an example, what you get, what changes at RLO launch, what it never does. */
+.use-case{margin:18px 0;padding:18px 20px;border:1px solid rgba(51,227,255,.28);border-radius:4px;background:rgba(9,17,34,.72)}
+.use-case h2{margin:0 0 12px;font-size:18px}
+.use-case dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 22px;margin:0}
+.use-case dt{margin:0 0 4px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--vn-char,#33e3ff)}
+.use-case dd{margin:0;line-height:1.55}
+.use-case .use-case-not{margin:14px 0 0;font-size:14px;opacity:.85}

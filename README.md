@@ -7,6 +7,7 @@ An anime-inspired learning adventure connecting reactive transaction concepts to
 ## What works today
 
 - Character lessons: four short animated cards about each character's tool, then a four-question, four-option check.
+- Each tool states what it is for (when to use it, an example, what you get, what changes at RLO launch, what it never does). RLO has not launched; every tool runs on fictional Demo RLO and never moves funds.
 - Sepolia character NFTs, connection with any browser wallet (MetaMask, Rabby, Coinbase Wallet and others, with a picker when several are installed), mint receipt verification and current-ownership access checks.
 - Read-only operations on My Resonance: transaction status, pass verification and a transfer preview that never sends anything.
 - Diren's conditional-buy simulation: explicit budget, price cap, expiry, cancellation and execution checks.

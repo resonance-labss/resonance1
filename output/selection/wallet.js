@@ -40,6 +40,6 @@ function dialog(list){css();return new Promise(resolve=>{const d=document.create
  const cancel=document.createElement('button');cancel.type='button';cancel.className='wallet-cancel';cancel.textContent=list.length?'Cancel':'Close';cancel.onclick=()=>d.close();d.append(cancel);
  d.addEventListener('close',()=>{d.remove();resolve(chosen?remember(chosen):null);});document.body.append(d);d.showModal();(d.querySelector('li button')||cancel).focus();});}
 // Asks only when there is a real choice; one wallet connects straight away. Resolves to null when there is none or the visitor cancels.
-async function choose(){discover();await new Promise(r=>setTimeout(r,80));const list=wallets();if(list.length===1)return remember(list[0]);return dialog(list);}
+async function choose(){window.resonanceEthers?.().catch(()=>{});discover();await new Promise(r=>setTimeout(r,80));const list=wallets();if(list.length===1)return remember(list[0]);return dialog(list);}
 window.ResonanceWallet={choose,current,name,wallets:()=>wallets().map(w=>w.info.name),onChange:f=>listeners.add(f),noneText:NONE};
 })();

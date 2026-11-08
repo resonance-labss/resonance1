@@ -463,7 +463,7 @@
   font-size: 11px;
   background: linear-gradient(var(--vn-gold), var(--vn-gold)) 9px 50% / 6px 6px no-repeat, rgba(13, 24, 46, .7);
 }
-:root #resonance-select h2 {
+:root #resonance-select .rs-title {
   text-align: center;
   font-weight: 800;
   font-size: 40px;
@@ -471,8 +471,8 @@
   text-shadow: 0 0 26px rgba(166, 121, 255, .8);
   margin-top: 34px;
 }
-:root #resonance-select h2::before,
-:root #resonance-select h2::after {
+:root #resonance-select .rs-title::before,
+:root #resonance-select .rs-title::after {
   content: "";
   display: inline-block;
   width: min(140px, 14vw);
@@ -842,8 +842,8 @@
 }
 
 /* Every decoration ignores the pointer, so it can never intercept a click. */
-:root :is(.hero .intro, .hero .portrait, .hero .eyebrow, .section, #characters .card h3, #resonance-select h2, #resonance-select .rs-person, #resonance-select .rs-caption, #resonance-select .rs-name, #resonance-select .rs-bottom > section, .workspace-page #first-example, .workspace-page #result-headline, #site-bar)::before,
-:root :is(.hero .portrait, .section, #resonance-select h2, #resonance-select .rs-person, #resonance-select .rs-name, .workspace-page #first-example, #site-bar)::after,
+:root :is(.hero .intro, .hero .portrait, .hero .eyebrow, .section, #characters .card h3, #resonance-select .rs-title, #resonance-select .rs-person, #resonance-select .rs-caption, #resonance-select .rs-name, #resonance-select .rs-bottom > section, .workspace-page #first-example, .workspace-page #result-headline, #site-bar)::before,
+:root :is(.hero .portrait, .section, #resonance-select .rs-title, #resonance-select .rs-person, #resonance-select .rs-name, .workspace-page #first-example, #site-bar)::after,
 :root :is(#resonance-select #rs-selected) { pointer-events: none; }
 
 /* ------------------------------------------------------------------ 9. Script-made layer: neon motes + scene wipe */
@@ -922,8 +922,8 @@
 @media (max-width: 760px) {
   :root .hero .intro { font-size: 15px; padding: 20px 38px 16px 16px; }
   :root .hero .portrait { transform: none; }
-  :root #resonance-select h2 { font-size: 30px; }
-  :root #resonance-select h2::before, :root #resonance-select h2::after { width: 34px; margin: 0 10px 8px; }
+  :root #resonance-select .rs-title { font-size: 30px !important; }
+  :root #resonance-select .rs-title::before, :root #resonance-select .rs-title::after { width: 34px; margin: 0 10px 8px; }
   :root #resonance-select .rs-name { font-size: 21px; }
   :root #resonance-select .rs-bottom > section:first-child { padding: 24px 16px 16px 92px; }
   :root #resonance-select .rs-bottom > section:first-child::before { left: 12px; width: 64px; height: 76px; }

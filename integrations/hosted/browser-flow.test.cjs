@@ -2,7 +2,7 @@ const {chromium}=require('playwright');
 const assert=require('node:assert/strict'),http=require('node:http'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'../../output/vercel-site/public');
 (async()=>{
- const server=http.createServer((req,res)=>{const file=path.resolve(root,'.'+new URL(req.url,'http://localhost').pathname);if(!file.startsWith(root+path.sep)){res.writeHead(403);return res.end();}try{res.setHeader('Content-Type',file.endsWith('.js')?'text/javascript':file.endsWith('.html')?'text/html':'application/octet-stream');res.end(fs.readFileSync(file));}catch{res.writeHead(404);res.end();}});
+ const server=http.createServer((req,res)=>{const file=path.resolve(root,'.'+new URL(req.url,'http://localhost').pathname);if(!file.startsWith(root+path.sep)){res.writeHead(403);return res.end();}try{res.setHeader('Content-Type',{'.js':'text/javascript','.html':'text/html','.css':'text/css','.svg':'image/svg+xml','.webp':'image/webp','.jpg':'image/jpeg','.png':'image/png','.woff2':'font/woff2','.json':'application/json'}[path.extname(file)]||'application/octet-stream');res.end(fs.readFileSync(file));}catch{res.writeHead(404);res.end();}});
  await new Promise(r=>server.listen(0,'127.0.0.1',r));
  const browser=await chromium.launch({channel:'chrome',headless:true});
  try{
@@ -12,6 +12,7 @@ const root=path.resolve(__dirname,'../../output/vercel-site/public');
   await page.route('**/api/latch/check',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({decision:'allow',amountMinor:1500,executed:false})}));
   await page.goto(process.env.RESONANCE_TEST_URL || `http://127.0.0.1:${server.address().port}/vault/index.html`);
   await page.evaluate(()=>{window.resonanceVaultAuthorize=async()=>true;document.getElementById('workspace').hidden=false;});
+  await page.locator('[data-entry=ai]').evaluate(e=>{for(let d=e.closest('details');d;d=d.parentElement.closest('details'))d.open=true;});
   await page.locator('[data-entry=ai]').click();
   await page.locator('#ai-intent').fill('Spend 15 Demo RLO at price 8, expiry 5 steps.');
   await page.locator('#ai-draft').click();await page.getByText('The shared free request limit has been reached.',{exact:false}).waitFor();

@@ -17,7 +17,7 @@ parser.add_argument('--match', default='', help='Only test paths containing this
 parser.add_argument('--jobs', type=int, choices=[1, 2], default=2)
 args = parser.parse_args()
 tests = [(str(p.relative_to(ROOT)), ['node', str(p)]) for p in sorted((ROOT/'output/selection').rglob('*.test.cjs'))]
-for name in ['output/selection/check-character-lessons-tr.cjs', 'contracts/test/mint-ui.cjs', 'integrations/web/home.test.cjs']:
+for name in ['output/selection/check-character-lessons.cjs', 'output/selection/check-character-lessons-tr.cjs', 'output/selection/check-diren-quiz.cjs', 'output/selection/check-nft.cjs', 'integrations/web/home.test.cjs'] + sorted(str(p.relative_to(ROOT)) for p in (ROOT/'contracts/test').glob('*.cjs')):
     tests.append((name, ['node', str(ROOT/name)]))
 tests.append(('hosted-services', [sys.executable, '-m', 'unittest', 'integrations.hosted.test_service', 'integrations.hosted.test_protection']))
 tests = [(name, cmd) for name, cmd in tests if args.match in name]

@@ -40,9 +40,9 @@ await p.click('#site-terms');assert(await p.locator('#terms-panel').isVisible())
 await p.keyboard.press('Escape');assert(await p.locator('#terms-panel').isHidden());assert.equal(await p.evaluate(()=>document.activeElement.id),'site-terms');
 await p.selectOption('#resonance-language','tr');await p.waitForFunction(()=>document.documentElement.lang==='tr');await p.click('#site-terms');assert.equal(await p.locator('#terms-panel dt').first().textContent(),'Demo RLO');assert.match(await p.locator('#terms-panel dd').first().textContent(),/Uydurma bir alıştırma birimi/);await p.selectOption('#resonance-language','en');
 // Tour on every page: visible steps only, keyboard controls, no layout overflow on phones.
-const expect={[site+'/']:['Your controls','Start here','Learn, earn, apply','Four tools','What changed'],['file://'+__dirname+'/resonance-playable-v1.html']:['Choose a guide','Your name','Begin','Learn more','Learning passes','Your controls'],
+const expect={[site+'/']:['Your controls','Start here','Learn, earn, apply','Four tools','When RLO launches','What changed'],['file://'+__dirname+'/resonance-playable-v1.html']:['Choose a guide','Your name','Begin','Learn more','Learning passes','Your controls'],
  ['file://'+__dirname+'/mint/index.html']:['Pick your pass','Connect and check','Mint','Your controls'],['file://'+__dirname+'/my/index.html']:['Check your passes','Your progress','Your next step','Saved plans','Your controls'],
- [vault+'eric.html']:['What this tool does','The fine print','Four tools','Open the tool','Unfamiliar word?']};
+ [vault+'eric.html']:['What this tool does','What it is for','The fine print','Four tools','Open the tool','Unfamiliar word?']};
 for(const [url,titles] of Object.entries(expect)){await p.setViewportSize({width:1280,height:800});await p.goto(url);await p.click('#site-tour');
  assert.deepEqual(await p.evaluate(()=>window.ResonanceTour.steps()),titles,url);assert.equal(await p.locator('#tour-count').textContent(),'1 / '+titles.length);assert(await p.locator('#tour-back').isDisabled());
  await p.keyboard.press('ArrowRight');assert.equal(await p.locator('#tour-title').textContent(),titles[1]);await p.keyboard.press('ArrowLeft');assert.equal(await p.locator('#tour-title').textContent(),titles[0]);

@@ -1,8 +1,8 @@
 /* Read-only Sepolia tools for pass holders: transaction status, pass verification and a transfer preview.
    They only read through the visitor's wallet (eth_call, receipts, estimates). Nothing is signed or sent from this page. */
 (()=>{'use strict';
-const $=id=>document.getElementById(id),c=window.RESONANCE_MINT,abi=new ethers.Interface(c.abi),names=['Diren','Ece','Denis','Ade'],tools=['Diren’s vault','Ece’s studio','Denis’s Web3 Budget Studio','Ade’s Plan Lab'];
-let busy=false;
+const $=id=>document.getElementById(id),c=window.RESONANCE_MINT,names=['Diren','Ece','Denis','Ade'],tools=['Diren’s vault','Ece’s studio','Denis’s Web3 Budget Studio','Ade’s Plan Lab'];
+let busy=false,ethers=null,abi=null;const lib=async()=>{if(!abi){ethers=await window.resonanceEthers();abi=new ethers.Interface(c.abi);}};
 const short=a=>a.slice(0,6)+'…'+a.slice(-4);
 async function wallet(){const p=window.ResonanceWallet.current()||await window.ResonanceWallet.choose();if(!p)throw Error(window.ResonanceWallet.noneText);
  if(String(await p.request({method:'eth_chainId'})).toLowerCase()!==c.chainId)throw Error('Switch your wallet to Sepolia, then try again.');
@@ -13,7 +13,7 @@ const call=async(p,method,args)=>abi.decodeFunctionResult(method,await p.request
 async function holder(p,id){try{return ethers.getAddress(await call(p,'ownerOf',[id]));}catch{throw Error('Pass #'+id+' does not exist.');}}
 function tokenId(value){if(!/^\d{1,12}$/.test(value.trim()))throw Error('Enter a pass number, for example 12.');return BigInt(value.trim());}
 function show(id,lines,error){const box=$(id);box.replaceChildren();box.classList.toggle('error',!!error);for(const line of [].concat(lines)){const p=document.createElement('p');if(line instanceof Node)p.append(line);else p.textContent=line;box.append(p);}}
-function run(button,result,work){$(button).onclick=async()=>{if(busy)return;busy=true;$(button).disabled=true;show(result,'Reading Sepolia…');try{show(result,await work());}catch(e){show(result,e.code===4001?'Request declined in your wallet. Nothing was read.':e.message||'Wallet request failed.',true);}finally{busy=false;$(button).disabled=false;}};}
+function run(button,result,work){$(button).onclick=async()=>{if(busy)return;busy=true;$(button).disabled=true;show(result,'Reading Sepolia…');try{await lib();show(result,await work());}catch(e){show(result,e.code===4001?'Request declined in your wallet. Nothing was read.':e.message||'Wallet request failed.',true);}finally{busy=false;$(button).disabled=false;}};}
 
 // 01 · Diren: what happened to a transaction, and was it a Resonance pass mint or transfer?
 run('op-tx-check','op-tx-result',async()=>{const hash=$('op-hash').value.trim();if(!/^0x[0-9a-fA-F]{64}$/.test(hash))throw Error('Enter a Sepolia transaction hash: 0x followed by 64 characters.');
