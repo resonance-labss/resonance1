@@ -60,9 +60,7 @@
 :root[data-vn-char="ade"]  { --vn-char: #ff8a4c; --vn-char-deep: #5a2a10; }
 
 /* Framed elements share one corner-bracket recipe; --vn-c recolours it per element. */
-:root :is(.tutorial-stage, .vn-framed, #chapter .layout > section:nth-child(2), #resonance-select .rs-bottom > section,
-  .workspace-page #first-example, .workspace-page .panel, .hero .portrait, #journey .card, #characters .card, .release,
-  #chapter .learning-note, .workspace-page .stats > div, #chapter .node, #result-headline, .workspace-page .card, .mint-layout .step) {
+:root :is(.vn-framed, #resonance-select .rs-bottom > section, .workspace-page #first-example, .workspace-page .panel, .hero .portrait, #journey .card, #characters .card, .release, .workspace-page .stats > div, #result-headline, .workspace-page .card, .mint-layout .step) {
   --vn-c: color-mix(in srgb, var(--vn-char) 85%, transparent);
   --vn-corners:
     linear-gradient(var(--vn-c), var(--vn-c)) left 6px top 6px / 16px 1.5px no-repeat,
@@ -124,8 +122,7 @@
 }
 :root body :is(h1, h2, h3, .rs-name, .brand, .rs-brand), :root body :is(h1, h2, h3) * { font-family: var(--vn-title) !important; }
 /* Labels and plates in spaced capitals. text-transform follows <html lang>, so Turkish i becomes İ. */
-:root body :is(.eyebrow, .rs-step, .rs-sub, #chapter .small, #chapter .tag, .number, .learning-progress,
-  .result-headline-eyebrow, #site-bar a#site-home, .rs-mark, .rs-label, #state, .workspace-page .stats span) {
+:root body :is(.eyebrow, .rs-step, .rs-sub, #chapter .small, #chapter .tag, .number, .result-headline-eyebrow, #site-bar a#site-home, .rs-mark, .rs-label, #state, .workspace-page .stats span) {
   font-family: var(--vn-display) !important;
   font-weight: 700;
   letter-spacing: .14em;
@@ -137,7 +134,7 @@
 /* Rajdhani has a small x-height; scale it to the size the old text font had, so line lengths and legibility hold. */
 :root body :where(#chapter, #resonance-select, main, nav, footer, #site-bar, .save-status, dialog) { font-size-adjust: .5; }
 :root body :is(.brand, .rs-brand, nav .brand) { font-family: var(--vn-display) !important; font-weight: 700; }
-:root[lang="tr"] body :is(.rs-label, #chapter .speech .small, #chapter .city-reaction .small, #opening-speaker) { font-family: var(--vn-title) !important; font-weight: 800; letter-spacing: .06em; }
+:root[lang="tr"] body :is(.rs-label) { font-family: var(--vn-title) !important; font-weight: 800; letter-spacing: .06em; }
 ::selection { background: var(--vn-gold); color: #04121c; }
 
 :root body :is(.eyebrow, .rs-step, .result-headline-eyebrow, #chapter header .small) { color: var(--vn-char) !important; }
@@ -198,8 +195,7 @@
   text-transform: uppercase;
   text-shadow: none;
 }
-:root :is(#chapter .secondary, #chapter header button, #chapter .structure-inspector button, #resonance-select .rs-top button,
-  #resonance-select button.rs-secondary, .hero .button.secondary, .workspace-page button.secondary, .rl-learn-button, .save-menu-button, .profile-trigger, #chapter .choice, #chapter .knowledge-check button) {
+:root :is(#chapter .secondary, #chapter header button, #resonance-select .rs-top button, #resonance-select button.rs-secondary, .hero .button.secondary, .workspace-page button.secondary, .rl-learn-button, .save-menu-button, .profile-trigger) {
   background: rgba(13, 21, 38, .82);
   color: #e4edff;
   border: 1px solid #5e7194;
@@ -232,7 +228,7 @@
   opacity: .75;
 }
 /* Main "continue" calls get a slow light sweep. */
-:root :is(#resonance-select .rs-start, .hero .actions .button:not(.secondary), #character-enter, #chapter #next:not(:disabled), .workspace-page #example-next:not(:disabled)) {
+:root :is(#resonance-select .rs-start, .hero .actions .button:not(.secondary), #character-enter, .workspace-page #example-next:not(:disabled)) {
   background:
     linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, .6) 50%, transparent 62%) var(--vn-sweep, -120%) 0 / 260% 100% no-repeat,
     var(--vn-neon);
@@ -662,340 +658,36 @@
 :root #chapter label { color: var(--vn-gold); font-size: 12px; letter-spacing: .06em; }
 
 /* The map is a framed game screen. */
-:root #chapter .map.tutorial-stage {
-  position: relative;
-  border: 1px solid rgba(51, 227, 255, .55);
-  border-radius: 2px;
-  background: linear-gradient(180deg, #171a3a, #0e1026);
-  box-shadow: 0 0 0 4px rgba(8, 15, 30, .85), 0 0 0 5px rgba(51, 227, 255, .25), 0 26px 60px -24px #000;
-}
-:root #chapter .map.tutorial-stage::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 2px;
-  pointer-events: none;
-  background: var(--vn-corners);
-  box-shadow: inset 0 0 40px rgba(5, 11, 25, .55);
-}
-:root #chapter .structure-button { font-family: var(--vn-body) !important; font-weight: 700; border-radius: 2px; border: 1px solid rgba(51, 227, 255, .75); background: rgba(10, 20, 42, .9); color: var(--vn-cream); text-shadow: 0 1px 2px #000; box-shadow: 0 0 0 1px rgba(5, 11, 23, .6), 0 4px 12px rgba(0, 0, 0, .45); }
-:root #chapter .structure-button[aria-pressed="true"] { background: linear-gradient(180deg, #a4f3ff, #33e3ff); color: #04121c; text-shadow: none; border: 2px solid #e0fcff; box-shadow: 0 0 18px rgba(51, 227, 255, .7); }
+
 /* The game's own change toast and vault chips wear the same frame (colours only; their motion is untouched). */
-:root .fx-toast, :root .vfx-chip {
+:root .vfx-chip {
   border: 1px solid rgba(51, 227, 255, .6);
   border-radius: 6px;
   background: linear-gradient(180deg, rgba(20, 35, 68, .96), rgba(8, 16, 30, .96));
   box-shadow: inset 0 0 0 2px rgba(8, 16, 30, .9), inset 0 0 0 3px rgba(51, 227, 255, .2), 0 10px 30px rgba(0, 0, 0, .6);
   font-family: var(--vn-body);
 }
-:root #chapter .structure-inspector { background: linear-gradient(180deg, rgba(17, 31, 59, .96), rgba(11, 21, 42, .96)); border-top: 1px solid var(--vn-line); }
-:root #chapter .structure-inspector h3 { color: var(--vn-gold-hi); font-weight: 800; }
 
 /* HUD gauges for SHIELD and RESERVE (the nodes' own ::before/::after belong to game-fx). */
-:root #chapter .tutorial-stage .nodes { padding: 12px; gap: 10px; background: rgba(6, 13, 27, .6); }
-:root #chapter .nodes .node {
-  border: 1px solid rgba(51, 227, 255, .5);
-  border-radius: 2px;
-  padding: 8px 12px 10px;
-  text-align: left;
-  background: var(--vn-corners), linear-gradient(160deg, #1d2148, #081120);
-}
-:root #chapter .node:has(#reserve) {
-  --vn-c: rgba(164, 243, 255, .9);
-  background: var(--vn-corners), radial-gradient(ellipse at 50% 115%, rgba(255, 79, 163, calc(.06 + var(--fx-fill, .5) * .24)), transparent 70%), linear-gradient(160deg, #16123a, #0a1222);
-}
-:root #chapter .node:has(#shield) { --vn-c: rgba(108, 245, 203, .9); background: var(--vn-corners), radial-gradient(ellipse at 50% 120%, rgba(108, 245, 203, .16), transparent 70%), linear-gradient(160deg, #18264a, #0a1428); }
-:root #chapter .node .small {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 11px;
-  letter-spacing: .22em;
-  color: var(--vn-gold-hi);
-}
-:root #chapter .node:has(#shield) .small { color: #b9f3e8; }
-:root #chapter .node .small::before {
-  content: "";
-  flex: 0 0 auto;
-  width: 13px;
-  height: 15px;
-  background: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M6 0l6 3.5v7L6 14 0 10.5v-7z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M6 0l6 3.5v7L6 14 0 10.5v-7z'/%3E%3C/svg%3E") center / contain no-repeat;
-  filter: drop-shadow(0 0 4px currentColor);
-}
-:root #chapter .node:has(#shield) .small::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M6 0l6 2v5c0 3.3-2.6 6-6 7-3.4-1-6-3.7-6-7V2z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M6 0l6 2v5c0 3.3-2.6 6-6 7-3.4-1-6-3.7-6-7V2z'/%3E%3C/svg%3E");
-}
-:root #chapter .tutorial-stage .number,
-:root #chapter.first-wave-layout .number {
-  font: 800 28px/1.1 var(--vn-body) !important;
-  letter-spacing: 0;
-  color: var(--vn-gold-hi);
-  text-shadow: 0 0 14px rgba(51, 227, 255, .65), 0 2px 0 #000;
-  font-variant-numeric: tabular-nums;
-}
-:root #chapter #shield.number { color: #dcfff3; text-shadow: 0 0 14px rgba(108, 245, 203, .75), 0 2px 0 #000; }
-:root #chapter .node .meter {
-  position: relative;
-  height: 10px;
-  margin-top: 4px;
-  border-radius: 2px;
-  background: #090a1c;
-  box-shadow: inset 0 0 0 1px rgba(51, 227, 255, .35), inset 0 2px 4px #000;
-  overflow: hidden;
-}
-:root #chapter .node .meter::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), rgba(6, 12, 27, .9) calc(10% - 2px) 10%);
-  pointer-events: none;
-}
-:root #chapter #rbar.fill { background: linear-gradient(180deg, #d6fbff, #ff4fa3 55%, #b0306e); box-shadow: 0 0 10px rgba(51, 227, 255, .8); }
-:root #chapter #sbar.fill { background: linear-gradient(180deg, #e2fffa, #6cf5cb 55%, #3a9f95); box-shadow: 0 0 10px rgba(108, 245, 203, .8); }
-:root #chapter #arrow { color: var(--vn-gold-hi); text-shadow: 0 0 10px var(--vn-lantern); font-size: 20px; }
 
 /* Wave narration: a dialogue box that slides over the (hidden) HUD while the wave plays,
    with the character's cut-in portrait standing at its left. */
-:root #chapter .animation-message {
-  position: relative;
-  min-height: 74px;
-  padding: 22px 46px 14px 168px;
-  color: var(--vn-cream);
-  font-size: 14px;
-  line-height: 1.6;
-  pointer-events: none;
-  border: 1px solid rgba(51, 227, 255, .65);
-  border-radius: 2px;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff' fill-opacity='.6'/%3E%3C/svg%3E") right 18px bottom 12px / 8px 8px no-repeat,
-    linear-gradient(180deg, rgba(18, 33, 63, .97), rgba(8, 16, 30, .98));
-  box-shadow: inset 0 0 0 3px rgba(8, 16, 30, .9), inset 0 0 0 4px var(--vn-line-soft), 0 -10px 30px -10px rgba(0, 0, 0, .7);
-  animation: vn-box-in .35s ease-out both;
-}
-:root #chapter .animation-message::before {
-  content: "";
-  position: absolute;
-  left: 8px;
-  bottom: 0;
-  width: 150px;
-  height: 196px;
-  background: var(--vn-face) 50% 0 / cover no-repeat;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 74%, transparent), linear-gradient(to right, transparent, #000 16%, #000 80%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 74%, transparent), linear-gradient(to right, transparent, #000 16%, #000 80%, transparent);
-  mask-composite: intersect;
-  filter: drop-shadow(0 0 1px var(--vn-char));
-  animation: vn-cutin .45s cubic-bezier(.2, .8, .2, 1) both;
-}
-:root #chapter .animation-message::after {
-  position: absolute;
-  top: -13px;
-  left: 168px;
-  padding: 4px 18px 4px 14px;
-  font: 700 11px/1.3 var(--vn-display);
-  letter-spacing: .2em;
-  color: #04121c;
-  background: linear-gradient(90deg, #a4f3ff, var(--vn-char) 70%);
-  clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
-}
-:root #chapter .map.tutorial-stage > .animation-message { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 3; }
-@media (min-width: 651px) {
-  :root #chapter .map.tutorial-stage { container-type: inline-size; }
-  :root #chapter .map.tutorial-stage > .animation-message {
-    top: calc(100cqw * 7 / 12 - 14px);
-    bottom: auto;
-    right: auto;
-    width: min(470px, 66%);
-    min-height: 0;
-    padding: 18px 40px 12px 142px;
-    transform: translateY(-100%);
-  }
-  :root #chapter .map.tutorial-stage > .animation-message::before { width: 136px; height: 178px; left: 2px; }
-  :root #chapter .map.tutorial-stage > .animation-message::after { left: 142px; }
-  /* While the wave plays (the HUD is hidden by the game), a small "processing" diamond row holds its place. */
-  :root #chapter[data-visual-busy="true"] .map.tutorial-stage::before {
-    content: "";
-    position: absolute;
-    left: calc(50% - 34px);
-    bottom: 44px;
-    width: 68px;
-    height: 12px;
-    pointer-events: none;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff'/%3E%3C/svg%3E") 0 50% / 10px 10px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff'/%3E%3C/svg%3E") 50% 50% / 10px 10px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff'/%3E%3C/svg%3E") 100% 50% / 10px 10px no-repeat;
-    filter: drop-shadow(0 0 6px rgba(51, 227, 255, .8));
-    animation: vn-wait 1.2s ease-in-out infinite;
-  }
-}
-@keyframes vn-wait { 50% { opacity: .35; } }
-@keyframes vn-cutin { from { opacity: 0; translate: -24px 0; } to { opacity: 1; translate: 0 0; } }
-@keyframes vn-box-in { from { opacity: 0; translate: 0 10px; } to { opacity: 1; translate: 0 0; } }
-@keyframes vn-cue { 0%, 100% { --vn-bob: 0px; --vn-cue: 1; } 50% { --vn-bob: 4px; --vn-cue: .35; } }
 
 /* Character name plates (decorative, empty alt text). */
-:root[data-vn-char="diren"] :is(#chapter .learning-note, .workspace-page #first-example)::after { content: "DIREN" / ""; }
-:root[data-vn-char="ece"]   :is(#chapter .learning-note, .workspace-page #first-example)::after { content: "ECE" / ""; }
-:root[data-vn-char="eric"]  :is(#chapter .learning-note, .workspace-page #first-example)::after { content: "DENIS" / ""; }
-:root[data-vn-char="ade"]   :is(#chapter .learning-note, .workspace-page #first-example)::after { content: "ADE" / ""; }
-:root :is(#chapter .animation-message, #chapter #status)::after { content: "RESONANCE" / ""; background: linear-gradient(90deg, #d8dcf0, #9aa3c9 80%) !important; }
-:root #chapter .animation-message::before { content: none !important; }
-:root #chapter .animation-message { padding-left: 18px !important; }
-:root #chapter .animation-message::after { left: 18px !important; }
+:root[data-vn-char="diren"] :is(.workspace-page #first-example)::after { content: "DIREN" / ""; }
+:root[data-vn-char="ece"]   :is(.workspace-page #first-example)::after { content: "ECE" / ""; }
+:root[data-vn-char="eric"]  :is(.workspace-page #first-example)::after { content: "DENIS" / ""; }
+:root[data-vn-char="ade"]   :is(.workspace-page #first-example)::after { content: "ADE" / ""; }
 
 /* Rule console = command menu. */
-:root #chapter.first-wave-layout .layout > section:nth-child(2) {
-  border: 1px solid var(--vn-line);
-  border-radius: 2px;
-  background: var(--vn-corners), linear-gradient(180deg, rgba(20, 35, 66, .94), rgba(10, 19, 36, .95));
-  box-shadow: inset 0 0 0 3px rgba(10, 19, 36, .7), 0 26px 60px -30px #000;
-}
-:root #chapter.first-wave-layout .layout > section:nth-child(2) > .small {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--vn-gold-hi);
-  font-size: 11px;
-}
-:root #chapter.first-wave-layout .layout > section:nth-child(2) > .small::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--vn-line), transparent);
-}
-:root #chapter .quick-guide {
-  position: relative;
-  border: 1px solid rgba(108, 245, 203, .45);
-  border-radius: 2px;
-  background: linear-gradient(180deg, rgba(16, 52, 63, .9), rgba(10, 32, 42, .92));
-  box-shadow: inset 0 0 0 3px rgba(8, 24, 32, .7), inset 0 0 0 4px rgba(108, 245, 203, .15);
-}
-:root #chapter .quick-guide :is(h2, h3, strong, b) { color: #dcfff3; }
-:root #chapter .quick-guide p { color: #e3efec; }
+
 /* Status line after each block: a short dialogue box with the name plate and continue cue. */
-:root #chapter.first-wave-layout #status,
-:root #chapter #status.status {
-  position: relative;
-  margin-top: 22px;
-  padding: 18px 40px 14px 16px;
-  border: 1px solid rgba(51, 227, 255, .6);
-  border-left-width: 1px;
-  border-radius: 2px;
-  color: #e6eeff;
-  font-family: var(--vn-body) !important;
-  font-weight: 500;
-  letter-spacing: 0;
-  font-size: 14px;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff' fill-opacity='.6'/%3E%3C/svg%3E") right 16px bottom 12px / 8px 8px no-repeat,
-    linear-gradient(180deg, rgba(18, 33, 63, .96), rgba(8, 16, 30, .97));
-  box-shadow: inset 0 0 0 3px rgba(8, 16, 30, .9), inset 0 0 0 4px var(--vn-line-soft);
-}
-:root #chapter #status:empty { padding: 0; border-color: transparent; background: none; box-shadow: none; animation: none; }
-:root #chapter #status:empty::after { display: none; }
-:root #chapter #status::after {
-  position: absolute;
-  top: -12px;
-  left: 14px;
-  padding: 3px 16px 3px 12px;
-  font: 700 10.5px/1.3 var(--vn-display);
-  letter-spacing: .2em;
-  color: #04121c;
-  background: linear-gradient(90deg, #a4f3ff, var(--vn-char) 70%);
-  clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
-}
-:root #chapter #phase { padding: 3px 10px; border: 1px solid rgba(108, 245, 203, .45); border-radius: 3px; background: rgba(6, 32, 34, .6); }
-:root #chapter #block { color: var(--vn-gold); }
 
 /* Lesson note = the main VN dialogue: character standing at the left, plate, text, cue. */
-:root #chapter .learning-note {
-  position: relative;
-  margin-top: 40px;
-  min-height: 150px;
-  padding: 24px 52px 18px 196px;
-  border: 1px solid rgba(51, 227, 255, .6);
-  border-left: 1px solid rgba(51, 227, 255, .6);
-  border-radius: 2px;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff' fill-opacity='.6'/%3E%3C/svg%3E") right 20px bottom 16px / 8px 8px no-repeat,
-    var(--vn-corners),
-    linear-gradient(180deg, rgba(18, 33, 63, .95), rgba(8, 16, 30, .97));
-  box-shadow: inset 0 0 0 3px rgba(8, 16, 30, .9), inset 0 0 0 4px var(--vn-line-soft), 0 20px 50px -24px #000;
-}
-:root #chapter .learning-note::before {
-  content: "";
-  position: absolute;
-  left: 10px;
-  bottom: 0;
-  width: 172px;
-  height: calc(100% + 34px);
-  max-height: 230px;
-  background: var(--vn-face) 50% 0 / cover no-repeat;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 74%, transparent), linear-gradient(to right, transparent, #000 16%, #000 80%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 74%, transparent), linear-gradient(to right, transparent, #000 16%, #000 80%, transparent);
-  mask-composite: intersect;
-  pointer-events: none;
-}
-:root #chapter .learning-note::after {
-  position: absolute;
-  top: -13px;
-  left: 196px;
-  padding: 4px 18px 4px 14px;
-  font: 700 11px/1.3 var(--vn-display);
-  letter-spacing: .2em;
-  color: #04121c;
-  background: linear-gradient(90deg, #a4f3ff, var(--vn-char) 70%);
-  clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
-}
-:root #chapter .learning-note .learning-progress { color: var(--vn-teal); font-size: 10px; }
-:root #chapter .learning-note h3 { font-weight: 800; font-size: 18px; color: var(--vn-gold-hi); }
-:root #chapter .learning-note p { color: var(--vn-cream); font-size: 14px; }
-:root #chapter .learning-note summary { color: var(--vn-gold); }
 
 /* Prologue speech and team channel lines read as dialogue too. */
-:root #chapter .speech:not(#wave-guide) {
-  position: relative;
-  padding: 22px 40px 14px 18px;
-  border: 1px solid rgba(51, 227, 255, .55);
-  border-radius: 2px;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%2333e3ff' fill-opacity='.6'/%3E%3C/svg%3E") right 16px bottom 12px / 8px 8px no-repeat,
-    linear-gradient(180deg, rgba(18, 33, 63, .94), rgba(8, 16, 30, .96));
-  box-shadow: inset 0 0 0 3px rgba(8, 16, 30, .9), inset 0 0 0 4px var(--vn-line-soft);
-}
-:root #chapter .speech #opening-speaker {
-  position: absolute;
-  top: -12px;
-  left: 14px;
-  padding: 3px 16px 3px 12px;
-  color: #04121c;
-  letter-spacing: .14em;
-  background: linear-gradient(90deg, #a4f3ff, var(--vn-gold) 70%);
-  clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
-}
-:root #chapter .portrait {
-  border-radius: 2px;
-  border: 2px solid transparent;
-  background: linear-gradient(140deg, #d6fbff, #1aa6c9 30%, #a679ff 55%, #ff4fa3 80%, #d6fbff) border-box;
-  box-shadow: 0 30px 70px -26px #000, 0 0 50px -14px rgba(255, 91, 135, .4);
-}
-:root #chapter .city-reaction {
-  border: 1px solid var(--vn-line);
-  border-left: 1px solid var(--vn-line);
-  border-radius: 2px;
-  background: linear-gradient(180deg, rgba(18, 33, 63, .94), rgba(8, 16, 30, .96));
-}
-:root #chapter .city-reaction img { border-radius: 2px; box-shadow: 0 0 0 2px var(--vn-gold), 0 0 0 4px #0a1222; }
-:root #chapter .block-flow, :root #chapter .flow-step, :root #chapter .lesson-note, :root #chapter .storm-intel, :root #chapter .storm-banner {
-  background: rgba(13, 25, 48, .9);
-  border-color: var(--vn-line);
-}
-:root #chapter .flow-step.done { border-top-color: var(--vn-teal); }
-:root #chapter .log { background: rgba(4, 10, 19, .92); border: 1px solid var(--vn-line-soft); border-radius: 2px; color: #cfd6e6; }
+
 :root #chapter .foot { border-top-color: var(--vn-line-soft); color: #a3b2d0; }
-:root #chapter .wave-extras > summary, :root #chapter .reading-details > summary { color: var(--vn-gold-hi); }
 
 /* ------------------------------------------------------------------ 7. Vault tools */
 :root .workspace-page main header { border-bottom: 1px solid transparent; border-image: linear-gradient(90deg, transparent, var(--vn-line), transparent) 1; }
@@ -1150,14 +842,9 @@
 }
 
 /* Every decoration ignores the pointer, so it can never intercept a click. */
-:root :is(.hero .intro, .hero .portrait, .hero .eyebrow, .section, #characters .card h3, #resonance-select h2, #resonance-select .rs-person,
-  #resonance-select .rs-caption, #resonance-select .rs-name, #resonance-select .rs-bottom > section, #chapter .map.tutorial-stage,
-  #chapter .node .small, #chapter .node .meter, #chapter .animation-message, #chapter #status, #chapter .learning-note,
-  #chapter.first-wave-layout .layout > section:nth-child(2) > .small, .workspace-page #first-example, .workspace-page #result-headline, #site-bar)::before,
-:root :is(.hero .portrait, .section, #resonance-select h2, #resonance-select .rs-person, #resonance-select .rs-name, #chapter .map.tutorial-stage,
-  #chapter .node .meter, #chapter .animation-message, #chapter #status, #chapter .learning-note,
-  #chapter.first-wave-layout .layout > section:nth-child(2) > .small, .workspace-page #first-example, #site-bar)::after,
-:root :is(#resonance-select #rs-selected, #chapter .speech #opening-speaker) { pointer-events: none; }
+:root :is(.hero .intro, .hero .portrait, .hero .eyebrow, .section, #characters .card h3, #resonance-select h2, #resonance-select .rs-person, #resonance-select .rs-caption, #resonance-select .rs-name, #resonance-select .rs-bottom > section, .workspace-page #first-example, .workspace-page #result-headline, #site-bar)::before,
+:root :is(.hero .portrait, .section, #resonance-select h2, #resonance-select .rs-person, #resonance-select .rs-name, .workspace-page #first-example, #site-bar)::after,
+:root :is(#resonance-select #rs-selected) { pointer-events: none; }
 
 /* ------------------------------------------------------------------ 9. Script-made layer: neon motes + scene wipe */
 .vn-layer { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
@@ -1246,34 +933,29 @@
   :root #resonance-select .rs-caption::before { font-size: 10px; letter-spacing: .08em; }
 }
 @media (max-width: 650px) {
-  :root #chapter .animation-message { left: 8px; right: 8px; bottom: 8px; padding: 18px 36px 12px 84px; font-size: 13px; min-height: 64px; }
-  :root #chapter .animation-message::before { width: 74px; height: 96px; left: 4px; }
-  :root #chapter .animation-message::after { left: 84px; }
-  :root #chapter .learning-note { padding: 22px 18px 34px 104px; min-height: 140px; }
-  :root #chapter .learning-note::before { width: 100px; max-height: 160px; left: 2px; }
-  :root #chapter .learning-note::after { left: 104px; }
+  
+  
+  
+  
+  
+  
   :root .workspace-page #workspace #first-example { padding: 24px 16px 30px 98px; }
   :root .workspace-page #workspace #first-example::before { width: 96px; height: 132px; max-height: none; left: 0; bottom: auto; top: 18px; }
   :root .workspace-page #workspace #first-example::after { left: 98px; }
-  :root #chapter .tutorial-stage .number, :root #chapter.first-wave-layout .number { font-size: 22px !important; }
+  
   :root .workspace-page .stats > div { flex-basis: 100px; padding: 8px 10px 10px; }
   :root .workspace-page .stats strong { font-size: 21px !important; }
 }
 
 /* ------------------------------------------------------------------ 11. Reduced motion: keep the look, drop the movement */
 @media (prefers-reduced-motion: reduce) {
-  :root :is(.hero .intro, .hero .portrait, #resonance-select .rs-person, #resonance-select .rs-bottom > section,
-    #chapter .animation-message, #chapter #status, #chapter .learning-note, .workspace-page #first-example, #chapter .speech,
-    #resonance-select .rs-start, .hero .actions .button, #character-enter, .workspace-page #example-next, .pass-card #preview),
-  :root :is(.hero .portrait, #resonance-select .rs-person, #chapter .animation-message)::before,
-  :root :is(.hero .portrait, #resonance-select .rs-person)::after { animation: none !important; }
+  :root :is(.hero .intro, .hero .portrait, #resonance-select .rs-person, #resonance-select .rs-bottom > section, .workspace-page #first-example, #resonance-select .rs-start, .hero .actions .button, #character-enter, .workspace-page #example-next, .pass-card #preview),
+:root :is(.hero .portrait, #resonance-select .rs-person)::before,
+:root :is(.hero .portrait, #resonance-select .rs-person)::after { animation: none !important; }
   .vn-layer, .vn-wipe { display: none !important; }
 }
 
 /* One portrait per view: when the scene already shows the large character portrait, the note below drops its cut-in. */
-:root #chapter:has(.layout > img.portrait) .learning-note { padding-left: 24px; min-height: 0; }
-:root #chapter:has(.layout > img.portrait) .learning-note::before { content: none; }
-:root #chapter:has(.layout > img.portrait) .learning-note::after { left: 24px; }
 
 /* ------------------------------------------------------------------ 12. Reduced motion for the grid floor */
 @media (prefers-reduced-motion: reduce) { :root body::after { animation: none; } }
@@ -1331,7 +1013,6 @@
 :root body:has(#lesson-count) nav a:first-child { font-family: var(--vn-display) !important; color: var(--vn-neon); text-shadow: 0 0 12px rgba(51, 227, 255, .5); }
 
 /* The academy map: the same drawing, graded to a neon night (presentation only; the canvas pixels are untouched). */
-:root #chapter .tutorial-canvas,
 :root #chapter .defense-city { filter: url(#vn-neon-grade) contrast(1.12) saturate(1.25); }
 
 /* Character cards lean toward the pointer, like the Nexus operator cards. */

@@ -62,7 +62,7 @@
     if (reduce.matches) return;
     const chapter = document.getElementById('chapter');
     const h1 = chapter && chapter.querySelector('h1');
-    const step = chapter && chapter.querySelector('.chapter-step, header .small');
+    const step = chapter && chapter.querySelector('header .small');
     const title = h1 ? h1.textContent.trim() : '';
     const label = step ? step.textContent.split('·')[0].trim() : '';
     wipe.dataset.title = title;
@@ -80,7 +80,7 @@
     const chapter = document.getElementById('chapter');
     if (!chapter) return '';
     const h1 = chapter.querySelector('h1');
-    const step = chapter.querySelector('.chapter-step, header .small');
+    const step = chapter.querySelector('header .small');
     return (h1 ? h1.textContent : '') + '|' + (step ? step.textContent.split('·')[0] : '');
   }
   // Mutation callbacks run before the next paint, so the curtain covers the new scene's first frame.
@@ -100,7 +100,7 @@
   }
 
   // Character cards lean toward the pointer, with a glare where it points. Mouse and pen only; reduced motion skips it.
-  const tiltable = '#resonance-select .rs-person, #characters .card, .holo, .rm-card';
+  const tiltable = '#resonance-select .rs-person, #characters .card, .holo';
   if (matchMedia('(hover: hover)').matches) {
     const vars = ['--vn-tilt-x', '--vn-tilt-y', '--vn-glare-x', '--vn-glare-y'];
     document.addEventListener('pointermove', e => {

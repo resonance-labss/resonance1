@@ -266,5 +266,9 @@
   [
     "^“(.+)” is not funded in this proposal, so no rule is written\\.$",
     "“$1” bu öneride karşılanmadığı için kural yazılmaz."
+  ],
+  [
+    "^(.+?) · (Reactive Vault|Reserve Studio|Web3 Budget Studio|Plan Lab) · (Lesson cards|Four-question check|Learning pass earned)$",
+    "$1 · $2 · $3"
   ]
 ]

@@ -1,4 +1,4 @@
-// Lesson end, learning pass, storm hand-over, mint page, vault results and the on-demand Turkish dictionary.
+// Lesson end, learning pass, mint page, vault results and the on-demand Turkish dictionary.
 const {chromium}=require('playwright'),assert=require('node:assert/strict'),path=require('node:path');
 const SEL=path.resolve(__dirname),PUB=path.resolve(__dirname,'../vercel-site/public'),checks=[];
 const check=(name,fn)=>checks.push([name,fn]);
@@ -8,16 +8,13 @@ async function done(p){assert.deepEqual(p.errors,[]);await p.context().close();}
 async function enterLesson(p,i,name){await p.locator('.rs-person').nth(i).click();await p.fill('#rs-input',name);await p.click('#rs-start');await p.locator('#rx').waitFor();}
 async function cards(p){for(let k=0;k<4;k++)await p.click('.rx-next');await p.waitForSelector('.mastery-option');}
 async function quiz(p){for(const a of [0,1,3,2]){await p.waitForTimeout(150);await p.locator('.mastery-option').nth(a).click();await p.click('#lesson-answer-next');}}
-async function stormMastery(p,character,name){await p.locator('.rs-person').nth(character).click();await p.fill('#rs-input',name);await p.click('#rs-start');await p.click('#enter');await p.click('#quick-recommend');await p.click('#register');await p.click('#next');await p.click('#next');await p.click('#quick-finish');await p.click('#mastery-start');
- for(let topic=0;topic<5&&!(await p.locator('.rm-card').count());topic++)for(let k=0;k<4;k++){await p.locator('.mastery-option').nth(k).click();const next=p.locator('#mastery-next'),label=await next.textContent();await next.click();if(!/again/.test(label))break;}
- await p.waitForSelector('.rm-card');}
 const unlock=p=>p.evaluate(()=>{window.resonanceVaultAuthorize=async()=>true;document.getElementById('workspace').hidden=false;});
 
 check('lesson: Continue opens the cards, the last card starts the check, and the pass screen offers the mint',async b=>{
  const p=await fresh(b);await p.goto('file://'+SEL+'/resonance-playable-v1.html');await enterLesson(p,0,'Diren');
  assert.equal(await p.locator('#lesson-register, #lesson-step, #lesson-rule, #enter').count(),0,'no wave mission');assert.equal(await p.locator('#chapter h1').textContent(),'Reactive Vault');
  await cards(p);await quiz(p);await p.waitForSelector('#lesson-mint');
- assert.equal(await p.locator('#mastery-content h1').textContent(),'Learning pass earned.');assert.equal(await p.locator('.rm-card').count(),0);
+ assert.equal(await p.locator('#mastery-content h1').textContent(),'Learning pass earned.');
  assert.equal(await p.locator('#lesson-mint').getAttribute('href'),'mint/index.html?character=0');assert.equal(await p.locator('#lesson-mint').textContent(),'Claim your Diren learning pass on Sepolia →');
  assert.notEqual(await p.locator('#lesson-tool-next').evaluate(e=>getComputedStyle(e).color),'rgb(0, 0, 238)');assert.equal(await p.locator('.lesson-requirements a').count(),3);
  await p.click('#lesson-characters');await enterLesson(p,1,'Ece');assert.equal(await p.locator('.rx-who').textContent(),'Ece · Reserve Studio');assert.equal(await p.locator('#chapter h1').textContent(),'Reserve Studio');
@@ -29,26 +26,6 @@ check('lesson and pass screen in Turkish',async b=>{
  await p.waitForFunction(()=>document.querySelector('#chapter h1').textContent==='Koşullu Alım Kasası');assert.equal(await p.locator('#lesson-quiz').textContent(),'Dört kartı izle →');
  await cards(p);await quiz(p);await p.waitForSelector('#lesson-mint');const text=await p.locator('#mastery-content').innerText();
  for(const english of ['Claim your','Already hold','Minting needs','Get Rabby','Get Sepolia','Review this knowledge','Learn with another'])assert(!text.includes(english),'English left: '+english);
- await done(p);
-});
-
-check('wave guide and crew follow the game state in Turkish',async b=>{
- const read=async lang=>{const p=await fresh(b);await p.goto('file://'+SEL+'/resonance-playable-v1.html?storm=1');if(lang==='tr'){await p.evaluate(()=>localStorage.setItem('resonance.language.v1','tr'));await p.reload();}
-  await p.fill('#rs-input','Guide');await p.click('#rs-start');await p.click('#enter');await p.click('#quick-recommend');await p.click('#register');await p.click('#next');await p.waitForTimeout(300);
-  const r=await p.evaluate(()=>({guide:window.ResonanceI18n.source(document.getElementById('wave-guide')),shown:document.getElementById('wave-guide').textContent,crew:window.ResonanceI18n.source(document.querySelector('.city-reaction p:last-child')||document.querySelector('.city-reaction'))}));await done(p);return r;};
- const en=await read('en'),tr=await read('tr');assert.match(en.guide,/^HOLD POSITION/);assert.equal(tr.guide,en.guide);assert.equal(tr.crew,en.crew);assert.match(tr.shown,/^MEVZİNİ KORU · /);
-});
-
-check('storm adventure: Ece is sent to her 4-question check, then to mint, and a reload replays it',async b=>{
- const p=await fresh(b);await p.goto('file://'+SEL+'/resonance-playable-v1.html?storm=1');await stormMastery(p,1,'Storm Ece');
- const button=p.locator('#collectible-quiz');assert.equal(await button.textContent(),'Finish Ece’s 4-question check to unlock minting →');assert.equal(await p.locator('.rm-side a[href^="mint/"]').count(),0);
- await button.click();await p.waitForSelector('.mastery-option');assert.match(await p.locator('.mastery-progress').textContent(),/1 \/ 4/);await quiz(p);
- await p.waitForSelector('#lesson-mint');assert.equal(await p.locator('#lesson-mint').getAttribute('href'),'mint/index.html?character=1');assert.equal(await p.locator('.rm-card').count(),1);assert.equal(await p.locator('.rm-side a[href^="mint/"]').count(),0);
- const pass=await p.evaluate(()=>JSON.parse(localStorage.getItem('resonance.learning-passes.v1'))[1]);assert.equal(pass.quizVersion,4);assert.equal(pass.correctAnswers,4);
- await p.reload();await p.click('#save-continue');await p.waitForSelector('#lesson-mint');assert.equal(await p.locator('.rm-card').count(),1);
- // With the pass already held, the storm screen links to mint and keeps the check as a quiet retake.
- await p.evaluate(()=>{localStorage.removeItem('resonance.progress.v1');});await p.goto('file://'+SEL+'/resonance-playable-v1.html?storm=1');await stormMastery(p,1,'Again');
- assert.equal(await p.locator('.rm-side a[href^="mint/"]').count(),1);assert.equal(await p.locator('#collectible-quiz').textContent(),'Take Ece’s 4-question check again');
  await done(p);
 });
 
@@ -116,4 +93,4 @@ check('public home: one honest AI/Latch card and the wallet note, in both langua
  await done(p);
 });
 
-(async()=>{const b=await chromium.launch({channel:'chrome',headless:true});try{for(const [name,fn] of checks){try{await fn(b);}catch(e){e.message=name+': '+e.message;throw e;}}console.log('PASS pass flow: lesson end, learning pass, storm hand-over, mint page, wallet picker, vault results, comma input, on-demand Turkish, public home.');}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1);});
+(async()=>{const b=await chromium.launch({channel:'chrome',headless:true});try{for(const [name,fn] of checks){try{await fn(b);}catch(e){e.message=name+': '+e.message;throw e;}}console.log('PASS pass flow: lesson end, learning pass, mint page, wallet picker, vault results, comma input, on-demand Turkish, public home.');}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1);});

@@ -7,7 +7,7 @@ const VERSIONS='[3,4,2,2]';
 (async()=>{
  // 1. One version table, read the same way in every place that decides "lesson finished".
  const lessons=read('character-lessons.js');
- assert.equal((lessons.match(/\[3,4,2,2\]\[i\]/g)||[]).length,2,'academy pass check and status label');
+ assert.equal((lessons.match(/\[3,4,2,2\]\[i\]/g)||[]).length,1,'learning-passes status label');
  assert.equal((lessons.match(/\[3,4,2,2\]\[index\]/g)||[]).length,1,'academy pass record');
  assert(read('mint/mint.js').includes(VERSIONS+'[index()]'),'mint eligibility');
  assert(read('nft-preview.js').includes(VERSIONS+'[index]'),'NFT preview');

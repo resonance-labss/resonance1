@@ -2,7 +2,7 @@
 // follow once the scene curtain has shown the tool's name, four cards per character, keys/Back/Replay, Esc leaves
 // without starting the check, the last button starts it (recorded once for the saved journey), restore and later
 // visits skip the cards with a way back to them, Turkish, reduced motion, phone width, each character's own deck, and
-// the storm adventure only with ?storm=1.
+// the old storm adventure gone even with ?storm=1.
 const {chromium}=require('playwright'),assert=require('node:assert/strict'),path=require('node:path');
 const URL='file://'+path.join(__dirname,'resonance-playable-v1.html');
 async function begin(p,i=0,name='Diren'){await p.locator('.rs-person').nth(i).click();await p.fill('#rs-input',name);await p.click('#rs-start');}
@@ -54,8 +54,8 @@ async function begin(p,i=0,name='Diren'){await p.locator('.rs-person').nth(i).cl
    assert((await p.locator('.rx-face').getAttribute('src')).endsWith(face));assert.equal(await p.locator('#rx').evaluate(e=>e.style.getPropertyValue('--rx-c')),colour);
    for(let k=0;k<4;k++)await p.click('.rx-next');assert.equal(await p.locator('.mastery-option').count(),4,name+' check');
    assert.deepEqual(p.errors,[]);await p.context().close();}
-  // ?storm=1 still shows the storm adventure for development.
-  {const p=await fresh();await p.goto(URL+'?storm=1');await begin(p);assert(await p.locator('#enter').isVisible());assert(await p.locator('#character-enter').isVisible());await p.context().close();}
-  console.log('PASS cards: Continue opens the lesson page and, after the curtain, four Diren cards; keys/Back/Replay, Esc leaves, last button starts the check once, restore skips the cards, watch-again link, Turkish, phone, reduced motion, Ece/Denis/Ade decks, storm only with ?storm=1.');
+  // The old storm adventure is gone: ?storm=1 opens the same lesson.
+  {const p=await fresh();await p.goto(URL+'?storm=1');await begin(p);await p.locator('#rx').waitFor();assert.equal(await p.locator('#enter, #character-enter').count(),0);await p.context().close();}
+  console.log('PASS cards: Continue opens the lesson page and, after the curtain, four Diren cards; keys/Back/Replay, Esc leaves, last button starts the check once, restore skips the cards, watch-again link, Turkish, phone, reduced motion, Ece/Denis/Ade decks, no storm adventure.');
  }finally{await b.close();}
 })().catch(e=>{console.error(e);process.exit(1);});
