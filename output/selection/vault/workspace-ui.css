@@ -142,3 +142,12 @@
 .emblem-side{right:2%;top:50%;width:360px;height:360px;transform:translateY(-50%)}
 @media(max-width:1099px){.emblem-side{display:none}}
 .workspace-page main .hero figure>.emblem-over{inset:0;z-index:2;opacity:.6;mix-blend-mode:screen}
+.workspace-page main .hero figure>.emblem-mark{position:absolute;inset:0;z-index:3;display:block;width:100%;height:100%;pointer-events:none}
+/* Diren's hero gets the same portrait layout as the other tools (protection.css is not loaded on this page). */
+.hero-portrait{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:center}
+.hero-portrait figure{height:310px;position:relative;margin:0;overflow:hidden;border-radius:16px;border:1px solid #4a6a78}
+.hero-portrait figure img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.hero-portrait figcaption{position:absolute;bottom:0;left:0;right:0;z-index:2;background:linear-gradient(transparent,#0b1220f5);padding:48px 20px 18px;font:italic 21px Georgia,serif}
+.hero-portrait figcaption small{display:block;font:10px system-ui;letter-spacing:2px;color:#ddd;margin-top:10px;font-style:normal}
+@media(max-width:980px){.hero-portrait{gap:20px;grid-template-columns:1.4fr 1fr}.hero-portrait figure{height:260px}}
+@media(max-width:700px){.hero-portrait{grid-template-columns:1fr}.hero-portrait figure{height:200px}.hero-portrait figure img{object-position:50% 26%}}

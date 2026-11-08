@@ -2102,5 +2102,18 @@
   "Pages no longer jump while they load. In Chrome and Edge, a link starts loading as soon as you point at it.": "Sayfalar yüklenirken artık kaymıyor. Chrome ve Edge’de bir bağlantı, imleci üzerine getirdiğin anda yüklenmeye başlıyor.",
   "Independent community prototype · Not an official Rialo product · Rialo symbol from Rialo’s brand assets, unaltered": "Bağımsız topluluk prototipi · Resmî Rialo ürünü değildir · Rialo sembolü Rialo’nun marka dosyalarından, değiştirilmeden kullanıldı",
   "The Rialo symbol, taken unchanged from Rialo’s brand assets, now sits at the heart of the home core and at the centre of Denis’s clock, and marks the links to Rialo’s own sites.": "Rialo’nun marka dosyalarından değiştirilmeden alınan Rialo sembolü artık ana sayfa çekirdeğinin kalbinde ve Denis’in saatinin merkezinde duruyor; Rialo’nun kendi sitelerine giden bağlantıları da işaretliyor.",
-  "Public preview · v0.10.4": "Herkese açık önizleme · v0.10.4"
+  "“Every due day is a promise. Plan it before it arrives.”": "“Her vade günü bir sözdür. O gün gelmeden planla.”",
+  "DENIS · YOUR BUDGET GUIDE": "DENIS · BÜTÇE REHBERİN",
+  "“Set your line first. Then let the price come to you.”": "“Önce çizgini belirle. Sonra fiyatın sana gelmesini bekle.”",
+  "DIREN · YOUR BUYING GUIDE": "DIREN · ALIM REHBERİN",
+  "What’s new": "Yenilikler",
+  "Release notes and project status": "Sürüm notları ve proje durumu",
+  "Choose your guide": "Rehberini seç",
+  "The cover is now the way in: point at Diren, Ece, Ade or Denis to light them up, then click to open their tool. The Begin button is gone.": "Kapak artık giriş kapısı: Diren, Ece, Ade ya da Denis’in üstüne gel, ışıklansın; tıkla, aracı açılsın. Başla butonu kaldırıldı.",
+  "The menus are glass: on wide screens they float over the cover.": "Menüler artık buzlu cam gibi; geniş ekranlarda kapağın üstünde duruyor.",
+  "Release notes moved to the bottom of the home page, folded behind one button.": "Sürüm notları ana sayfanın en altına taşındı ve tek bir butonun arkasında katlı duruyor.",
+  "Diren’s and Denis’s tools now show their portraits, like Ece’s and Ade’s.": "Diren ve Denis’in araçlarında da artık Ece ve Ade’deki gibi portreleri var.",
+  "The Rialo symbol now appears in all four tool emblems, the browser tab, the menu and the site bar, and Rialo’s wordmark sits under the home core. Every file comes unaltered from Rialo’s brand assets.": "Rialo sembolü artık dört aracın ambleminde, tarayıcı sekmesinde, menüde ve üst çubukta; ana sayfa çekirdeğinin altında Rialo’nun yazı logosu duruyor. Tüm dosyalar Rialo’nun marka dosyalarından değiştirilmeden alındı.",
+  "Release notes / 8 November 2026": "Sürüm notları / 8 Kasım 2026",
+  "Public preview · v0.10.5": "Herkese açık önizleme · v0.10.5"
 }

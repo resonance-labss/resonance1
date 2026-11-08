@@ -1,12 +1,13 @@
 /* Shared page chrome: one compact bar for the home link, demo budget unit and language. Load before i18n and demo-unit. */
 (()=>{'use strict';
-const RELEASE='0.10.4';
+const RELEASE='0.10.5';
 const script=document.currentScript,root=new URL('./',script&&script.src||document.baseURI).href;
 const css=`
 #site-bar{position:relative;z-index:40;display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;min-height:53px;margin:0;padding:8px clamp(16px,3vw,32px);background:#0a131a;border-bottom:1px solid #22323a;color:#dfe7e3;font:13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:0;box-sizing:border-box;width:100%;max-width:100%}
 #site-bar *{box-sizing:border-box}
 #site-bar a#site-home{display:inline-flex;align-items:center;gap:8px;min-height:36px;margin:0 auto 0 0;color:#e9e2d4;text-decoration:none;font:600 12px/1 system-ui,sans-serif;letter-spacing:2.2px;text-transform:uppercase}
 #site-bar a#site-home:hover{color:#f3d9a8}
+#site-bar a#site-home img.rialo-mark{height:13px;width:auto;margin:0;vertical-align:-2px}
 #site-bar #site-release{border:1px solid #3a4b52;border-radius:20px;padding:3px 8px;color:#a9bab4;font:500 11px/1.2 system-ui,sans-serif;letter-spacing:.3px;text-transform:none}
 #site-bar #site-spacer{margin-right:auto}
 #site-bar label{display:inline;margin:0;font:500 12px/1.4 system-ui,sans-serif;color:#aebdb7;letter-spacing:.2px}
@@ -75,7 +76,7 @@ function ensure(){
  bar=document.createElement('div');bar.id='site-bar';bar.setAttribute('role','region');bar.setAttribute('aria-label','Site preferences');
  const here=location.href.split(/[?#]/)[0];
  if(here===root||here===root+'index.html'){const spacer=document.createElement('span');spacer.id='site-spacer';bar.append(spacer);}
- else{const home=document.createElement('a');home.id='site-home';home.href=root;home.innerHTML='<span aria-hidden="true">←</span> Resonance <span id="site-release"></span>';home.querySelector('#site-release').textContent='v'+RELEASE;bar.append(home);}
+ else{const home=document.createElement('a');home.id='site-home';home.href=root;home.innerHTML='<span aria-hidden="true">←</span> <img class="rialo-mark" alt="" aria-hidden="true" width="12" height="13"> Resonance <span id="site-release"></span>';home.querySelector('img').src=root+'brand/rialo-symbol.svg';home.querySelector('#site-release').textContent='v'+RELEASE;bar.append(home);}
  document.body.prepend(bar);return bar;
 }
 if(!document.querySelector('link[rel~="icon"]')){const icon=document.createElement('link');icon.rel='icon';icon.type='image/svg+xml';icon.href=root+'favicon.svg';document.head.append(icon);}

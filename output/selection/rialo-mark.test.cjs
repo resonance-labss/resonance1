@@ -39,7 +39,20 @@ const pathOf=svg=>svg.match(/<path d="([^"]+)"/)[1];
    if(links){assert.equal(await marks.first().getAttribute('alt'),'');assert.equal(await marks.first().getAttribute('aria-hidden'),'true');assert.match(await marks.first().getAttribute('src'),/\/brand\/rialo-symbol\.svg$/);
     const box=await marks.first().boundingBox();assert(Math.abs(box.width/box.height-96.8036/106)<.02,'icon keeps its proportions');}
    assert.deepEqual(errors,[]);await q.close();}
-  for(const url of ['/vault/protection.html','/vault/ade.html']){const q=await b.newPage();await q.goto(base+url);await q.waitForTimeout(300);assert.equal(await q.locator('.emblem-3d[data-mark]').count(),0,url+': not over a blended portrait');await q.close();}
-  console.log('PASS Rialo symbol: official path unchanged in the SVG and the drawing module, canvas = SVG at rest (IoU '+r.iou.toFixed(4)+'), official colour, capped turn, used in the home core, Denis\'s clock and beside Rialo links.');
+  // All four tool emblems: over a portrait the symbol has its own canvas, with no blending and full opacity up to the figure.
+  for(const url of ['/vault/index.html','/vault/protection.html','/vault/eric.html','/vault/ade.html']){const q=await b.newPage({viewport:{width:1440,height:900}});await q.goto(base+url);await q.waitForTimeout(600);
+   assert.equal(await q.locator('.emblem-3d[data-mark=rialo]').count(),1,url);
+   const layer=await q.locator('main .hero figure > canvas.emblem-mark').evaluate(c=>{let e=c,clean=true;while(e&&e.tagName!=='FIGURE'){const cs=getComputedStyle(e);if(cs.mixBlendMode!=='normal'||cs.opacity!=='1'||cs.filter!=='none')clean=false;e=e.parentElement;}
+    const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let mint=0;for(let i=0;i<d.length;i+=4)if(d[i+3]===255&&d[i]===187&&d[i+1]===235&&d[i+2]===225)mint++;return {clean,mint};});
+   assert(layer.clean,url+': symbol layer is not blended');assert(layer.mint>40,url+': symbol drawn in #BBEBE1 ('+layer.mint+' px)');await q.close();}
+  // Tab icon, wordmark, menu brand and site bar: the official files, unaltered.
+  assert.equal(sha('output/selection/favicon.svg'),sha('assets/brand/rialo/rialo-symbol-on-dark.svg'),'favicon is the official dark icon');
+  assert.equal(sha('output/selection/brand/rialo-wordmark.svg'),sha('assets/brand/rialo/rialo-wordmark-off-white.svg'),'wordmark is the official file');
+  assert(source.includes(sha('assets/brand/rialo/rialo-wordmark-off-white.svg')),'wordmark recorded in SOURCE.md');
+  {const q=await b.newPage({viewport:{width:1440,height:900}});await q.goto(base+'/');assert.match(await q.locator('body>nav .brand img.brand-mark').getAttribute('src'),/\/brand\/rialo-symbol\.svg$/);
+   assert.match(await q.locator('.core b img.core-wordmark').getAttribute('src'),/\/brand\/rialo-wordmark\.svg$/);assert.equal(await q.locator('link[rel~=icon]').getAttribute('href'),'/favicon.svg');
+   await q.goto(base+'/mint/index.html');await q.waitForTimeout(300);assert.match(await q.locator('#site-home img.rialo-mark').getAttribute('src'),/\/brand\/rialo-symbol\.svg$/);
+   const box=await q.locator('#site-home img.rialo-mark').boundingBox();assert(Math.abs(box.width/box.height-96.8036/106)<.03,'site-bar symbol keeps its proportions');await q.close();}
+  console.log('PASS Rialo symbol: official path unchanged in the SVG and the drawing module, canvas = SVG at rest (IoU '+r.iou.toFixed(4)+'), official colour, capped turn, used in the home core, all four tool emblems (own unblended layer), the tab icon, the wordmark, the menu, the site bar and beside Rialo links.');
  }finally{await b.close();server.close();}
 })().catch(e=>{console.error(e);process.exit(1);});

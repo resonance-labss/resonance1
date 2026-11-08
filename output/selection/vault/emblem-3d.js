@@ -4,15 +4,22 @@
    Ece   · a shield dome turns incoming sparks away from the reserve at its centre (protection limits).
    Denis · a clock ring: each tick the hand passes sends a pulse to the centre (time-triggered transfers).
    Ade   · three rings for value, risk and time around one core; it flares when they line up (combined conditions).
+   The Rialo symbol (rialo-mark.js) sits in every scene. Over a portrait it is drawn on its own canvas, without the
+   hologram's blending or transparency, so its shape and colour stay exactly as published.
    Draws only while visible and the tab is shown; one still frame under reduced motion. */
 (()=>{'use strict';
 const body=document.body;if(!body.classList.contains('workspace-page'))return;
 const who=Number(body.dataset.vaultCharacter||0),hero=document.querySelector('main .hero');if(!hero)return;
 const figure=hero.querySelector('figure');
-const host=document.createElement('div');host.className='emblem-3d'+(figure?' emblem-over':' emblem-side');if(who===2&&window.ResonanceRialoMark)host.dataset.mark='rialo';host.setAttribute('aria-hidden','true');
+const host=document.createElement('div');host.className='emblem-3d'+(figure?' emblem-over':' emblem-side');host.setAttribute('aria-hidden','true');
+const MARK=window.ResonanceRialoMark;if(MARK)host.dataset.mark='rialo';
 const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');if(!ctx)return;host.append(canvas);
 // With a portrait, the emblem is a hologram over it (Ece inside her shield, Ade inside his rings); otherwise it stands beside the title.
 if(figure)figure.append(host);else hero.append(host);
+// The symbol's own layer over a portrait: no blend mode, no opacity.
+const markCanvas=figure&&MARK?document.createElement('canvas'):null,markCtx=markCanvas?markCanvas.getContext('2d'):ctx;
+if(markCanvas){markCanvas.className='emblem-mark';markCanvas.setAttribute('aria-hidden','true');figure.append(markCanvas);}
+let markAt=null;
 function place(){if(figure)return;const side=Math.max(300,Math.min(420,hero.offsetHeight+120));host.style.width=host.style.height=side+'px';}
 const reduce=matchMedia('(prefers-reduced-motion: reduce)');
 const CYAN='#33e3ff',PINK='#ff4fa3',VIOLET='#aa82ff',ORANGE='#ff8a4c',ICE='#d6fbff';
@@ -40,7 +47,10 @@ function diren(){const spin=time*.00025,plane=.22,y=Math.sin(time*.0011)*.78-.08
  const crystalColor=below?PINK:CYAN,pts=octa.map(v=>view([v[0]*.45,v[1]*.45+y,v[2]*.45],spin*3));
  for(const [a,b] of octaEdges)line(pts[a],pts[b],crystalColor,fade((pts[a][2]+pts[b][2])/2),1.5);
  const centre=view([0,y,0],spin);glow(centre,below?'rgba(255,79,163,.55)':'rgba(51,227,255,.4)',R*(below?.55:.38),1);
- for(let k=1;k<=14;k++){const yy=Math.sin((time-k*70)*.0011)*.78-.08;dot(view([0,yy,0],spin),below?PINK:ICE,.9,(1-k/15)*.35);}}
+ for(let k=1;k<=14;k++){const yy=Math.sin((time-k*70)*.0011)*.78-.08;dot(view([0,yy,0],spin),below?PINK:ICE,.9,(1-k/15)*.35);}
+ // Rialo watches the line from its right edge; when the price drops below it, a beam reaches the crystal.
+ const sensor=proj(rot([1.45,plane,0],tiltY,.42+tiltX));if(below)line(sensor,centre,PINK,.55+pulse*.4,1.4);
+ markAt={p:sensor,h:R*.38,glow:below?.45:.2};}
 
 // Ece: a shield dome over a small reserve core; sparks fly in and bounce off the dome.
 const sparks=Array.from({length:12},(_,i)=>({p:[0,0,0],v:[0,0,0],flash:0,hit:[0,0,0],seed:i}));
@@ -50,7 +60,9 @@ function ece(dt){const spin=time*.0002;
  for(let lat=0;lat<5;lat++){const phi=lat/5*Math.PI/2,r=Math.cos(phi)*1.15,y=-Math.sin(phi)*1.15+.35;loopPath(circle(r,32,y).map(v=>view(v,spin)),PINK,.5,1);}
  for(let m=0;m<12;m++){const a=m/12*Math.PI*2,arc=Array.from({length:13},(_,i)=>{const phi=i/12*Math.PI/2;return [Math.cos(phi)*1.15*Math.cos(a),-Math.sin(phi)*1.15+.35,Math.cos(phi)*1.15*Math.sin(a)];});loopPath(arc.map(v=>view(v,spin)),PINK,.32,1);}
  loopPath(circle(1.5,48,.35).map(v=>view(v,spin)),CYAN,.35,1,true);
- const core=view([0,.15,0],spin);glow(core,'rgba(51,227,255,.5)',R*.32,1);dot(core,ICE,2.6,1);
+ const core=view([0,.15,0],spin);glow(core,'rgba(51,227,255,.5)',R*.32,1);
+ // The reserve under the shield is held by Rialo: its symbol is the core.
+ const hit=sparks.reduce((m,s)=>Math.max(m,s.flash),0);markAt={p:core,h:R*.36,glow:.2+hit*.3};if(!MARK)dot(core,ICE,2.6,1);
  for(const s of sparks){for(let k=0;k<3;k++)s.p=s.p.map((c,i)=>c+s.v[i]*dt/3);
   const q=[s.p[0],s.p[1]-.35,s.p[2]],d=Math.hypot(...q),inward=q[0]*s.v[0]+q[1]*s.v[1]+q[2]*s.v[2]<0;
   if(d<1.18&&inward&&q[1]<.05){const n=q.map(c=>c/d),dv=2*(s.v[0]*n[0]+s.v[1]*n[1]+s.v[2]*n[2]);s.v=s.v.map((c,i)=>c-dv*n[i]);s.flash=1;s.hit=s.p.slice();}
@@ -69,8 +81,8 @@ function denis(){const spin=Math.sin(time*.0003)*.35,hand=time*.0009,tick=Math.f
  while(pulses.length&&pulses[0].t>=1){pulses.shift();}
  const arrived=pulses.some(pu=>pu.t>.85);glow(centre,'rgba(170,130,255,.6)',R*(arrived?.5:.3),1);
  const stem=ring([0,-1.05,0]);line(centre,stem,VIOLET,.35,1);
- // The pulses arrive at Rialo: its symbol (rialo-mark.js, official path and colour) sits at the centre of the clock.
- const mark=window.ResonanceRialoMark;if(mark)mark.draw(ctx,centre[0],centre[1],R*.46,Math.sin(time*.0006)*.4+tiltY*.5,{glow:arrived?.45:.22});else dot(centre,ICE,2.4,1);}
+ // The pulses arrive at Rialo: its symbol sits at the centre of the clock.
+ markAt={p:centre,h:R*.46,glow:arrived?.45:.22};if(!MARK)dot(centre,ICE,2.4,1);}
 
 // Ade: value (cyan), risk (pink) and time (violet) rings turn independently, then line up for a moment.
 function ade(){const cycle=(time%7000)/7000,lock=cycle>.78?Math.sin((cycle-.78)/.22*Math.PI):0,ease=lock*lock*(3-2*lock);
@@ -78,11 +90,19 @@ function ade(){const cycle=(time%7000)/7000,lock=cycle>.78?Math.sin((cycle-.78)/
  rings.forEach(([r,color,speed,phase],i)=>{const ax=(time*speed+phase)*(1-ease),ay=(time*speed*.7+phase*1.7)*(1-ease);
   loopPath(circle(r,48).map(v=>proj(rot(rot(v,ay,ax+i*.5*(1-ease)),tiltY+time*.0002,.35+tiltX))),color,.8,1.4);});
  const core=proj([0,0,0]),flare=.32+ease*.5;glow(core,'rgba(255,138,76,.65)',R*flare,1);
- const ico=octa.map(v=>proj(rot([v[0]*.28,v[1]*.22,v[2]*.28],time*.001,.4)));for(const [a,b] of octaEdges)line(ico[a],ico[b],ORANGE,.9,1.3);dot(core,'#ffe1cf',2.6+ease*2,1);}
+ // The three conditions meet in Rialo: its symbol is the core and glows brighter when they line up.
+ markAt={p:core,h:R*.42,glow:.22+ease*.4};
+ if(!MARK){const ico=octa.map(v=>proj(rot([v[0]*.28,v[1]*.22,v[2]*.28],time*.001,.4)));for(const [a,b] of octaEdges)line(ico[a],ico[b],ORANGE,.9,1.3);dot(core,'#ffe1cf',2.6+ease*2,1);}}
 
 const scenes=[diren,ece,denis,ade];
-function size(){place();dpr=Math.min(2,devicePixelRatio||1);w=host.clientWidth;h=host.clientHeight;canvas.width=Math.max(1,Math.round(w*dpr));canvas.height=Math.max(1,Math.round(h*dpr));cx=canvas.width/2;cy=canvas.height/2;R=Math.min(canvas.width,canvas.height)*(figure?.4:.27);if(figure)cy=canvas.height*.56;else cy=canvas.height*.42;draw(16);}
-function draw(dt){ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);ctx.globalCompositeOperation='lighter';ctx.lineCap='round';scenes[who]?.(dt);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';}
+function size(){place();dpr=Math.min(2,devicePixelRatio||1);w=host.clientWidth;h=host.clientHeight;canvas.width=Math.max(1,Math.round(w*dpr));canvas.height=Math.max(1,Math.round(h*dpr));if(markCanvas){markCanvas.width=canvas.width;markCanvas.height=canvas.height;}cx=canvas.width/2;cy=canvas.height/2;R=Math.min(canvas.width,canvas.height)*(figure?.4:.27);// Over a portrait the scene sits low enough that the symbol rests below the face.
+// Over a portrait the scene sits so the symbol rests off the face and above the caption (Denis's clock moves right, onto her hair).
+if(figure){cx=canvas.width*[.5,.5,.8,.5][who];cy=canvas.height*[.56,.56,.58,.68][who];}else cy=canvas.height*.42;draw(16);}
+function draw(dt){ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);ctx.globalCompositeOperation='lighter';ctx.lineCap='round';markAt=null;scenes[who]?.(dt);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
+ if(markCanvas){markCtx.setTransform(1,0,0,1,0,0);markCtx.clearRect(0,0,markCanvas.width,markCanvas.height);}
+ // On short portraits (phones) the face fills the middle and the caption the bottom: the symbol moves to the top-right corner.
+ if(MARK&&markAt){if(figure&&host.clientHeight<260)markAt={p:[canvas.width*.87,canvas.height*.2],h:Math.min(markAt.h,canvas.height*.2),glow:markAt.glow};
+  MARK.draw(markCtx,markAt.p[0],markAt.p[1],markAt.h,Math.sin(time*.0006+who)*.4+tiltY*.5,{glow:markAt.glow});}}
 // About 30 frames a second is enough for these slow motions and halves the drawing cost.
 function loop(t){frame=0;if(!visible||document.hidden)return;frame=requestAnimationFrame(loop);if(last&&t-last<30)return;const dt=Math.min(66,t-(last||t));last=t;time+=dt;tiltX+=(aimX-tiltX)*.05;tiltY+=(aimY-tiltY)*.05;draw(dt);}
 const start=()=>{if(!reduce.matches&&!frame&&visible&&!document.hidden){last=0;frame=requestAnimationFrame(loop);}};

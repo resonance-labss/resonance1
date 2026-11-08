@@ -56,8 +56,8 @@ const PAGES=['/','/resonance-playable-v1.html','/mint/index.html','/my/index.htm
    const h=await p.evaluate(()=>document.documentElement.scrollHeight);for(let top=await introTop(p);top<h;top+=400){await p.evaluate(v=>scrollTo({top:v,behavior:'instant'}),top);for(let k=0;k<3;k++){await p.waitForTimeout(50);assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'a rising card never widens the page');}}
    await p.waitForTimeout(1300);assert.equal(await p.locator('.reveal-wait').count(),0,'all revealed');assert.equal(await p.locator('.reveal-in').count(),0,'animation classes are cleaned up');await done(p);}
 
-  // Vault emblems: one decorative canvas per tool, drawn, beside the title or over the portrait.
-  for(const [url,kind] of [['/vault/index.html','emblem-side'],['/vault/protection.html','emblem-over'],['/vault/eric.html','emblem-side'],['/vault/ade.html','emblem-over']])for(const reducedMotion of ['no-preference','reduce']){
+  // Vault emblems: one decorative canvas per tool, drawn as a hologram over the portrait.
+  for(const [url,kind] of [['/vault/index.html','emblem-over'],['/vault/protection.html','emblem-over'],['/vault/eric.html','emblem-over'],['/vault/ade.html','emblem-over']])for(const reducedMotion of ['no-preference','reduce']){
    const p=await open(url,{reducedMotion});await p.waitForTimeout(700);assert.equal(await p.locator('.emblem-3d[aria-hidden=true] canvas').count(),1,url);assert(await p.locator('.emblem-3d').evaluate((e,k)=>e.classList.contains(k),kind));
    assert(await p.locator('.emblem-3d canvas').evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let lit=0;for(let i=3;i<d.length;i+=16)if(d[i])lit++;return lit>50;}),url+' draws ('+reducedMotion+')');
    assert.equal(await p.locator('nav.tool-navigation').count(),1,'one set of tool tabs');await done(p);}
