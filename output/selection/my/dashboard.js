@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const $=id=>document.getElementById(id),chars=[['Diren','Value conditions','Reactive Vault','index.html',2],['Ece','Budget protection','Reserve Studio','protection.html',3],['Denis','Priority budgets','Web3 Budget Studio','eric.html',1],['Ade','Combined conditions','Plan Lab','ade.html',1]];
+const $=id=>document.getElementById(id),chars=[['Diren','Value conditions','Reactive Vault','index.html',3],['Ece','Budget protection','Reserve Studio','protection.html',4],['Denis','Priority budgets','Web3 Budget Studio','eric.html',2],['Ade','Combined conditions','Plan Lab','ade.html',2]];
 const storageKeys=['diren','ece','eric','ade']; // original ids, so plans saved before the Denis rename still show up
 let ownership=null,provider=null,busy=false,revision=0,connected=false;
 const link=(label,href,className)=>{const a=document.createElement('a');a.textContent=label;a.href=href;if(className)a.className=className;return a;};

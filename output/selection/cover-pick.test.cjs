@@ -32,7 +32,7 @@ const TYPES={'.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.
    assert.equal(await p.evaluate(()=>[...document.querySelectorAll('.rs-person')].map(b=>b.getAttribute('aria-pressed')).join()),'false,false,false,true','the academy opens with Ade selected');
    assert.equal(await p.inputValue('#rs-input'),'Ade');assert.equal(await p.evaluate(()=>document.activeElement.id),'rs-start','Continue is ready');
    // A finished lesson (same rule as the academy: current quiz version and 4/4) opens the tool directly.
-   await p.evaluate(()=>localStorage.setItem('resonance.learning-passes.v1',JSON.stringify({1:{quizVersion:3,correctAnswers:4},2:{quizVersion:0,correctAnswers:4}})));
+   await p.evaluate(()=>localStorage.setItem('resonance.learning-passes.v1',JSON.stringify({1:{quizVersion:4,correctAnswers:4},2:{quizVersion:1,correctAnswers:4}})));
    await p.goto(base+'/');await p.waitForTimeout(300);
    assert.equal(await p.locator('.entry-pick a[data-who=ece]').getAttribute('href'),'/vault/protection.html');assert.equal(await p.locator('.entry-pick a[data-who=ece] small').textContent(),'Reserve Studio');
    assert.equal(await p.locator('.entry-pick a[data-who=denis]').getAttribute('href'),'/resonance-playable-v1.html?character=2','an outdated quiz still leads to the lesson');

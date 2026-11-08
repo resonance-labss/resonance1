@@ -1,7 +1,7 @@
 (()=>{'use strict';const c=window.RESONANCE_MINT,$=id=>document.getElementById(id),abi=new ethers.Interface(c.abi),names=['Diren','Ece','Denis','Ade'];let provider=null,account='',busy=false,revision=0,ready=null,pending=null,connected=false;
 const text=id=>window.ResonanceI18n?window.ResonanceI18n.source($(id)):$(id).textContent,initial={account:text('account'),holdings:text('holdings'),fee:text('fee')};
 const index=()=>Number($('character').value),key=(a,i)=>'resonance.claim.'+c.chainId+'.'+c.address.toLowerCase()+'.'+a.toLowerCase()+'.'+i;
-function eligible(){try{const passes=JSON.parse(localStorage.getItem('resonance.learning-passes.v1')||'{}'),save=JSON.parse(localStorage.getItem('resonance.progress.v1')||'null');if([0,1,2,3].includes(index()))return passes[index()]?.character===index()&&passes[index()]?.quizVersion===(index()===0?2:index()===1?3:1)&&passes[index()]?.correctAnswers===4;return passes[index()]?.character===index()||save?.mastery?.character===index();}catch{return false;}}
+function eligible(){try{const passes=JSON.parse(localStorage.getItem('resonance.learning-passes.v1')||'{}'),save=JSON.parse(localStorage.getItem('resonance.progress.v1')||'null');if([0,1,2,3].includes(index()))return passes[index()]?.character===index()&&passes[index()]?.quizVersion===[3,4,2,2][index()]&&passes[index()]?.correctAnswers===4;return passes[index()]?.character===index()||save?.mastery?.character===index();}catch{return false;}}
 function load(a,i){try{return JSON.parse(localStorage.getItem(key(a,i))||'null');}catch{return {status:'storage-unavailable'};}}
 function put(a,i,value){localStorage.setItem(key(a,i),JSON.stringify(value));}
 function blocked(record){return record&&!['reverted','rejected'].includes(record.status);}
