@@ -1,7 +1,7 @@
 const {chromium}=require('playwright');
 (async()=>{
 const b=await chromium.launch({channel:'chrome',headless:true});const p=await b.newPage({viewport:{width:1200,height:900}});const errors=[];p.on('pageerror',e=>errors.push(e.message));
-await p.goto('file://'+process.cwd()+'/output/selection/resonance-playable-v1.html');
+await p.goto('file://'+process.cwd()+'/output/selection/resonance-playable-v1.html?storm=1');
 await p.getByRole('button',{name:'Learn more',exact:true}).click();if(!await p.locator('.rl-dialog').isVisible())throw Error('learn panel');await p.keyboard.press('Escape');await p.click('#rs-start');await p.click('#enter');await p.getByRole('button',{name:'Learn more',exact:true}).click();if(!(await p.locator('#rl-context-text').innerText()).includes('predicate'))throw Error('context panel');await p.click('#rl-close');
 async function rule(kind,amount){await p.selectOption('#condition',kind);await p.selectOption('#amount',amount);await p.click('#register');await p.click('#next');await p.waitForFunction(()=>document.querySelector('#chapter').dataset.visualBusy!=='true');}
 async function equal(id,v){if((await p.locator(id).textContent()).trim()!==v)throw Error(id+' != '+v);}

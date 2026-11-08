@@ -1,6 +1,6 @@
 const {chromium}=require('playwright'),assert=require('node:assert/strict');
 // Scene and effect layers: they react to play, stay silent on replay and reduced motion, and never change game or vault values.
-(async()=>{const b=await chromium.launch({channel:'chrome',headless:true});try{const errors=[];const G='file://'+__dirname+'/resonance-playable-v1.html',V='file://'+__dirname+'/vault/';
+(async()=>{const b=await chromium.launch({channel:'chrome',headless:true});try{const errors=[];const G='file://'+__dirname+'/resonance-playable-v1.html?storm=1',V='file://'+__dirname+'/vault/';
 const page=async(opts={})=>{const p=await b.newPage(opts);p.on('pageerror',e=>errors.push(e.message));return p;};
 const idle=p=>p.waitForFunction(()=>document.querySelector('#chapter').dataset.visualBusy!=='true');
 const draws=p=>p.evaluate(()=>new Promise(r=>{const c=document.querySelector('.tutorial-canvas'),g=c.getContext('2d'),orig=g.drawImage;let n=0;g.drawImage=function(...a){n++;return orig.apply(this,a);};setTimeout(()=>{g.drawImage=orig;r(n);},700);}));

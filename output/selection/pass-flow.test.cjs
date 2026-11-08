@@ -17,7 +17,7 @@ check('lesson end: the wrong rule asks for a retry, the right rule keeps its ste
  await p.selectOption('#lesson-rule','alternative');await runLesson(p,2);const wrong=await p.locator('#status').textContent();
  assert.match(wrong,/Try the recommended rule: Shield < 30 → transfer 20\.$/);assert.doesNotMatch(wrong,/Mission complete/);assert(await p.locator('#lesson-quiz').isHidden());
  await p.click('#lesson-retry');await runLesson(p,2);assert.match(await p.locator('#status').textContent(),/^Executed: .+ Mission complete\. You are ready for the knowledge check\.$/);
- await p.click('#lesson-quiz');await quiz(p);await p.waitForSelector('#lesson-mint');
+ await p.click('#lesson-quiz');if(await p.locator('#rx').isVisible())for(let k=0;k<4;k++)await p.click('.rx-next');await quiz(p);await p.waitForSelector('#lesson-mint');
  assert.equal(await p.locator('#mastery-content h1').textContent(),'Learning pass earned.');assert.equal(await p.locator('.rm-card').count(),0);
  assert.equal(await p.locator('#lesson-mint').getAttribute('href'),'mint/index.html?character=0');assert.equal(await p.locator('#lesson-mint').textContent(),'Claim your Diren learning pass on Sepolia →');
  assert.notEqual(await p.locator('#lesson-tool-next').evaluate(e=>getComputedStyle(e).color),'rgb(0, 0, 238)');assert.equal(await p.locator('.lesson-requirements a').count(),3);
@@ -29,27 +29,27 @@ check('lesson end and pass screen in Turkish',async b=>{
  const p=await fresh(b);await p.goto('file://'+SEL+'/resonance-playable-v1.html');await p.evaluate(()=>localStorage.setItem('resonance.language.v1','tr'));await p.reload();await enterLesson(p,0,'Diren');
  await p.selectOption('#lesson-rule','alternative');await runLesson(p,2);assert.match(await p.locator('#status').textContent(),/Önerilen kuralı dene: Kalkan < 30 → 20 aktar\.$/);
  await p.click('#lesson-retry');await runLesson(p,2);assert.match(await p.locator('#status').textContent(),/Görev tamamlandı\. Bilgi kontrolüne hazırsın\.$/);
- await p.click('#lesson-quiz');await quiz(p);await p.waitForSelector('#lesson-mint');const text=await p.locator('#mastery-content').innerText();
+ await p.click('#lesson-quiz');if(await p.locator('#rx').isVisible())for(let k=0;k<4;k++)await p.click('.rx-next');await quiz(p);await p.waitForSelector('#lesson-mint');const text=await p.locator('#mastery-content').innerText();
  for(const english of ['Claim your','Already hold','Minting needs','Get Rabby','Get Sepolia','Review this knowledge','Learn with another'])assert(!text.includes(english),'English left: '+english);
  await done(p);
 });
 
 check('wave guide and crew follow the game state in Turkish',async b=>{
- const read=async lang=>{const p=await fresh(b);await p.goto('file://'+SEL+'/resonance-playable-v1.html');if(lang==='tr'){await p.evaluate(()=>localStorage.setItem('resonance.language.v1','tr'));await p.reload();}
+ const read=async lang=>{const p=await fresh(b);await p.goto('file://'+SEL+'/resonance-playable-v1.html?storm=1');if(lang==='tr'){await p.evaluate(()=>localStorage.setItem('resonance.language.v1','tr'));await p.reload();}
   await p.fill('#rs-input','Guide');await p.click('#rs-start');await p.click('#enter');await p.click('#quick-recommend');await p.click('#register');await p.click('#next');await p.waitForTimeout(300);
   const r=await p.evaluate(()=>({guide:window.ResonanceI18n.source(document.getElementById('wave-guide')),shown:document.getElementById('wave-guide').textContent,crew:window.ResonanceI18n.source(document.querySelector('.city-reaction p:last-child')||document.querySelector('.city-reaction'))}));await done(p);return r;};
  const en=await read('en'),tr=await read('tr');assert.match(en.guide,/^HOLD POSITION/);assert.equal(tr.guide,en.guide);assert.equal(tr.crew,en.crew);assert.match(tr.shown,/^MEVZİNİ KORU · /);
 });
 
 check('storm adventure: Ece is sent to her 4-question check, then to mint, and a reload replays it',async b=>{
- const p=await fresh(b);await p.goto('file://'+SEL+'/resonance-playable-v1.html');await stormMastery(p,1,'Storm Ece');
+ const p=await fresh(b);await p.goto('file://'+SEL+'/resonance-playable-v1.html?storm=1');await stormMastery(p,1,'Storm Ece');
  const button=p.locator('#collectible-quiz');assert.equal(await button.textContent(),'Finish Ece’s 4-question check to unlock minting →');assert.equal(await p.locator('.rm-side a[href^="mint/"]').count(),0);
  await button.click();await p.waitForSelector('.mastery-option');assert.match(await p.locator('.mastery-progress').textContent(),/1 \/ 4/);await quiz(p);
  await p.waitForSelector('#lesson-mint');assert.equal(await p.locator('#lesson-mint').getAttribute('href'),'mint/index.html?character=1');assert.equal(await p.locator('.rm-card').count(),1);assert.equal(await p.locator('.rm-side a[href^="mint/"]').count(),0);
  const pass=await p.evaluate(()=>JSON.parse(localStorage.getItem('resonance.learning-passes.v1'))[1]);assert.equal(pass.quizVersion,4);assert.equal(pass.correctAnswers,4);
  await p.reload();await p.click('#save-continue');await p.waitForSelector('#lesson-mint');assert.equal(await p.locator('.rm-card').count(),1);
  // With the pass already held, the storm screen links to mint and keeps the check as a quiet retake.
- await p.evaluate(()=>{localStorage.removeItem('resonance.progress.v1');});await p.goto('file://'+SEL+'/resonance-playable-v1.html');await stormMastery(p,1,'Again');
+ await p.evaluate(()=>{localStorage.removeItem('resonance.progress.v1');});await p.goto('file://'+SEL+'/resonance-playable-v1.html?storm=1');await stormMastery(p,1,'Again');
  assert.equal(await p.locator('.rm-side a[href^="mint/"]').count(),1);assert.equal(await p.locator('#collectible-quiz').textContent(),'Take Ece’s 4-question check again');
  await done(p);
 });

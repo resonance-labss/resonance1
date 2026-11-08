@@ -34,7 +34,7 @@ const VERSIONS='[3,4,2,2]';
   await p.goto('file://'+path.join(SEL,'resonance-playable-v1.html'));
   await p.locator('.rs-person').nth(0).click();await p.fill('#rs-input','Diren');await p.click('#rs-start');await p.click('#character-enter');
   if(await p.locator('#lesson-briefing').count()){await p.check('#briefing-read');await p.click('#briefing-continue');}
-  await p.click('#lesson-register');for(let n=0;n<2;n++)await p.click('#lesson-step');await p.click('#lesson-quiz');
+  await p.click('#lesson-register');for(let n=0;n<2;n++)await p.click('#lesson-step');await p.click('#lesson-quiz');if(await p.locator('#rx').isVisible())for(let k=0;k<4;k++)await p.click('.rx-next');
   assert.match(await p.locator('#chapter').textContent(),/Your vault rule says: buy when the unit price is at or below 8/);
   for(const a of [0,1]){await p.locator('.mastery-option').nth(a).click();await p.click('#lesson-answer-next');}
   assert.match(await p.locator('.mastery-progress').innerText(),/3 \/ 4/);
