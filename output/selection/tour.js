@@ -15,7 +15,7 @@ const tool=(what,next)=>[
  {target:q('#site-terms'),title:'Unfamiliar word?',text:'Open Terms for a one-sentence explanation of each term.'}];
 const PAGES={
  home:[bar,
-  {target:q('.hero .actions'),title:'Start here',text:'Begin the adventure to pick a character and watch four short cards. Lessons need no wallet.'},
+  {target:q('.hero .actions'),title:'Start here',text:'Pick a character and watch four short cards. Lessons need no wallet.'},
   {target:q('#journey'),title:'Learn, earn, apply',text:'Each character teaches one rule. A four-question check unlocks a learning pass NFT on the Sepolia test network.'},
   {target:q('#characters'),title:'Four tools',text:'Each pass opens one tool. The tools use made-up money, so you can test rules safely.'},
   {target:q('#launch'),title:'When RLO launches',text:'What you can do today, what carries over when RLO launches and what never happens on this site.'},

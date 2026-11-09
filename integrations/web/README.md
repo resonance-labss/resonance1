@@ -119,6 +119,9 @@ The mint page shows the selected pass beside numbered steps. All four tools and 
 - **Pass previews**: `nft/*.webp` (mint page and academy previews) now show the neon portraits in the card's art window. The on-chain metadata is unchanged, so the mint page notes that wallets show each pass's original artwork (and the Eric name for character 2).
 - **Wallet picker**: a wallet that announces itself is not listed a second time through `window.ethereum`; popular wallets that are not installed (MetaMask, OKX Wallet, Coinbase Wallet, Trust Wallet, Rabby) appear as install links.
 
+### Presentation clean-ups (0.11.1)
+- Diren's tool is named Reactive Vault everywhere (lesson data, learning pass, mint page). His tool page drops the old "Chapter 02" label and the threshold-lesson line; the home button reads "Start learning". Turkish updated.
+
 ### Clear use cases, no storm code, lighter pages (0.11.0)
 - **Use cases**: each tool page has a "What it is for" block after its title (use it when, for example, you get, when RLO launches, what it never does); the home tool cards have a one-line "Use it when"; a short "When RLO launches" section states that Rialo runs a test network and RLO has not launched, and what carries over. The tour points at the block.
 - **Storm code removed**: the academy keeps `chapter.js` (lesson area and base styles), `learn-panel.js`, `progress.js`, `nft-artwork.js`, `nft-preview.js`, `character-lessons.js`, `lesson-fx.js`, `character-link.js` and `explainer.js`. The academy page went from 253 KB to 96 KB. Old saves still restore; storm actions are cut.
