@@ -12,9 +12,9 @@ for(const route of ['index','protection','ade','eric']){
  }
  await page.locator('.workspace-shortcuts button').nth(1).click();assert.equal(await page.evaluate(()=>document.activeElement.id),route==='index'?'diren-result':'tool-result');
  await page.evaluate(()=>window.dispatchEvent(new CustomEvent('resonance:wallet-check-paused',{detail:'Temporary access failure'})));assert(await page.locator('#workspace-status').isVisible());await page.evaluate(()=>window.dispatchEvent(new Event('resonance:wallet-verified')));assert(await page.locator('#workspace-status').isHidden());await page.screenshot({path:'/tmp/polish-'+route+'-desktop.png'});
- await page.selectOption('#resonance-language','tr');assert.equal(await page.locator('.workspace-shortcuts button').first().textContent(),'Kurallar ve bütçe');
+ await page.selectOption('#resonance-language','tr');await page.waitForFunction(()=>document.documentElement.lang==='tr');assert.equal(await page.locator('.workspace-shortcuts button').first().textContent(),'Kurallar ve bütçe');
  for(const width of [390,320]){await page.setViewportSize({width,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route+' overflow at '+width);await page.locator('.workspace-shortcuts button').first().click();assert.equal(await page.evaluate(()=>document.activeElement.id),route==='index'?'diren-plan':'tool-plan');}
  await page.screenshot({path:'/tmp/polish-'+route+'-mobile.png'});await page.setViewportSize({width:1365,height:900});await page.selectOption('#resonance-language','en');
 }
-assert.deepEqual(errors,[]);console.log('PASS workspace keyboard shortcuts, advanced access, Eric control placement, pending access feedback, TR labels and 320/390px mobile widths. Wallet mocked.');
+assert.deepEqual(errors,[]);console.log('PASS workspace keyboard shortcuts, advanced access, Denis control placement, pending access feedback, TR labels and 320/390px mobile widths. Wallet mocked.');
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1)});

@@ -22,12 +22,12 @@ await p.click('#new-rule');assert(await p.locator('#result-sentence').isHidden()
 await open(vault+'protection.html');await reveal();await p.click('#example-next');await p.click('#review-protection');await p.click('#confirm-protection');
 for(let i=0;i<6&&!(await p.locator('#advance-protection').isDisabled());i++)await p.click('#advance-protection');
 assert.match(await p.locator('#result-sentence').textContent(),/^Ece’s rules stopped \d+ of \d+ proposed orders and left [\d.]+ Demo RLO, including the 40\.00 reserve\.$/);
-await p.selectOption('#resonance-language','tr');assert.match(await p.locator('#result-sentence').textContent(),/^Ece’nin kuralları \d+ önerilen emirden \d+ tanesini durdurdu/);
+await p.selectOption('#resonance-language','tr');await p.waitForFunction(()=>document.documentElement.lang==='tr');assert.match(await p.locator('#result-sentence').textContent(),/^Ece’nin kuralları \d+ önerilen emirden \d+ tanesini durdurdu/);
 assert.equal(await p.locator('.result-headline-eyebrow').textContent(),'Tek cümlede sonuç');await p.selectOption('#resonance-language','en');
 assert.equal(await png(),'resonance-ece-result.png');await p.click('#revise-protection');assert(await p.locator('#result-sentence').isHidden());
-// Eric and Ade starters.
+// Denis and Ade starters.
 await open(vault+'eric.html');await reveal();await p.click('#example-next');await p.click('#budget-form button[type=submit]');
-assert.match(await p.locator('#result-sentence').textContent(),/^\d+ of \d+ expenses are covered, [\d.]+ Demo RLO goes to goals and [\d.]+ Demo RLO stays as operating cash\.$/);assert.equal(await png(),'resonance-eric-result.png');
+assert.match(await p.locator('#result-sentence').textContent(),/^\d+ of \d+ expenses are covered, [\d.]+ Demo RLO goes to goals and [\d.]+ Demo RLO stays as operating cash\.$/);assert.equal(await png(),'resonance-denis-result.png');
 await open(vault+'ade.html');await reveal();await p.click('#example-next');await p.click('#ade-form button[type=submit]');
 assert.match(await p.locator('#result-sentence').textContent(),/^On the .+ path, (Plan [AB] ends [\d.]+ Demo RLO higher in modeled total value than Plan [AB] \(A: [\d.]+, B: [\d.]+\)|Plans A and B end with the same modeled total value: [\d.]+ Demo RLO)\.$/);
 const first=await p.locator('#result-sentence').textContent();await p.selectOption('#ade-path-view','0');assert(first.length>0);assert.equal(await png(),'resonance-ade-result.png');
@@ -38,11 +38,11 @@ await p.locator('label:has(#floor) .term-chip').click();assert.match(await p.loc
 await p.keyboard.press('Escape');assert(await p.locator('#term-popover').isHidden());
 await p.click('#site-terms');assert(await p.locator('#terms-panel').isVisible());assert(await p.locator('#terms-panel dt').count()>=20);assert.equal(await p.locator('#site-terms').getAttribute('aria-expanded'),'true');
 await p.keyboard.press('Escape');assert(await p.locator('#terms-panel').isHidden());assert.equal(await p.evaluate(()=>document.activeElement.id),'site-terms');
-await p.selectOption('#resonance-language','tr');await p.click('#site-terms');assert.equal(await p.locator('#terms-panel dt').first().textContent(),'Demo RLO');assert.match(await p.locator('#terms-panel dd').first().textContent(),/Uydurma bir alıştırma birimi/);await p.selectOption('#resonance-language','en');
+await p.selectOption('#resonance-language','tr');await p.waitForFunction(()=>document.documentElement.lang==='tr');await p.click('#site-terms');assert.equal(await p.locator('#terms-panel dt').first().textContent(),'Demo RLO');assert.match(await p.locator('#terms-panel dd').first().textContent(),/Uydurma bir alıştırma birimi/);await p.selectOption('#resonance-language','en');
 // Tour on every page: visible steps only, keyboard controls, no layout overflow on phones.
-const expect={[site+'/']:['Your controls','Start here','Learn, earn, apply','Four tools','What changed'],['file://'+__dirname+'/resonance-playable-v1.html']:['Choose a guide','Your name','Begin','Learn more','Learning passes','Your controls'],
+const expect={[site+'/']:['Your controls','Start here','Learn, earn, apply','Four tools','When RLO launches','What changed'],['file://'+__dirname+'/resonance-playable-v1.html']:['Choose a guide','Your name','Begin','Learn more','Learning passes','Your controls'],
  ['file://'+__dirname+'/mint/index.html']:['Pick your pass','Connect and check','Mint','Your controls'],['file://'+__dirname+'/my/index.html']:['Check your passes','Your progress','Your next step','Saved plans','Your controls'],
- [vault+'eric.html']:['What this tool does','The fine print','Four tools','Open the tool','Unfamiliar word?']};
+ [vault+'eric.html']:['What this tool does','What it is for','The fine print','Four tools','Open the tool','Unfamiliar word?']};
 for(const [url,titles] of Object.entries(expect)){await p.setViewportSize({width:1280,height:800});await p.goto(url);await p.click('#site-tour');
  assert.deepEqual(await p.evaluate(()=>window.ResonanceTour.steps()),titles,url);assert.equal(await p.locator('#tour-count').textContent(),'1 / '+titles.length);assert(await p.locator('#tour-back').isDisabled());
  await p.keyboard.press('ArrowRight');assert.equal(await p.locator('#tour-title').textContent(),titles[1]);await p.keyboard.press('ArrowLeft');assert.equal(await p.locator('#tour-title').textContent(),titles[0]);

@@ -4,9 +4,10 @@ const q=s=>()=>document.querySelector(s),last=s=>()=>[...document.querySelectorA
 const bar={target:q('#site-bar'),title:'Your controls',text:'Go back home, switch English and Turkish, and choose the demo budget unit here. Terms explains the words you will meet.'};
 const tool=(what,next)=>[
  {target:q('main h1'),title:'What this tool does',text:what},
+ {target:q('.use-case'),title:'What it is for',text:'When to use this tool, an example, what you get and what changes when RLO launches.'},
  {target:q('main details.fine-print'),title:'The fine print',text:'Safety notes are folded into one line. Open Details to read all of it.'},
  {target:q('.tool-navigation'),title:'Four tools',text:'Switch between the character tools. Each one checks its own pass.'},
- {target:q('#gate'),title:'Open the tool',text:'Follow the numbered steps: connect Rabby, switch to Sepolia, check your pass, then enter. The NFT is access only; it never allows spending.'},
+ {target:q('#gate'),title:'Open the tool',text:'Follow the numbered steps: connect your wallet, switch to Sepolia, check your pass, then enter. The NFT is access only; it never allows spending.'},
  {target:q('#first-example'),title:'Start with the example',text:'One click prepares a worked example. You still review and confirm every step yourself.'},
  {target:q('#diren-plan,#tool-plan'),title:'Your rules',text:'Change the limits here. The small i next to a field explains the term.'},
  {target:q('#diren-result,#tool-result'),title:'Results',text:next},
@@ -14,25 +15,25 @@ const tool=(what,next)=>[
  {target:q('#site-terms'),title:'Unfamiliar word?',text:'Open Terms for a one-sentence explanation of each term.'}];
 const PAGES={
  home:[bar,
-  {target:q('.hero .actions'),title:'Start here',text:'Begin the adventure to pick a character and play a short lesson. Lessons need no wallet.'},
+  {target:q('.hero .actions'),title:'Start here',text:'Pick a character and watch four short cards. Lessons need no wallet.'},
   {target:q('#journey'),title:'Learn, earn, apply',text:'Each character teaches one rule. A four-question check unlocks a learning pass NFT on the Sepolia test network.'},
   {target:q('#characters'),title:'Four tools',text:'Each pass opens one tool. The tools use made-up money, so you can test rules safely.'},
+  {target:q('#launch'),title:'When RLO launches',text:'What you can do today, what carries over when RLO launches and what never happens on this site.'},
   {target:q('#updates'),title:'What changed',text:'Release notes list what is new in each version.'}],
  academy:[
   {target:q('.rs-grid'),title:'Choose a guide',text:'Each character teaches a different rule and later opens a different tool.'},
   {target:q('#rs-input'),title:'Your name',text:'This name appears in the story. It stays in this browser.'},
-  {target:q('#rs-start'),title:'Begin',text:'Starts the story. Progress is saved in this browser, not on a server.'},
-  {target:q('#character-enter'),title:'Start the lesson',text:'A short lesson, then a four-question check. Passing it lets you mint this character’s pass.'},
+  {target:q('#rs-start'),title:'Begin',text:'Opens four short cards about this character’s tool, then a four-question check. Progress is saved in this browser, not on a server.'},
   {target:q('.rl-learn-button'),title:'Learn more',text:'Background on Rialo’s reactive transactions, whenever you want it.'},
   {target:last('.profile-trigger'),title:'Learning passes',text:'See which lessons you finished and which passes you can mint.'},
   bar],
  mint:[
   {target:q('.pass-card'),title:'Pick your pass',text:'Choose a character. The card shows the NFT you will receive.'},
-  {target:()=>document.querySelector('.mint-steps .step'),title:'Connect and check',text:'Connect Rabby, switch to Sepolia, then check whether this wallet can claim. Nothing is sent yet.'},
-  {target:()=>document.querySelectorAll('.mint-steps .step')[1],title:'Mint',text:'Tick the review box, then request the mint. Rabby shows the final test-ETH fee before you confirm.'},
+  {target:()=>document.querySelector('.mint-steps .step'),title:'Connect and check',text:'Connect your wallet, switch to Sepolia, then check whether this wallet can claim. Nothing is sent yet.'},
+  {target:()=>document.querySelectorAll('.mint-steps .step')[1],title:'Mint',text:'Tick the review box, then request the mint. Your wallet shows the final test-ETH fee before you confirm.'},
   bar],
  my:[
-  {target:q('.wallet'),title:'Check your passes',text:'Connect Rabby to see which character passes this wallet holds. Connecting never allows spending.'},
+  {target:q('.wallet'),title:'Check your passes',text:'Connect your wallet to see which character passes this wallet holds. Connecting never allows spending.'},
   {target:q('.summary'),title:'Your progress',text:'Lessons finished in this browser, passes held on Sepolia and saved plans.'},
   {target:q('.characters'),title:'Your next step',text:'Each card shows where you are with a character and where to go next.'},
   {target:q('#plans'),title:'Saved plans',text:'Plans you saved in any tool. Opening one never runs it automatically.'},

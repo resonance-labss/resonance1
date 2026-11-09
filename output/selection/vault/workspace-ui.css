@@ -68,6 +68,7 @@
 /* One-sentence result and downloadable card. */
 .result-headline{--card-accent:var(--rose,#e5a9ab);margin:14px 0 18px;padding:16px 18px;border:1px solid #ffffff1f;border-left:3px solid var(--card-accent);border-radius:12px;background:linear-gradient(135deg,#ffffff0d,#ffffff05)}
 .result-headline[data-character=diren]{--card-accent:#b6dfcc}
+.result-headline:focus:not(:focus-visible){outline:none}
 .result-headline-eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--card-accent)}
 #result-sentence{margin:6px 0 12px;font:clamp(18px,1.6vw,21px)/1.45 Georgia,serif;color:#f4efe4}
 .result-headline-actions{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
@@ -121,3 +122,40 @@
 @keyframes vfx-sheen{0%{background-position:-60% 0}100%{background-position:160% 0}}
 @keyframes vfx-warn{0%,60%{box-shadow:0 0 0 2px rgba(255,143,122,.7),0 0 22px rgba(255,143,122,.35)}100%{box-shadow:0 0 0 0 transparent}}
 @media(prefers-reduced-motion:reduce){.vfx-layer{display:none}.workspace-page *{animation:none!important}}
+/* Plain-sentence rule (Diren) and Rialo scheduled transfers (Denis) */
+#plain-result,#rialo-schedule-list{margin:10px 0 0;padding-left:1.3em}
+#plain-result li,#rialo-schedule-list li{margin:.3em 0;line-height:1.45}
+#plain-result li.missing,#rialo-schedule-list li.missing{color:var(--muted,#9fb0d8)}
+#plain-result b{color:var(--mint,#33e3ff)}
+#rialo-schedule{margin:18px 0;padding:14px 16px;border:1px solid var(--line,rgba(51,227,255,.22));border-radius:8px}
+#rialo-schedule h3{margin-top:0}
+#rialo-schedule-list li:not(.missing){font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;overflow-wrap:anywhere}
+#plain-text{display:block;width:100%;box-sizing:border-box;margin:6px 0 4px;padding:10px 12px;font:inherit;line-height:1.45;color:var(--ink,#e6eeff);background:rgba(6,9,18,.72);border:1px solid var(--line-strong,rgba(51,227,255,.42));border-radius:6px;resize:vertical}
+#plain-text:focus-visible{outline:2px solid var(--mint,#33e3ff);outline-offset:2px}
+/* Character tool tabs ship in the HTML; their base layout lives here so the first paint already has their height. */
+.tool-navigation{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;padding:8px 0}.tool-navigation a{border:1px solid transparent;border-radius:24px;padding:8px 18px;color:#b8dfcb;text-decoration:none;font-size:14px}.tool-navigation [aria-current=page]{font-weight:700}
+/* 3D emblem in the hero (emblem-3d.js): beside the title on Diren and Denis, a halo behind Ece's and Ade's portraits. */
+.workspace-page main .hero{position:relative}
+.workspace-page main .hero>:not(.emblem-3d){position:relative;z-index:1}
+.emblem-3d{position:absolute;z-index:0;pointer-events:none}
+.emblem-3d canvas{display:block;width:100%;height:100%}
+.emblem-side{right:2%;top:50%;width:360px;height:360px;transform:translateY(-50%)}
+@media(max-width:1099px){.emblem-side{display:none}}
+.workspace-page main .hero figure>.emblem-over{inset:0;z-index:2;opacity:.6;mix-blend-mode:screen}
+.workspace-page main .hero figure>.emblem-mark{position:absolute;inset:0;z-index:3;display:block;width:100%;height:100%;pointer-events:none}
+/* Diren's hero gets the same portrait layout as the other tools (protection.css is not loaded on this page). */
+.hero-portrait{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:center}
+.hero-portrait figure{height:310px;position:relative;margin:0;overflow:hidden;border-radius:16px;border:1px solid #4a6a78}
+.hero-portrait figure img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.hero-portrait figcaption{position:absolute;bottom:0;left:0;right:0;z-index:2;background:linear-gradient(transparent,#0b1220f5);padding:48px 20px 18px;font:italic 21px Georgia,serif}
+.hero-portrait figcaption small{display:block;font:10px system-ui;letter-spacing:2px;color:#ddd;margin-top:10px;font-style:normal}
+@media(max-width:980px){.hero-portrait{gap:20px;grid-template-columns:1.4fr 1fr}.hero-portrait figure{height:260px}}
+@media(max-width:700px){.hero-portrait{grid-template-columns:1fr}.hero-portrait figure{height:200px}.hero-portrait figure img{object-position:50% 26%}}
+
+/* "What it is for": when to use the tool, an example, what you get, what changes at RLO launch, what it never does. */
+.use-case{margin:18px 0;padding:18px 20px;border:1px solid rgba(51,227,255,.28);border-radius:4px;background:rgba(9,17,34,.72)}
+.use-case h2{margin:0 0 12px;font-size:18px}
+.use-case dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 22px;margin:0}
+.use-case dt{margin:0 0 4px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--vn-char,#33e3ff)}
+.use-case dd{margin:0;line-height:1.55}
+.use-case .use-case-not{margin:14px 0 0;font-size:14px;opacity:.85}

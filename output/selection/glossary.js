@@ -3,9 +3,9 @@
 const TERMS={
  'demo-rlo':['Demo RLO','A made-up practice unit. It is not a token, has no price and cannot be withdrawn.'],
  'sepolia':['Sepolia','A free Ethereum test network. Its ETH has no real value and only pays test fees.'],
- 'rabby':['Rabby','A browser wallet extension. Resonance uses it to read which pass NFTs your wallet holds.'],
+ 'rabby':['Wallet','A browser wallet such as MetaMask, OKX Wallet, Coinbase Wallet or Rabby. Resonance uses it to read which pass NFTs you hold and to ask for your mint approval; nothing is sent without your confirmation.'],
  'pass':['Learning pass (NFT)','A test NFT you earn after a lesson. It opens the matching tool; it never allows spending.'],
- 'mint':['Mint','Creating your pass NFT on Sepolia. You confirm it in Rabby and pay a small test-ETH fee.'],
+ 'mint':['Mint','Creating your pass NFT on Sepolia. You confirm it in your wallet and pay a small test-ETH fee.'],
  'tx-hash':['Transaction hash','The ID of a transaction. Paste it to check a mint you already sent.'],
  'condition':['Condition (trigger)','A rule such as “price at or below 8”. When it becomes true, the action is queued, not done yet.'],
  'execution':['Execution check','Right before acting, the rule is checked again. If the price moved past your limit, nothing is bought.'],
@@ -31,7 +31,7 @@ const LABELS={
  'Starting demo balance':'demo-rlo','Keep untouched':'reserve','Maximum per demo week':'weekly-cap','Cost of each proposed order':'fee','Buy only at or below':'price-limit','Reject quotes older than':'quote-age',
  'Starting balance · Demo RLO':'demo-rlo','Untouched reserve · Demo RLO':'reserve','Weekly cap · Demo RLO':'weekly-cap','Cost per order, including fee · Demo RLO':'fee','Unit price limit · Demo RLO':'price-limit','Maximum quote age · minutes':'quote-age','Scenario set':'price-path','Assumed annual rate · % (−99 to 100)':'assumed-rate','Same market. Different boundaries.':'plans-ab',
  'Current operating cash · RLO':'operating-cash','Protected cash floor · RLO':'reserve','Separate flexible savings · RLO':'flexible-savings','Allow this demo proposal to use flexible savings for checked expenses':'flexible-savings','Priority · 1–20':'priority','Your proposed allocation · not adopted or paid':'allocation',
- 'Your learning pass opens the door.':'pass','Bring your Ece pass.':'pass','Your Ade pass opens the lab.':'pass','Your Eric pass opens the studio.':'pass','Your learning passes':'pass',
+ 'Your learning pass opens the door.':'pass','Bring your Ece pass.':'pass','Your Ade pass opens the lab.':'pass','Your Denis pass opens the studio.':'pass','Your learning passes':'pass',
  '1. Choose your learning pass':'pass','2. Check your wallet':'rabby','3. Mint your pass':'mint','I reviewed the character, wallet and Sepolia fee.':'sepolia','Sepolia transaction hash':'tx-hash'};
 const source=node=>(window.ResonanceI18n?window.ResonanceI18n.source(node):node.data).trim();
 let popover=null,pinned=null;

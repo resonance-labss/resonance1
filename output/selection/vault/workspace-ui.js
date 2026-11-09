@@ -1,6 +1,9 @@
 /* Presentation only: move existing controls; never calculate or authorize actions. */
 (()=>{'use strict';
 const $=id=>document.getElementById(id),root=$('workspace'),who=Number(document.body.dataset.vaultCharacter||0);
+// Number fields silently drop a typed comma, so 8,5 would become 85. Type a dot instead; if the browser refuses, say so.
+document.addEventListener('keydown',e=>{const input=e.target;if(e.key!==','||!(input instanceof HTMLInputElement)||input.type!=='number')return;e.preventDefault();if(document.execCommand('insertText',false,'.'))return;input.setCustomValidity(window.ResonanceI18n?window.ResonanceI18n.t('Use a dot for decimals, for example 8.5.'):'Use a dot for decimals, for example 8.5.');input.reportValidity();});
+document.addEventListener('input',e=>{if(e.target instanceof HTMLInputElement&&e.target.type==='number')e.target.setCustomValidity('');});
 const desk=$(who===0?'diren-desk':'tool-desk');if(!root||!desk)return;
 document.body.classList.add('workspace-page');
 for(const table of root.querySelectorAll('.lab-table,.comparison-table-wrap')){table.tabIndex=0;table.setAttribute('role','region');table.setAttribute('aria-label','Scrollable calculation table');}
@@ -13,7 +16,7 @@ const status=document.createElement('p');status.id='workspace-status';status.cla
 const guide=$('practice-guide');if(guide){const steps=guide.querySelector('ol');if(steps){const detail=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Read the three steps';steps.before(detail);detail.append(summary,steps);}guide.querySelector('h2').textContent='Quick guide';}
 if(who===3){const detail=$('ade-calculation-details');$('ade-weekly').before(detail);}
 if(who===1){const explanation=$('decision-summary');if(explanation)right.append(explanation);}
-// Put Eric's examples next to the editable budget, and the reference next to its result.
+// Put Denis's examples next to the editable budget, and the reference next to its result.
 if(who===2){const examples=$('example-note')?.closest('section'),reference=$('reference-status')?.closest('section');if(examples)left.insertBefore(examples,$('budget-form'));if(reference)right.append(reference);}
 // A newly opened review/result must not inherit the scroll position of a long old result.
 for(const target of [$(who===0?'review-box':who===1?'policy-review':who===2?'results':'ade-results')].filter(Boolean)){

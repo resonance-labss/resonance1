@@ -6,8 +6,10 @@ An anime-inspired learning adventure connecting reactive transaction concepts to
 
 ## What works today
 
-- Short character lessons; Diren, Ece and Ade each have a current four-question, four-option check.
-- Sepolia character NFTs, Rabby connection, mint receipt verification and current-ownership access checks.
+- Character lessons: four short animated cards about each character's tool, then a four-question, four-option check.
+- Each tool states what it is for (when to use it, an example, what you get, what changes at RLO launch, what it never does). RLO has not launched; every tool runs on fictional Demo RLO and never moves funds.
+- Sepolia character NFTs, connection with any browser wallet (MetaMask, Rabby, Coinbase Wallet and others, with a picker when several are installed), mint receipt verification and current-ownership access checks.
+- Read-only operations on My Resonance: transaction status, pass verification and a transfer preview that never sends anything.
 - Diren's conditional-buy simulation: explicit budget, price cap, expiry, cancellation and execution checks.
 - Ece's Reserve Studio: shared weekly cap, reserve floor and data-age checks, three stress scenarios, protected/unprotected comparisons, downloadable local reports, browser-saved settings and comparisons between completed policies.
 - Ade’s NFT-gated Plan Lab: audit two policies on identical hypothetical price paths, compare cash/asset value/fees, and explore compound growth in a separate assumption-based calculator.
@@ -15,11 +17,11 @@ An anime-inspired learning adventure connecting reactive transaction concepts to
 - A guided tour and a Terms panel on every page, and a one-sentence result with a downloadable image card in each tool.
 - Hosted Gemini drafts for Diren and Ece, plus Diren’s Latch proposal checks with a persistent shared free-preview quota. Credentials remain on the server; applying a draft and confirming the simulation are separate actions.
 
-NFT minting is on Sepolia, not Rialo. Purchases and balances in the vault are fictional. The test NFT contract does not verify gameplay; local completion gates only the app's mint flow. Eric's scheduled tool is an experimental implementation with development currently paused.
+NFT minting is on Sepolia, not Rialo. Purchases and balances in the vault are fictional. The test NFT contract does not verify gameplay; local completion gates only the app's mint flow. Denis's scheduled tool (Eric in older versions) is an experimental implementation with development currently paused.
 
 ## Run the public version locally
 
-Requirements: Python 3 and a modern browser. Rabby in an extension-enabled browser is needed for wallet features.
+Requirements: Python 3 and a modern browser. A browser wallet such as MetaMask or Rabby is needed for wallet features.
 
 ```sh
 python3 integrations/web/build.py
@@ -27,6 +29,8 @@ python3 -m http.server 8767 --bind 127.0.0.1 --directory output/vercel-site/publ
 ```
 
 Open http://127.0.0.1:8767. This build includes the landing page, game, mint screen, Diren vault, Ece Reserve Studio and Ade Plan Lab. It deliberately excludes secrets, backend services and development screenshots.
+
+On Windows without Python, extract a package that already contains `output/vercel-site/public` and double-click `Resonance-Baslat.bat`. It serves the built site with the PowerShell that ships with Windows (`integrations/web/serve-windows.ps1`), opens the browser and stops when its window is closed. From a git checkout, build once with Python first.
 
 Browser progress is stored per origin. Existing localhost progress will not automatically appear on the live domain; NFTs remain in the wallet.
 

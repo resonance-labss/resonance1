@@ -10,3 +10,12 @@ button:not(:disabled):hover,.primary:hover{filter:brightness(1.08)}
 button:disabled{opacity:1;background:transparent;color:#8d9ea4;border:1px dashed #4a5d66;cursor:not-allowed}
 .summary div{background:#142630;border-radius:0 12px 12px 0}
 #wallet-status,#local-status:not(:empty){border-left:3px solid var(--mint);padding:4px 0 4px 12px}
+
+/* Operations: three read-only Sepolia tools. */
+.ops{margin:8px 0 40px}.ops-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px;align-items:start}
+.op{padding:22px;border:1px solid #40555b;background:#142630;min-width:0}.op h3{margin:6px 0 8px}.op p{font-size:15px}
+.op-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--op-tone,var(--mint))}.op-diren{--op-tone:#35dcff}.op-ade{--op-tone:#ff8a4c}.op-ece{--op-tone:#ff4fa3}
+.op label{display:block;margin:12px 0 6px;font-size:13px;letter-spacing:.06em;color:#c3d0e2}.op input,.op select{width:100%;min-height:44px;padding:10px 12px;font:inherit;color:#eef3ff;background:#0b1424;border:1px solid #52617e}
+.op input:focus,.op select:focus{outline:none;border-color:var(--op-tone)}.op button{margin-top:14px}.op-or{margin:10px 0 0;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8ea0c0}
+.op-result:empty{display:none}.op-result{margin-top:14px;padding:12px 14px;border-left:3px solid var(--op-tone);background:#0a1626;overflow-wrap:anywhere}.op-result p{margin:4px 0;font-size:14px;color:#d6e6f4}.op-result.error{border-color:#ff5470}.op-result a{color:var(--op-tone)}
+@media(max-width:900px){.ops-grid{grid-template-columns:1fr}}

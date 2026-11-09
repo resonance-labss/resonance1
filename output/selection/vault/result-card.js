@@ -1,19 +1,33 @@
 /* One-sentence result headline and a downloadable PNG card. Reads finished results only; never changes balances, approvals or saved plans. */
 (()=>{'use strict';
-const themes=[{name:'Diren',tool:'Reactive Vault',accent:'#b6dfcc',image:'diren.jpg'},{name:'Ece',tool:'Reserve Studio',accent:'#e5a9ab',image:'ece.jpg'},{name:'Eric',tool:'Web3 Budget Studio',accent:'#9fd4c6',image:'eric.jpg'},{name:'Ade',tool:'Plan Lab',accent:'#dbb579',image:'ade.jpg'}];
+const themes=[{name:'Diren',tool:'Reactive Vault',accent:'#b6dfcc',image:'diren.jpg'},{name:'Ece',tool:'Reserve Studio',accent:'#e5a9ab',image:'ece.jpg'},{name:'Denis',tool:'Web3 Budget Studio',accent:'#9fd4c6',image:'denis.jpg'},{name:'Ade',tool:'Plan Lab',accent:'#dbb579',image:'ade.jpg'}];
 const theme=themes[Number(document.body.dataset.vaultCharacter)]||themes[0];
 // Card text follows the visible language and demo unit, exactly like the page.
 const say=text=>{const translated=window.ResonanceI18n?window.ResonanceI18n.t(text):text;return window.ResonanceUnit?window.ResonanceUnit.text(translated):translated;};
 let box=null,current=null;
 function build(){
- box=document.createElement('section');box.id='result-headline';box.className='result-headline';box.dataset.character=theme.name.toLowerCase();
+ box=document.createElement('section');box.id='result-headline';box.className='result-headline';box.tabIndex=-1;box.dataset.character=theme.name.toLowerCase();
  box.innerHTML='<div class="result-headline-eyebrow">Result in one sentence</div><p id="result-sentence"></p><div class="result-headline-actions"><button type="button" id="result-card-download" class="secondary">Download result card</button><span id="result-card-status" role="status"></span></div>';
  box.querySelector('button').onclick=()=>download().catch(()=>{box.querySelector('#result-card-status').textContent='The card could not be created in this browser.';});
 }
 function show(container,data){
  if(!box)build();current=data;box.querySelector('#result-sentence').textContent=data.headline;box.querySelector('#result-card-status').textContent='';
  // Sit directly under the result heading, so the sentence is the first thing read.
- const heading=container.querySelector(':scope > h2');if(box.parentElement!==container||(heading?box.previousElementSibling!==heading:container.firstElementChild!==box)){if(heading)heading.after(box);else container.prepend(box);}box.hidden=false;
+ const heading=container.querySelector(':scope > h2');if(box.parentElement!==container||(heading?box.previousElementSibling!==heading:container.firstElementChild!==box)){if(heading)heading.after(box);else container.prepend(box);}box.hidden=false;reveal();
+}
+// A finished run often ends below the fold or inside the sticky result column. Bring the sentence into view, but only right
+// after a click or key press, and never while the visitor is typing in a field that updates results live.
+function reveal(){
+ if(navigator.userActivation&&!navigator.userActivation.isActive)return;
+ if(document.activeElement?.matches?.('input,select,textarea'))return;
+ // Some tools unhide their result panel right after show(), so measure on the next frame.
+ requestAnimationFrame(()=>{if(box.hidden||!box.getClientRects().length)return;
+ const behavior=matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';
+ const column=box.closest('#diren-result,#tool-result');
+ if(column&&column.scrollHeight>column.clientHeight)column.scrollTo({top:Math.max(0,box.getBoundingClientRect().top-column.getBoundingClientRect().top+column.scrollTop-12),behavior});
+ const bar=document.querySelector('.workspace-shortcuts'),offset=(bar?bar.getBoundingClientRect().bottom:0)+12,rect=box.getBoundingClientRect();
+ if(rect.top<offset||rect.bottom>innerHeight)scrollBy({top:rect.top-offset,behavior});
+ box.focus({preventScroll:true});});
 }
 function hide(){current=null;if(box)box.hidden=true;}
 function load(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=src;});}
